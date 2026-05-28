@@ -27,6 +27,107 @@
 <meta name="twitter:description" content="Publicly reported federal contract award records from USASpending.gov, FY18 to present, with pattern-based observations.">
 <meta name="twitter:image" content="https://contractwatch.org/social-preview.png?v=2">
 
+<!-- Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ContractWatch",
+  "url": "https://contractwatch.org",
+  "description": "Federal contract award anomaly flagging dashboard. Screens publicly reported federal contract awards from USASpending.gov against three patterns and surfaces survivors of a structural filter for human review.",
+  "publisher": {
+    "@type": "Organization",
+    "name": "ContractWatch",
+    "url": "https://contractwatch.org",
+    "sameAs": ["https://github.com/contractwatch/contractwatch"]
+  }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "ContractWatch Dashboard",
+  "applicationCategory": "DataApplication",
+  "operatingSystem": "Web",
+  "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"},
+  "description": "Interactive dashboard surfacing federal contract awards that match three no-prior-history anomaly patterns: sole-source above $10M, competitive solicitation with one offer above $25M, or first federal contract above $25M. A structural filter removes recipients that fire these patterns by program design (federal-prime subsidiaries, ANC and tribal entities, joint ventures, FFRDC operators, etc.). Source data is USASpending.gov. MIT-licensed open source.",
+  "featureList": [
+    "Sort and filter by agency, state, NAICS, PSC, fiscal year, flag code, dollars, or action date",
+    "Per-award detail expansion with full description, period of performance, contract type, competition mechanism, and flag rationale",
+    "Direct USASpending record link for every flagged award",
+    "CSV export of currently visible (filtered and sorted) awards",
+    "Historical trends page aggregating flagged awards by fiscal year, agency, and NAICS",
+    "Daily-refreshed dataset via scheduled scan against the USASpending API"
+  ],
+  "url": "https://contractwatch.org"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How are awards selected for scanning?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every federal contract award with obligation above $1 million is read from USASpending.gov. Three pattern checks then run against each one. Awards that match a pattern and survive the structural filter are flagged."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a flag mean wrongdoing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "No. A flag means the award matches a pattern that, statistically, is uncommon at the dollar threshold for the flag. Many flagged awards have routine explanations. The flagging is a starting point for inquiry, not a finding."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How often does the data update?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A scheduled scan attempts to refresh the dataset daily. If a scan fails due to upstream outage, API timeout, or deploy error, the previous data remains visible until the next successful run."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Why are some obvious no-prior-history entities not flagged?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "They match a structural filter pattern (municipal authority, hospital, joint venture, federal-prime subsidiary, ANC or tribal entity, foreign government recipient, bridge contract extension, etc.) where the absence of prior federal history is explained by the entity type or contract structure rather than by anomaly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What dollar field does the dashboard use?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "ContractWatch filters on current_total_value_of_award from USASpending, which represents the contract ceiling (the government's committed total). This is more useful for shell-pattern detection than per-transaction obligation, because the ceiling reflects the trust signal being extended to the vendor."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I run my own copy?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The project is MIT-licensed. Clone github.com/contractwatch/contractwatch, follow the setup instructions in README.md, and either deploy to your own Cloudflare Pages account or serve the static web folder from any host."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is not covered by these flags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The three flags target the no-prior-history large-award pattern. They do not detect mischarging or labor billing fraud (requires audit data), defective pricing (requires sealed cost data), bid rigging (requires sealed bids), pass-through arrangements (requires subcontract data), bribery, or product substitution. Those categories require investigative or audit access beyond what public data exposes."
+      }
+    }
+  ]
+}
+</script>
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 <script>
   window.Chart || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>');
