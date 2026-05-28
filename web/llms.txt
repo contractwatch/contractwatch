@@ -20,7 +20,6 @@ The structural filter removes flag results when the no-prior-history pattern is 
 - Per-award detail: full description, period of performance, contract type, competition mechanism, awarding office, flag rationale
 - Direct link to each award's USASpending record
 - Export CSV button generates a download of the currently-visible (filtered/sorted) awards client-side
-- Historical trends page aggregates flagged awards by fiscal year, agency, and NAICS
 
 ## Updates
 
@@ -34,7 +33,6 @@ A scheduled scan refreshes the dataset daily, reading new awards from USASpendin
 ## Endpoints
 
 - [/](https://contractwatch.org/) - main flagged-awards view
-- [/historical.html](https://contractwatch.org/historical.html) - aggregate trends
 - [/data/latest.json](https://contractwatch.org/data/latest.json) - current flagged-award snapshot as JSON
 - [/data/stats.json](https://contractwatch.org/data/stats.json) - aggregate statistics
 - [/sitemap.xml](https://contractwatch.org/sitemap.xml)

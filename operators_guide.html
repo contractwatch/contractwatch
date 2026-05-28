@@ -570,7 +570,6 @@ details.rule-rationale-fold .rule-meta { padding: 0 14px 12px; }
     <li><strong>Per-award detail.</strong> Click any award to expand the full record: PIID, period of performance, contract type, competition mechanism, awarding office, the full description, and the list of flags that fired on it with their rationale text.</li>
     <li><strong>USASpending link.</strong> Every award includes a direct link to its public USASpending record so readers can verify the underlying contract data.</li>
     <li><strong>Export CSV.</strong> The "Export CSV" button in the dashboard header generates a CSV of the currently visible awards (respects active filters and sort order) and triggers a browser download. The file is named <code>contractwatch-awards-MMDDYY.csv</code> and contains 18 columns: <code>piid, recipient, uei, state, agency, office, obligation, action_date, start_date, end_date, contract_type, competition, naics, psc, description, flag_codes, flag_details, usaspending_url</code>. The CSV is generated client-side in the browser from the loaded JSON; no server round-trip, no separate export script to run.</li>
-    <li><strong>Historical trends page.</strong> A separate <code>historical.html</code> view aggregates flagged awards by fiscal year, agency, and NAICS for trend analysis. Backed by <code>web/data/historical.json</code> from <code>tools/export_historical.py</code>.</li>
   </ul>
 </section>
 
@@ -612,7 +611,6 @@ details.rule-rationale-fold .rule-meta { padding: 0 14px 12px; }
 <div class="tree-row"><span class="tree-file">│   ├── bulk_loader.py</span><span class="tree-note">load USASpending archive ZIPs into the DB</span></div>
 <div class="tree-row"><span class="tree-file">│   ├── jobs.example.json</span><span class="tree-note">example jobs file for bulk_loader.py</span></div>
 <div class="tree-row"><span class="tree-file">│   ├── reflag_all.py</span><span class="tree-note">bulk SQL re-flag of the full DB (~1.5s)</span></div>
-<div class="tree-row"><span class="tree-file">│   ├── export_historical.py</span><span class="tree-note">build web/data/historical.json</span></div>
 <div class="tree-row"><span class="tree-file">│   └── build_readme.py</span><span class="tree-note">generate this operators_guide.html</span></div>
 <div class="tree-row"><span class="tree-file">│</span></div>
 <div class="tree-row"><span class="tree-dir">├── launchd/</span><span class="tree-note">macOS launchd templates</span></div>
@@ -620,7 +618,6 @@ details.rule-rationale-fold .rule-meta { padding: 0 14px 12px; }
 <div class="tree-row"><span class="tree-file">│</span></div>
 <div class="tree-row"><span class="tree-dir">└── web/</span><span class="tree-note">static dashboard (served by Cloudflare Pages)</span></div>
 <div class="tree-row"><span class="tree-file">    ├── index.html</span><span class="tree-note">main flagged-awards view</span></div>
-<div class="tree-row"><span class="tree-file">    ├── historical.html</span><span class="tree-note">aggregate trends</span></div>
 <div class="tree-row"><span class="tree-file">    ├── loader.html</span><span class="tree-note">live bulk-loader status (polls loader_status.json)</span></div>
 <div class="tree-row"><span class="tree-file">    ├── llms.txt</span><span class="tree-note">machine-readable site description</span></div>
 <div class="tree-row"><span class="tree-file">    ├── robots.txt, sitemap.xml</span><span class="tree-note">SEO</span></div>

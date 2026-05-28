@@ -28,7 +28,6 @@ The dashboard at [contractwatch.org](https://contractwatch.org) reads the static
 - **Per-award detail.** Click any award to expand the full record: PIID, period of performance, contract type, competition mechanism, awarding office, the full description, and the list of flags that fired on it with their rationale text.
 - **USASpending link.** Every award includes a direct link to its public USASpending record so readers can verify the underlying contract data.
 - **Export CSV.** The "Export CSV" button in the dashboard header generates a CSV of the currently visible awards (respects active filters and sort order) and triggers a browser download. The file is named `contractwatch-awards-MMDDYY.csv` and contains 18 columns: `piid, recipient, uei, state, agency, office, obligation, action_date, start_date, end_date, contract_type, competition, naics, psc, description, flag_codes, flag_details, usaspending_url`. The CSV is generated client-side in the browser from the loaded JSON; no server round-trip, no separate export script to run.
-- **Historical trends page.** A separate `historical.html` view aggregates flagged awards by fiscal year, agency, and NAICS for trend analysis. Backed by `web/data/historical.json` from `tools/export_historical.py`.
 
 ## Architecture
 
@@ -184,7 +183,6 @@ contractwatch/
 │   ├── bulk_loader.py        load USASpending archive ZIPs into the DB
 │   ├── jobs.example.json     example jobs file for bulk_loader.py
 │   ├── reflag_all.py         bulk SQL re-flag of the full DB (1.5s)
-│   ├── export_historical.py  build web/data/historical.json (trends page)
 │   └── build_readme.py       regenerate operators_guide.html from current code
 │
 ├── launchd/
@@ -192,7 +190,6 @@ contractwatch/
 │
 └── web/                   static dashboard (served by Cloudflare Pages)
     ├── index.html         main flagged-awards view
-    ├── historical.html    aggregate trends
     ├── loader.html        live bulk-loader status (polls loader_status.json)
     ├── llms.txt           machine-readable site description
     ├── robots.txt, sitemap.xml, favicons, social-preview.png

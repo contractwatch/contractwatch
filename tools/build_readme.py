@@ -209,7 +209,6 @@ def repo_tree():
         ("│   ├── bulk_loader.py", "load USASpending archive ZIPs into the DB", False),
         ("│   ├── jobs.example.json", "example jobs file for bulk_loader.py", False),
         ("│   ├── reflag_all.py", "bulk SQL re-flag of the full DB (~1.5s)", False),
-        ("│   ├── export_historical.py", "build web/data/historical.json", False),
         ("│   └── build_readme.py", "generate this operators_guide.html", False),
         ("│", "", False),
         ("├── launchd/", "macOS launchd templates", True),
@@ -217,7 +216,6 @@ def repo_tree():
         ("│", "", False),
         ("└── web/", "static dashboard (served by Cloudflare Pages)", True),
         ("    ├── index.html", "main flagged-awards view", False),
-        ("    ├── historical.html", "aggregate trends", False),
         ("    ├── loader.html", "live bulk-loader status (polls loader_status.json)", False),
         ("    ├── llms.txt", "machine-readable site description", False),
         ("    ├── robots.txt, sitemap.xml", "SEO", False),
@@ -851,7 +849,6 @@ details.rule-rationale-fold .rule-meta {{ padding: 0 14px 12px; }}
     <li><strong>Per-award detail.</strong> Click any award to expand the full record: PIID, period of performance, contract type, competition mechanism, awarding office, the full description, and the list of flags that fired on it with their rationale text.</li>
     <li><strong>USASpending link.</strong> Every award includes a direct link to its public USASpending record so readers can verify the underlying contract data.</li>
     <li><strong>Export CSV.</strong> The "Export CSV" button in the dashboard header generates a CSV of the currently visible awards (respects active filters and sort order) and triggers a browser download. The file is named <code>contractwatch-awards-MMDDYY.csv</code> and contains 18 columns: <code>piid, recipient, uei, state, agency, office, obligation, action_date, start_date, end_date, contract_type, competition, naics, psc, description, flag_codes, flag_details, usaspending_url</code>. The CSV is generated client-side in the browser from the loaded JSON; no server round-trip, no separate export script to run.</li>
-    <li><strong>Historical trends page.</strong> A separate <code>historical.html</code> view aggregates flagged awards by fiscal year, agency, and NAICS for trend analysis. Backed by <code>web/data/historical.json</code> from <code>tools/export_historical.py</code>.</li>
   </ul>
 </section>
 
