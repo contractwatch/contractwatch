@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContractWatch Loader Status</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0c10;
+    --bg2: #12161e;
+    --panel: #111419;
+    --panel2: #161a21;
+    --line: #232833;
+    --text: #e6e9ef;
+    --muted: #98a2b3;
+    --accent: #6ee7b7;
+    --accent2: #f59e0b;
+    --bad: #f87171;
+    --good: #34d399;
+    --neutral: #60a5fa;
+    --purple: #a78bfa;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  body {
+    background: radial-gradient(ellipse at top, var(--bg2) 0%, var(--bg) 55%) fixed, var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1700px; margin: 0 auto; padding: 22px 28px 60px; }
+  a { color: var(--accent); text-decoration: none; }
+  .tnum, .num { font-variant-numeric: tabular-nums; }
+  .mono { font-family: var(--mono); font-size: 12.5px; }
+
+  header.top {
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--line);
+    margin-bottom: 24px;
+  }
+  h1 { font-size: 22px; font-weight: 700; letter-spacing: -0.4px; }
+  h1 span { color: var(--accent); }
+  .statusline { font-size: 13px; color: var(--muted); margin-top: 6px; display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+  .dot { width: 9px; height: 9px; border-radius: 50%; background: var(--muted); display: inline-block; flex: none; }
+  .dot.good { background: var(--good); box-shadow: 0 0 6px var(--good); }
+  .dot.warn { background: var(--accent2); }
+  .dot.bad  { background: var(--bad); }
+  .dot.run  { background: var(--neutral); animation: pulse 1.5s infinite; }
+  @keyframes pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(96,165,250,0.6); }
+    50% { opacity: 0.55; box-shadow: 0 0 0 8px rgba(96,165,250,0); }
+  }
+
+  .kpis {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 22px;
+  }
+  .kpi {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 14px 16px;
+  }
+  .kpi .label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
+  .kpi .value { font-size: 22px; font-weight: 700; margin-top: 4px; letter-spacing: -0.3px; }
+  .kpi .sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px;
+    margin-bottom: 22px;
+  }
+  .card {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 14px 14px 12px; display: flex; flex-direction: column; gap: 8px;
+    transition: border-color 0.2s;
+  }
+  .card.active { border-color: var(--neutral); }
+  .card.done { border-color: var(--good); }
+  .card.failed { border-color: var(--bad); }
+
+  .card .head {
+    display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  }
+  .card .fy {
+    font-size: 17px; font-weight: 700; letter-spacing: -0.3px;
+  }
+  .badge {
+    font-size: 10px; font-weight: 700; text-transform: uppercase;
+    padding: 3px 7px; border-radius: 5px; letter-spacing: 0.5px;
+  }
+  .badge.queued    { background: rgba(152,162,179,0.15); color: var(--muted); }
+  .badge.downloading { background: rgba(96,165,250,0.18); color: var(--neutral); }
+  .badge.parsing   { background: rgba(167,139,250,0.18); color: var(--purple); }
+  .badge.loading   { background: rgba(245,158,11,0.18); color: var(--accent2); }
+  .badge.done      { background: rgba(52,211,153,0.18); color: var(--good); }
+  .badge.failed    { background: rgba(248,113,113,0.2); color: var(--bad); }
+
+  .bar {
+    height: 8px; width: 100%; background: var(--panel2);
+    border-radius: 4px; overflow: hidden; border: 1px solid var(--line);
+  }
+  .bar > div {
+    height: 100%;
+    background: linear-gradient(90deg, var(--neutral), var(--accent));
+    transition: width 0.4s ease;
+  }
+  .card.done .bar > div { background: var(--good); }
+  .card.failed .bar > div { background: var(--bad); }
+
+  .stats {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px;
+    font-size: 12px; color: var(--muted);
+  }
+  .stats .k { color: var(--muted); }
+  .stats .v { color: var(--text); font-variant-numeric: tabular-nums; }
+
+  details.logbox {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 10px;
+    padding: 12px 16px; margin-top: 14px;
+  }
+  details.logbox summary {
+    cursor: pointer; font-weight: 600; color: var(--text);
+    list-style: none; display: flex; align-items: center; gap: 8px;
+  }
+  details.logbox summary::-webkit-details-marker { display: none; }
+  details.logbox summary::before {
+    content: "▸"; transition: transform 0.15s; display: inline-block;
+  }
+  details.logbox[open] summary::before { transform: rotate(90deg); }
+  .log {
+    margin-top: 10px; max-height: 360px; overflow: auto;
+    background: var(--bg2); border-radius: 6px; padding: 10px 14px;
+    font-family: var(--mono); font-size: 12px; line-height: 1.45;
+    color: var(--muted); white-space: pre-wrap; word-break: break-word;
+  }
+  .log .err { color: var(--bad); }
+  .log .ok  { color: var(--good); }
+
+  .nav {
+    display: flex; gap: 10px; align-items: center;
+  }
+  .nav a {
+    font-size: 13px; padding: 7px 12px; border-radius: 7px;
+    border: 1px solid var(--line); color: var(--text);
+  }
+  .nav a:hover { border-color: var(--accent); color: var(--accent); }
+
+  @media (max-width: 1100px) {
+    .grid { grid-template-columns: repeat(2, 1fr); }
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .grid, .kpis { grid-template-columns: 1fr; }
+    .wrap { padding: 16px 14px 40px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <div>
+      <h1>Contract<span>Watch</span> Loader Status</h1>
+      <div class="statusline">
+        <span class="dot" id="loader-dot"></span>
+        <span id="loader-state-text">checking...</span>
+        <span style="opacity:0.4">|</span>
+        <span id="generated-text"></span>
+        <span style="opacity:0.4">|</span>
+        <span id="poll-counter" style="font-family:var(--mono);font-size:12px;">polls: 0</span>
+        <span style="opacity:0.4">|</span>
+        <span id="data-age" style="font-family:var(--mono);font-size:12px;color:var(--good)">data age: -</span>
+      </div>
+      <div id="fetch-error" style="margin-top:6px;font-size:12px;color:var(--bad);display:none;font-family:var(--mono);"></div>
+    </div>
+    <div class="nav">
+      <a href="historical.html">Historical Dashboard</a>
+      <a href="index.html">Live Dashboard</a>
+    </div>
+  </header>
+
+  <div class="kpis">
+    <div class="kpi"><div class="label">FYs Complete</div><div class="value" id="kpi-complete">.</div><div class="sub" id="kpi-complete-sub">Out of - in pipeline</div></div>
+    <div class="kpi"><div class="label">DB Total Awards</div><div class="value" id="kpi-db-total">.</div><div class="sub">All time</div></div>
+    <div class="kpi"><div class="label">Current Speed</div><div class="value" id="kpi-speed">.</div><div class="sub">MB/s on active download</div></div>
+    <div class="kpi"><div class="label">Bytes Downloaded</div><div class="value" id="kpi-bytes">.</div><div class="sub">Cumulative across FYs</div></div>
+  </div>
+
+  <div class="grid" id="fy-grid"></div>
+
+  <details class="logbox" open>
+    <summary>Live loader log <span style="font-weight:400;color:var(--muted);font-size:12px;margin-left:6px;">(last 40 lines)</span></summary>
+    <div class="log" id="logtail">loading...</div>
+  </details>
+
+</div>
+
+<script>
+const REFRESH_MS = 2000;
+const STATUS_KEYS = ["queued","downloading","parsing","loading","done","failed"];
+
+function fmtNum(n) { return (n||0).toLocaleString(); }
+function fmtMB(n) {
+  if (!n) return "0 MB";
+  if (n >= 1024) return (n/1024).toFixed(2) + " GB";
+  return n.toFixed(0) + " MB";
+}
+
+function statusBadge(s) {
+  return `<span class="badge ${s}">${s}</span>`;
+}
+
+function renderFy(fy) {
+  const status = fy.status || "queued";
+  const cls = (status === "done") ? "done"
+            : (status === "failed") ? "failed"
+            : (["downloading","parsing","loading"].includes(status) ? "active" : "");
+  const pct = (status === "done") ? 100
+            : (status === "loading" && fy.upsert_total) ? Math.round(fy.upserted / fy.upsert_total * 100)
+            : (status === "parsing") ? Math.min(95, fy.rows_scanned ? Math.round(fy.awards_kept / Math.max(fy.rows_scanned, 1) * 100) : 80)
+            : (fy.pct || 0);
+
+  let primary = "";
+  if (status === "downloading") {
+    primary = `${fmtMB(fy.downloaded_mb)} / ${fmtMB(fy.total_mb)}<br><span class="mono" style="font-size:11px">${(fy.speed_mbps||0).toFixed(1)} MB/s, attempt ${fy.attempt||1}</span>`;
+  } else if (status === "parsing") {
+    primary = `Parsing CSV<br><span class="mono" style="font-size:11px">${fmtNum(fy.rows_scanned)} rows, ${fmtNum(fy.awards_kept)} kept</span>`;
+  } else if (status === "loading") {
+    primary = `Loading DB<br><span class="mono" style="font-size:11px">${fmtNum(fy.upserted)} / ${fmtNum(fy.upsert_total)} awards</span>`;
+  } else if (status === "done") {
+    primary = `<span style="color:var(--good)">${fmtNum(fy.awards_final)} awards loaded</span><br><span class="mono" style="font-size:11px">total ${fmtNum(fy.db_awards)} in DB</span>`;
+  } else if (status === "failed") {
+    primary = `<span style="color:var(--bad)">FAILED</span><br><span class="mono" style="font-size:11px">${(fy.error||"").slice(0,60)}</span>`;
+  } else {
+    primary = `<span style="color:var(--muted)">waiting</span>`;
+  }
+
+  const elapsed = fy.download_sec || 0;
+  const elapsedMin = elapsed ? (elapsed/60).toFixed(1) + " min" : "-";
+
+  return `
+  <div class="card ${cls}">
+    <div class="head">
+      <div class="fy">${fy.label}</div>
+      ${statusBadge(status)}
+    </div>
+    <div style="font-size:13px; min-height: 36px;">${primary}</div>
+    <div class="bar"><div style="width: ${Math.max(0, Math.min(100, pct))}%"></div></div>
+    <div class="stats" style="margin-top: 2px;">
+      <span class="k">Download</span><span class="v num">${elapsedMin}</span>
+      <span class="k">Parse</span><span class="v num">${fy.parse_min ? fy.parse_min.toFixed(1) + " min" : "-"}</span>
+      <span class="k">Awards loaded</span><span class="v num">${fmtNum(fy.awards_final || fy.unique_awards || 0)}</span>
+      <span class="k">DB total</span><span class="v num">${fmtNum(fy.db_awards || 0)}</span>
+    </div>
+  </div>`;
+}
+
+let pollCount = 0;
+let lastDataTimestamp = null;
+let lastSuccessfulFetch = Date.now();
+const PAGE_RELOAD_AFTER_MS = 60000;  // hard reload page if no data for 60s
+
+async function tick() {
+  pollCount++;
+  document.getElementById("poll-counter").textContent = "polls: " + pollCount;
+  try {
+    const res = await fetch("data/loader_status.json?t=" + Date.now(), {
+      cache: "no-store",
+      headers: { "Cache-Control": "no-cache" },
+    });
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const d = await res.json();
+    lastSuccessfulFetch = Date.now();
+    document.getElementById("fetch-error").style.display = "none";
+    if (d.generated_at !== lastDataTimestamp) {
+      lastDataTimestamp = d.generated_at;
+    }
+    render(d);
+    document.title = `[${d.fys.filter(f=>f.status==="done").length}/${d.fys.length}] CW Loader`;
+  } catch (e) {
+    const el = document.getElementById("fetch-error");
+    el.textContent = "fetch error: " + e.message + " (poll #" + pollCount + ")";
+    el.style.display = "block";
+    document.getElementById("loader-state-text").textContent = "status JSON unreachable";
+    document.getElementById("loader-dot").className = "dot bad";
+  }
+}
+
+function updateDataAge() {
+  if (!lastDataTimestamp) {
+    document.getElementById("data-age").textContent = "data age: -";
+    return;
+  }
+  const age = (Date.now() - lastSuccessfulFetch) / 1000;
+  const el = document.getElementById("data-age");
+  el.textContent = "data age: " + age.toFixed(1) + "s";
+  if (age > 10) {
+    el.style.color = "var(--bad)";
+  } else if (age > 5) {
+    el.style.color = "var(--accent2)";
+  } else {
+    el.style.color = "var(--good)";
+  }
+  // Hard reload if data is way too stale (browser tab probably suspended polling)
+  if (age * 1000 > PAGE_RELOAD_AFTER_MS) {
+    console.warn("data stale for " + age + "s, hard-reloading page");
+    window.location.reload();
+  }
+}
+
+function render(d) {
+  const completeCount = d.fys.filter(f => f.status === "done").length;
+  const activeFy = d.fys.find(f => ["downloading","parsing","loading"].includes(f.status));
+  const failedCount = d.fys.filter(f => f.status === "failed").length;
+
+  let stateText = "idle";
+  let dotCls = "dot";
+  if (!d.loader_alive && d.pipeline_complete) { stateText = "pipeline complete"; dotCls = "dot good"; }
+  else if (!d.loader_alive && d.pipeline_started) { stateText = `loader exited (${completeCount}/${d.fys.length} done, ${failedCount} failed)`; dotCls = "dot bad"; }
+  else if (d.loader_alive && activeFy) { stateText = `${activeFy.label} ${activeFy.status}`; dotCls = "dot run"; }
+  else if (d.loader_alive) { stateText = "loader running"; dotCls = "dot good"; }
+  else { stateText = "loader not running"; dotCls = "dot bad"; }
+
+  document.getElementById("loader-state-text").textContent = stateText;
+  document.getElementById("loader-dot").className = dotCls;
+  document.getElementById("generated-text").textContent = "updated " + d.generated_at;
+
+  document.getElementById("kpi-complete").textContent = `${completeCount} / ${d.fys.length}`;
+  const subEl = document.getElementById("kpi-complete-sub");
+  if (subEl) subEl.textContent = `Out of ${d.fys.length} in pipeline`;
+  document.getElementById("kpi-db-total").textContent = fmtNum(d.db_total_awards);
+  document.getElementById("kpi-speed").textContent = activeFy && activeFy.status === "downloading"
+    ? (activeFy.speed_mbps || 0).toFixed(1) + " MB/s"
+    : "-";
+  const totalDl = d.fys.reduce((s, f) => s + (f.downloaded_mb || 0), 0);
+  document.getElementById("kpi-bytes").textContent = fmtMB(totalDl);
+
+  document.getElementById("fy-grid").innerHTML = d.fys.map(renderFy).join("");
+
+  const logEl = document.getElementById("logtail");
+  if (d.log_tail && d.log_tail.length) {
+    const html = d.log_tail.map(l => {
+      const safe = l.replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+      if (/FAILED|Traceback|Error|MISMATCH/.test(l)) return `<span class="err">${safe}</span>`;
+      if (/DONE|COMPLETE|schema OK/.test(l)) return `<span class="ok">${safe}</span>`;
+      return safe;
+    }).join("\n");
+    logEl.innerHTML = html;
+    logEl.scrollTop = logEl.scrollHeight;
+  }
+}
+
+tick();
+setInterval(tick, REFRESH_MS);
+setInterval(updateDataAge, 250);
+
+// Wake polling immediately when tab regains focus
+document.addEventListener("visibilitychange", () => {
+  if (!document.hidden) tick();
+});
+window.addEventListener("focus", tick);
+</script>
+</body>
+</html>

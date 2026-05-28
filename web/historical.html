@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContractWatch Historical: Federal Contract Trends FY18 to FY26</title>
+<meta name="description" content="Long-window view of federal contract award trends: obligations, sole-source rate, competition mix, pricing mix, top vendors, top agencies. Built on USASpending bulk data.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="canonical" href="https://contractwatch.org/historical.html">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --bg: #0a0c10;
+    --bg2: #12161e;
+    --panel: #111419;
+    --panel2: #161a21;
+    --line: #232833;
+    --text: #e6e9ef;
+    --muted: #98a2b3;
+    --accent: #6ee7b7;
+    --accent2: #f59e0b;
+    --bad: #f87171;
+    --good: #34d399;
+    --neutral: #60a5fa;
+    --purple: #a78bfa;
+    --pink: #f472b6;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  html { scroll-behavior: smooth; scroll-padding-top: 110px; }
+  body {
+    background: radial-gradient(ellipse at top, var(--bg2) 0%, var(--bg) 55%) fixed, var(--bg);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1900px; margin: 0 auto; padding: 0 32px 90px; }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .tnum { font-variant-numeric: tabular-nums; }
+  .mono { font-family: var(--mono); }
+
+  header.top {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,12,16,0.88);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--line);
+  }
+  .topinner {
+    max-width: 1900px; margin: 0 auto; padding: 18px 32px 12px;
+    display: flex; align-items: flex-start; justify-content: space-between; gap: 20px;
+  }
+  h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.6px; line-height: 1.0; }
+  h1 span { color: var(--accent); }
+  .statusline { display: flex; align-items: center; gap: 8px; margin-top: 7px; font-size: 13px; color: var(--muted); }
+  .actions { display: flex; gap: 8px; align-items: center; }
+  a.btn {
+    font-size: 13px; font-weight: 600;
+    border-radius: 8px; padding: 8px 13px; cursor: pointer;
+    border: 1px solid var(--line); background: transparent; color: var(--text);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  a.btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  a.btn.primary { border-color: var(--accent); background: var(--accent); color: #06231a; }
+  nav.topnav {
+    max-width: 1900px; margin: 0 auto; padding: 0 32px 10px;
+    display: flex; gap: 18px; font-size: 13px; color: var(--muted);
+    flex-wrap: wrap;
+  }
+  nav.topnav a { color: var(--muted); }
+  nav.topnav a:hover { color: var(--accent); }
+
+  section { margin-top: 36px; }
+  h2 {
+    font-size: 18px; font-weight: 600; letter-spacing: -0.2px;
+    margin-bottom: 14px; color: var(--text);
+    display: flex; align-items: center; gap: 12px;
+  }
+  h2 .badge {
+    font-size: 11px; font-weight: 600; padding: 3px 8px;
+    border-radius: 999px; background: var(--panel2); color: var(--muted);
+    border: 1px solid var(--line); letter-spacing: 0.3px;
+  }
+  h2 .subtitle { font-size: 13px; font-weight: 400; color: var(--muted); }
+
+  .kpis {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+    margin-top: 22px;
+  }
+  .kpi {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 12px; padding: 18px 20px;
+  }
+  .kpi .label { font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.6px; }
+  .kpi .value { font-size: 28px; font-weight: 700; margin-top: 6px; letter-spacing: -0.5px; }
+  .kpi .sub { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .panel {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 14px; padding: 22px; margin-top: 14px;
+  }
+  .panelgrid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 18px;
+  }
+  .panelgrid.three { grid-template-columns: repeat(3, 1fr); }
+
+  .chartbox { position: relative; height: 360px; }
+  .chartbox.tall { height: 440px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13.5px; }
+  th, td { padding: 10px 12px; text-align: left; border-bottom: 1px solid var(--line); }
+  th {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--muted); font-weight: 600; background: var(--panel2);
+    position: sticky; top: 0;
+  }
+  td.num, th.num { text-align: right; font-variant-numeric: tabular-nums; }
+  tr:hover td { background: rgba(110, 231, 183, 0.04); }
+  .tag {
+    display: inline-block; padding: 2px 8px; border-radius: 6px;
+    font-size: 11px; font-weight: 600; letter-spacing: 0.3px;
+  }
+  .tag.high { background: rgba(248,113,113,0.15); color: var(--bad); }
+  .tag.med  { background: rgba(245,158,11,0.15); color: var(--accent2); }
+  .tag.low  { background: rgba(52,211,153,0.15); color: var(--good); }
+  .tag.zero { background: rgba(152,162,179,0.15); color: var(--muted); }
+
+  .scroll { max-height: 540px; overflow: auto; border-radius: 10px; border: 1px solid var(--line); }
+  .scroll table { border-collapse: separate; border-spacing: 0; }
+  .scroll td:first-child, .scroll th:first-child { padding-left: 16px; }
+  .scroll td:last-child, .scroll th:last-child { padding-right: 16px; }
+
+  .footer {
+    margin-top: 60px; padding-top: 24px; border-top: 1px solid var(--line);
+    color: var(--muted); font-size: 13px;
+    display: flex; justify-content: space-between; flex-wrap: wrap; gap: 16px;
+  }
+  .footer a { color: var(--muted); }
+  .footer a:hover { color: var(--accent); }
+
+  @media (max-width: 1200px) {
+    .panelgrid, .panelgrid.three { grid-template-columns: 1fr; }
+    .kpis { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .wrap { padding: 0 16px 60px; }
+    .topinner { padding: 14px 16px 8px; flex-direction: column; }
+    h1 { font-size: 22px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="topinner">
+    <div>
+      <h1>Contract<span>Watch</span> Historical</h1>
+      <div class="statusline">
+        <span id="generated-label">loading...</span>
+        <span style="opacity:0.5">|</span>
+        <span id="awards-label"></span>
+      </div>
+    </div>
+    <div class="actions">
+      <a class="btn" href="/">Live Dashboard</a>
+      <a class="btn primary" href="/data/historical.json" target="_blank">Raw JSON</a>
+    </div>
+  </div>
+  <nav class="topnav">
+    <a href="#kpis">Overview</a>
+    <a href="#trends">FY Trends</a>
+    <a href="#competition">Competition Mix</a>
+    <a href="#pricing">Pricing Mix</a>
+  </nav>
+</header>
+
+<main class="wrap">
+
+  <section id="kpis">
+    <div class="kpis" id="kpi-grid">
+      <div class="kpi"><div class="label">Total Awards</div><div class="value" id="kpi-awards">.</div><div class="sub">All FYs in dataset</div></div>
+      <div class="kpi"><div class="label">Total Obligation</div><div class="value" id="kpi-oblig">.</div><div class="sub">Sum of current obligation</div></div>
+      <div class="kpi"><div class="label">Sole-Source Rate</div><div class="value" id="kpi-sole">.</div><div class="sub">Across all FYs</div></div>
+      <div class="kpi"><div class="label">FY Range</div><div class="value" id="kpi-fyrange">.</div><div class="sub">Earliest to latest</div></div>
+    </div>
+  </section>
+
+  <section id="trends">
+    <h2>Federal Contract Trends by Fiscal Year <span class="subtitle">Total obligation vs sole-source rate</span></h2>
+    <div class="panel">
+      <div class="chartbox tall"><canvas id="chart-fy-trends"></canvas></div>
+    </div>
+  </section>
+
+  <section id="competition">
+    <h2>Competition Mix by Fiscal Year <span class="subtitle">Share of awards by extent-competed code</span></h2>
+    <div class="panel">
+      <div class="chartbox tall"><canvas id="chart-competition"></canvas></div>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <h2>Contract Pricing Type by Fiscal Year <span class="subtitle">FFP, T&amp;M/LH, Cost-reimbursement, Other</span></h2>
+    <div class="panel">
+      <div class="chartbox tall"><canvas id="chart-pricing"></canvas></div>
+    </div>
+  </section>
+
+  <div class="footer">
+    <div>
+      Data source: USASpending.gov public bulk archives, FY18 to present.
+      Pattern-based observations are descriptive of the data, not allegations.
+    </div>
+    <div>
+      <a href="/">Live dashboard</a> | <a href="https://contractwatch.org">contractwatch.org</a>
+    </div>
+  </div>
+
+</main>
+
+<script>
+const COLORS = {
+  text: '#e6e9ef', muted: '#98a2b3', accent: '#6ee7b7', accent2: '#f59e0b',
+  bad: '#f87171', good: '#34d399', neutral: '#60a5fa', purple: '#a78bfa',
+  pink: '#f472b6', panel: '#111419', line: '#232833',
+};
+
+const COMPETITION_COLORS = {
+  'A': '#34d399',  // Full and open
+  'D': '#6ee7b7',  // Full and open after exclusions
+  'F': '#60a5fa',  // Competed under SAP
+  'CDO': '#a78bfa', // Competitive DO
+  'B': '#f59e0b',  // Not available for competition
+  'C': '#f87171',  // Not competed (sole source)
+  'G': '#fb923c',  // Not competed SAP
+  'NDO': '#ef4444',// Non-competitive DO
+  'E': '#94a3b8',
+};
+const COMPETITION_ORDER = ['A','D','F','CDO','B','C','G','NDO','E','OTHER'];
+
+const PRICING_COLORS = {
+  'FFP': '#34d399',
+  'T&M / LH': '#f59e0b',
+  'Cost-reimbursement': '#f87171',
+  'Other': '#94a3b8',
+};
+
+Chart.defaults.color = COLORS.muted;
+Chart.defaults.borderColor = COLORS.line;
+Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "SF Pro Text", system-ui, sans-serif';
+Chart.defaults.font.size = 12;
+
+function fmtMoneyCompact(n) {
+  if (!n) return '$0';
+  const abs = Math.abs(n);
+  if (abs >= 1e12) return '$' + (n/1e12).toFixed(2) + 'T';
+  if (abs >= 1e9)  return '$' + (n/1e9).toFixed(2) + 'B';
+  if (abs >= 1e6)  return '$' + (n/1e6).toFixed(1) + 'M';
+  if (abs >= 1e3)  return '$' + (n/1e3).toFixed(1) + 'K';
+  return '$' + n.toFixed(0);
+}
+function fmtMoneyFull(n) {
+  return '$' + Math.round(n).toLocaleString();
+}
+function fmtNum(n) {
+  return (n||0).toLocaleString();
+}
+function fmtPct(n) {
+  return (n||0).toFixed(1) + '%';
+}
+function severityTag(rate) {
+  if (rate >= 50) return `<span class="tag high">${fmtPct(rate)}</span>`;
+  if (rate >= 25) return `<span class="tag med">${fmtPct(rate)}</span>`;
+  if (rate > 0)   return `<span class="tag low">${fmtPct(rate)}</span>`;
+  return `<span class="tag zero">${fmtPct(rate)}</span>`;
+}
+
+async function load() {
+  let data;
+  try {
+    const res = await fetch('data/historical.json?t=' + Date.now());
+    data = await res.json();
+  } catch (e) {
+    document.getElementById('generated-label').textContent = 'Failed to load historical.json';
+    return;
+  }
+  renderHeader(data);
+  renderKPIs(data);
+  renderTrends(data.fy_summary);
+  renderCompetition(data.competition_by_fy);
+  renderPricing(data.pricing_by_fy);
+}
+
+function renderHeader(d) {
+  document.getElementById('generated-label').textContent = 'Generated ' + d.generated_at;
+  document.getElementById('awards-label').textContent = fmtNum(d.total_awards_in_db) + ' awards in dataset';
+}
+
+function renderKPIs(d) {
+  const fys = d.fy_summary;
+  const totalAwards = fys.reduce((s,r)=>s+r.award_count,0);
+  const totalOblig  = fys.reduce((s,r)=>s+r.total_obligation,0);
+  const totalSole   = fys.reduce((s,r)=>s+r.sole_source_count,0);
+  const fyMin = fys.length ? fys[0].fy : '-';
+  const fyMax = fys.length ? fys[fys.length-1].fy : '-';
+  document.getElementById('kpi-awards').textContent  = fmtNum(totalAwards);
+  document.getElementById('kpi-oblig').textContent   = fmtMoneyCompact(totalOblig);
+  document.getElementById('kpi-sole').textContent    = totalAwards ? fmtPct(totalSole/totalAwards*100) : '-';
+  document.getElementById('kpi-fyrange').textContent = `FY${String(fyMin).slice(-2)} to FY${String(fyMax).slice(-2)}`;
+}
+
+function renderTrends(fys) {
+  const ctx = document.getElementById('chart-fy-trends');
+  new Chart(ctx, {
+    data: {
+      labels: fys.map(r => 'FY' + String(r.fy).slice(-2)),
+      datasets: [
+        {
+          type: 'bar',
+          label: 'Total obligation',
+          data: fys.map(r => r.total_obligation),
+          backgroundColor: COLORS.accent,
+          borderRadius: 4,
+          yAxisID: 'y',
+          order: 2,
+        },
+        {
+          type: 'line',
+          label: 'Sole-source rate (%)',
+          data: fys.map(r => r.sole_source_rate),
+          borderColor: COLORS.bad,
+          backgroundColor: COLORS.bad,
+          tension: 0.25,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          yAxisID: 'y2',
+          order: 1,
+        },
+        {
+          type: 'line',
+          label: 'Single-offer rate (%)',
+          data: fys.map(r => r.single_offer_rate),
+          borderColor: COLORS.accent2,
+          backgroundColor: COLORS.accent2,
+          tension: 0.25,
+          pointRadius: 4,
+          pointHoverRadius: 6,
+          yAxisID: 'y2',
+          order: 0,
+        },
+      ],
+    },
+    options: {
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { color: COLORS.text } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const v = ctx.parsed.y;
+              if (ctx.dataset.yAxisID === 'y') {
+                return `${ctx.dataset.label}: ${fmtMoneyFull(v)}`;
+              }
+              return `${ctx.dataset.label}: ${(v||0).toFixed(2)}%`;
+            },
+          },
+        },
+      },
+      scales: {
+        y: {
+          position: 'left',
+          title: { display: true, text: 'Obligation ($)', color: COLORS.muted },
+          ticks: { callback: v => fmtMoneyCompact(v) },
+        },
+        y2: {
+          position: 'right',
+          title: { display: true, text: 'Rate (%)', color: COLORS.muted },
+          ticks: { callback: v => v + '%' },
+          grid: { drawOnChartArea: false },
+          min: 0,
+        },
+      },
+    },
+  });
+}
+
+function renderCompetition(perFy) {
+  const ctx = document.getElementById('chart-competition');
+  const codesInData = new Set();
+  perFy.forEach(r => Object.keys(r.by_code).forEach(c => codesInData.add(c)));
+  const codes = COMPETITION_ORDER.filter(c => codesInData.has(c));
+  for (const c of codesInData) if (!codes.includes(c)) codes.push(c);
+
+  const labels = perFy.map(r => 'FY' + String(r.fy).slice(-2));
+  const datasets = codes.map(code => {
+    const sample = perFy.find(r => r.by_code[code]);
+    const label = sample ? sample.by_code[code].label : code;
+    const totals = labels.map((_, i) => {
+      const fyRow = perFy[i];
+      return fyRow.by_code[code] ? fyRow.by_code[code].count : 0;
+    });
+    return {
+      label: `${code}: ${label}`,
+      data: totals,
+      backgroundColor: COMPETITION_COLORS[code] || COLORS.muted,
+      borderColor: COMPETITION_COLORS[code] || COLORS.muted,
+      borderWidth: 0,
+      stack: 'comp',
+    };
+  });
+  new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { color: COLORS.text, boxWidth: 14 } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${fmtNum(ctx.parsed.y)} awards`,
+          },
+        },
+      },
+      scales: {
+        x: { stacked: true },
+        y: { stacked: true, ticks: { callback: v => fmtNum(v) } },
+      },
+    },
+  });
+}
+
+function renderPricing(perFy) {
+  const ctx = document.getElementById('chart-pricing');
+  const buckets = ['FFP', 'T&M / LH', 'Cost-reimbursement', 'Other'];
+  const labels = perFy.map(r => 'FY' + String(r.fy).slice(-2));
+  const datasets = buckets.map(b => ({
+    label: b,
+    data: labels.map((_, i) => perFy[i][b] ? perFy[i][b].obligation : 0),
+    backgroundColor: PRICING_COLORS[b],
+    borderColor: PRICING_COLORS[b],
+    borderWidth: 0,
+    stack: 'price',
+  }));
+  new Chart(ctx, {
+    type: 'bar',
+    data: { labels, datasets },
+    options: {
+      maintainAspectRatio: false,
+      interaction: { mode: 'index', intersect: false },
+      plugins: {
+        legend: { position: 'top', labels: { color: COLORS.text } },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => `${ctx.dataset.label}: ${fmtMoneyFull(ctx.parsed.y)}`,
+          },
+        },
+      },
+      scales: {
+        x: { stacked: true },
+        y: { stacked: true, ticks: { callback: v => fmtMoneyCompact(v) } },
+      },
+    },
+  });
+}
+
+load();
+</script>
+</body>
+</html>

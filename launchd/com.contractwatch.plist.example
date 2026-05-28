@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  ContractWatch daily-scan launchd job (macOS).
+
+  Install (one-time):
+    1. Copy this file to ~/Library/LaunchAgents/com.contractwatch.plist
+    2. Edit the two WorkingDirectory / ProgramArguments paths to your absolute
+       checkout path (must be absolute; launchd does not expand ~).
+    3. launchctl load ~/Library/LaunchAgents/com.contractwatch.plist
+
+  daily_scan.sh runs the catch-up scan, regenerates web/data/*.json, and
+  optionally pushes to Cloudflare Pages (skipped if wrangler is not installed).
+
+  StartCalendarInterval below runs once daily at 04:30 local time. Adjust
+  Hour/Minute or replace with a StartInterval (seconds) to taste.
+-->
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.contractwatch</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>/REPLACE/WITH/ABSOLUTE/PATH/TO/contractwatch/daily_scan.sh</string>
+  </array>
+
+  <key>WorkingDirectory</key>
+  <string>/REPLACE/WITH/ABSOLUTE/PATH/TO/contractwatch</string>
+
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key>
+    <string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin</string>
+  </dict>
+
+  <key>StartCalendarInterval</key>
+  <dict>
+    <key>Hour</key>
+    <integer>4</integer>
+    <key>Minute</key>
+    <integer>30</integer>
+  </dict>
+
+  <key>RunAtLoad</key>
+  <false/>
+
+  <key>StandardOutPath</key>
+  <string>/tmp/contractwatch.out.log</string>
+
+  <key>StandardErrorPath</key>
+  <string>/tmp/contractwatch.err.log</string>
+
+  <key>ProcessType</key>
+  <string>Background</string>
+</dict>
+</plist>

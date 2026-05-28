@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ContractWatch: Federal Contract Award Monitor</title>
+<meta name="description" content="ContractWatch aggregates publicly reported federal contract award records from USASpending.gov, FY18 to present, and surfaces pattern-based observations against the data.">
+<meta name="keywords" content="federal contract awards, USASpending data, federal contracting data, government contract awards, prime contract awards, federal procurement data, contract award records, federal spending transparency, government contract monitor">
+<meta name="author" content="ContractWatch">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+<link rel="canonical" href="https://contractwatch.org/">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png?v=2">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png?v=2">
+<link rel="icon" type="image/x-icon" href="/favicon.ico?v=2">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png?v=2">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="ContractWatch: Federal Contract Award Monitor">
+<meta property="og:description" content="Publicly reported federal contract award records from USASpending.gov, FY18 to present, with pattern-based observations.">
+<meta property="og:url" content="https://contractwatch.org/">
+<meta property="og:site_name" content="ContractWatch">
+<meta property="og:image" content="https://contractwatch.org/social-preview.png?v=2">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="ContractWatch: Federal Contract Award Monitor">
+<meta name="twitter:description" content="Publicly reported federal contract award records from USASpending.gov, FY18 to present, with pattern-based observations.">
+<meta name="twitter:image" content="https://contractwatch.org/social-preview.png?v=2">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script>
+  window.Chart || document.write('<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"><\/script>');
+</script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; min-width: 0; }
+  html, body { overflow-x: hidden; max-width: 100%; }
+  :root {
+    --bg: #f5f1e8;
+    --bg2: #ebe5d4;
+    --panel: #ffffff;
+    --panel2: #fbf8f1;
+    --line: #c9c1ac;
+    --line-strong: #a8a08e;
+    --text: #1a1612;
+    --muted: #6b6055;
+    --accent: #b91c1c;
+    --accent2: #1e3a5f;
+    --bad: #991b1b;
+    --high: #b45309;
+    --med: #1e40af;
+    --good: #14532d;
+    --serif: "Charter", "Source Serif Pro", Georgia, "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text", system-ui, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  html { scroll-behavior: smooth; scroll-padding-top: 130px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 15px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .wrap { max-width: 1280px; margin: 0 auto; padding: 0 36px 110px; }
+  a { color: var(--accent); text-decoration: underline; text-underline-offset: 2px; }
+  a:hover { color: var(--bad); }
+  .tnum { font-variant-numeric: tabular-nums; }
+  .mono { font-family: var(--mono); }
+
+  /* Header — newspaper masthead style */
+  header.top {
+    background: var(--bg);
+    border-bottom: 3px double var(--text);
+    position: sticky; top: 0; z-index: 50;
+  }
+  .topinner {
+    max-width: 1280px; margin: 0 auto; padding: 22px 36px 14px;
+    display: flex; align-items: center; justify-content: space-between; gap: 24px;
+  }
+  h1 {
+    font-family: var(--serif);
+    font-size: 38px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    line-height: 0.95;
+    color: var(--text);
+  }
+  h1 span { color: var(--accent); font-style: italic; }
+  .statusline { display: flex; align-items: center; gap: 9px; margin-top: 8px; font-size: 12.5px; color: var(--muted); font-family: var(--mono); }
+  .substatus { font-size: 11.5px; color: var(--muted); margin-top: 3px; font-family: var(--mono); }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--muted); flex: none; }
+  .dot.good { background: var(--good); }
+  .dot.warn { background: var(--high); }
+  .dot.bad  { background: var(--bad); }
+  .actions { display: flex; gap: 10px; align-items: center; flex: none; }
+  button.btn, a.btn {
+    font: inherit; font-size: 12px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 1px;
+    border-radius: 0; padding: 11px 18px; cursor: pointer;
+    border: 1.5px solid var(--text); background: var(--text); color: var(--bg);
+    display: inline-flex; align-items: center; gap: 8px;
+    text-decoration: none;
+  }
+  button.btn:hover, a.btn:hover { background: var(--accent); border-color: var(--accent); color: white; text-decoration: none; }
+  button.btn:disabled { opacity: 0.4; cursor: not-allowed; }
+  .btn.secondary { background: transparent; color: var(--text); }
+  .btn.secondary:hover { background: var(--text); color: var(--bg); }
+  .btn.ghost { background: transparent; color: var(--muted); border-color: var(--line); padding: 8px 12px; font-weight: 600; }
+  nav.topnav {
+    max-width: 1280px; margin: 0 auto; padding: 0 36px 12px;
+    display: flex; gap: 26px; font-size: 12.5px; font-weight: 600;
+    text-transform: uppercase; letter-spacing: 1.2px;
+  }
+  nav.topnav a { color: var(--text); text-decoration: none; padding-bottom: 4px; border-bottom: 2px solid transparent; }
+  nav.topnav a:hover { border-bottom-color: var(--accent); color: var(--accent); }
+
+  .pill {
+    display: inline-block; padding: 3px 10px; border-radius: 0;
+    font-size: 10.5px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.8px; border: 1px solid transparent; font-family: var(--mono);
+  }
+  .pill.crit { color: white; background: var(--bad); }
+  .pill.ok   { color: white; background: var(--good); }
+
+  section { margin-top: 44px; }
+  h2.sec {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--text);
+    margin-bottom: 22px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--line-strong);
+    text-align: left;
+  }
+  h2.sec::before {
+    content: ""; display: inline-block; width: 4px; height: 22px;
+    background: var(--accent); margin-right: 12px; vertical-align: -3px;
+  }
+
+  /* Overview cards — newspaper-feel data callouts */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); gap: 0; border: 1px solid var(--line-strong); }
+  .card {
+    background: var(--panel);
+    border-right: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    padding: 20px 22px;
+    transition: background 0.15s;
+  }
+  .card:last-child { border-right: none; }
+  .card:hover { background: var(--panel2); }
+  .card .label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.2px;
+    color: var(--muted); font-weight: 700;
+  }
+  .card .num {
+    font-family: var(--serif); font-size: 42px; font-weight: 700;
+    margin-top: 8px; letter-spacing: -1px; line-height: 1;
+    color: var(--text);
+  }
+  .card .num.small { font-size: 28px; letter-spacing: -0.5px; }
+  .card .note { font-size: 12px; color: var(--muted); margin-top: 6px; font-style: italic; }
+
+  /* Charts */
+  .chart-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(380px, 100%), 1fr)); gap: 18px; }
+  .chart-grid-wide { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(560px, 100%), 1fr)); gap: 18px; margin-top: 18px; }
+  .chartbox { background: var(--panel); border: 1px solid var(--line); padding: 18px 22px; }
+  .chartbox h3 {
+    font-family: var(--serif); font-size: 17px; font-weight: 700;
+    color: var(--text); letter-spacing: -0.2px;
+  }
+  .chartbox .chart-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--line); }
+  .chartbox .chart-fy {
+    font: inherit; font-size: 11px; font-weight: 600;
+    background: var(--panel); color: var(--text);
+    border: 1px solid var(--line); border-radius: 0; padding: 4px 8px;
+    cursor: pointer; font-family: var(--mono);
+  }
+  .chartbox .chart-fy:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .chartbox .cv { position: relative; height: 240px; }
+  .chartbox.tall .cv { height: 360px; }
+
+  /* Scan panel (hidden by default; scanner is disabled) */
+  #scanPanel { background: var(--panel); border: 2px solid var(--accent); padding: 18px 20px; margin-top: 22px; display: none; }
+  #scanPanel.on { display: block; }
+  .scanhead { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
+  .scanphase { display: flex; align-items: center; gap: 10px; font-weight: 700; font-family: var(--serif); font-size: 17px; }
+  .progress { height: 6px; background: var(--bg2); margin: 14px 0; overflow: hidden; }
+  .progress .fill { height: 100%; background: var(--accent); width: 0%; transition: width 0.4s ease; }
+  .progress.indet .fill { width: 35% !important; animation: sweep 1.2s ease-in-out infinite; }
+  @keyframes sweep { 0% { margin-left: -35%; } 100% { margin-left: 100%; } }
+  .scanstats { display: flex; gap: 32px; flex-wrap: wrap; }
+  .scanstat .label { font-size: 10.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; }
+  .scanstat .num { font-size: 26px; font-weight: 700; font-family: var(--serif); }
+  .spinner { width: 14px; height: 14px; border: 2px solid var(--line); border-top-color: var(--accent); border-radius: 50%; display: inline-block; animation: spin 0.8s linear infinite; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* Filter bar */
+  .filterbar { background: var(--panel); border: 1px solid var(--line); padding: 14px 16px; display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+  .filterbar input[type=search] { flex: 1 1 auto; }
+  .filterbar .flex-break { flex-basis: 100%; height: 0; margin: 0; }
+  .filterbar #clearBtn { margin-left: auto; }
+  .filterbar input, .filterbar select {
+    font: inherit; font-size: 13px; background: var(--panel); color: var(--text);
+    border: 1px solid var(--line); border-radius: 0; padding: 8px 10px;
+    font-family: var(--sans);
+  }
+  .filterbar input[type=search] { min-width: 260px; }
+  .filterbar input[type=date] { color-scheme: light; }
+  .sevtoggles { display: flex; gap: 4px; }
+  .sevtoggle {
+    cursor: pointer; user-select: none; padding: 7px 12px; border-radius: 0;
+    font-size: 11.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px;
+    font-family: var(--sans); border: 1px solid var(--line); color: var(--muted); background: var(--panel);
+  }
+  .sevtoggle:focus-visible, .filterbar input:focus-visible, .filterbar select:focus-visible,
+  button.btn:focus-visible, .fdate input:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .sevtoggle.on.crit { color: white; background: var(--bad); border-color: var(--bad); }
+  .sevtoggle.on.high { color: white; background: var(--high); border-color: var(--high); }
+  .fdate { display: flex; align-items: center; gap: 6px; font-size: 12.5px; color: var(--muted); }
+  .resultcount { font-size: 13px; color: var(--muted); margin: 16px 2px; font-style: italic; }
+
+  /* Award feed — newspaper article style */
+  .feed { display: flex; flex-direction: column; gap: 0; }
+  details.award {
+    background: var(--panel); border: 1px solid var(--line); border-left: 5px solid var(--muted);
+    border-radius: 0; overflow: hidden; margin-bottom: -1px;
+  }
+  details.award[data-tier="CRITICAL"] { border-left-color: var(--bad); }
+  details.award[open] { border-color: var(--text); }
+  summary.awardrow { list-style: none; cursor: pointer; padding: 18px 22px; display: grid; grid-template-columns: 72px 1fr auto 30px; gap: 22px; align-items: center; }
+  summary.awardrow::-webkit-details-marker { display: none; }
+  summary.awardrow:hover { background: var(--panel2); }
+  .scorebox { text-align: center; }
+  .scorebox .s { font-family: var(--serif); font-size: 34px; font-weight: 700; line-height: 1; letter-spacing: -1px; }
+  .scorebox .s.r { color: var(--bad); }
+  .scorebox .s.a { color: var(--high); }
+  .scorebox .s.b { color: var(--med); }
+  .scorebox .l { font-size: 9.5px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); font-weight: 700; margin-top: 4px; }
+  .recipient { font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: -0.2px; line-height: 1.25; color: var(--text); }
+  .ident .sub { font-size: 12.5px; color: var(--muted); margin-top: 2px; }
+  .ident .uei { font-size: 11px; color: var(--muted); font-family: var(--mono); }
+  .money { text-align: right; }
+  .money .amt { font-family: var(--serif); font-weight: 700; font-size: 20px; color: var(--text); letter-spacing: -0.3px; }
+  .money .dt { font-size: 11.5px; color: var(--muted); margin-top: 2px; font-family: var(--mono); }
+  .chips { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 8px; }
+  .chip { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 0; border: 1px solid transparent; font-family: var(--mono); letter-spacing: 0.5px; }
+  .chip.crit { color: white; background: var(--bad); }
+  .chip.high { color: white; background: var(--high); }
+  .chev { color: var(--muted); font-size: 18px; transition: transform 0.15s; text-align: center; }
+  details.award[open] .chev { transform: rotate(90deg); }
+  .award-body { padding: 4px 22px 22px; border-top: 1px solid var(--line); background: var(--panel2); }
+  .flaglist { margin: 18px 0; display: flex; flex-direction: column; gap: 12px; }
+  .flagrow { display: grid; grid-template-columns: 88px 1fr; gap: 14px; align-items: start; }
+  .flagrow .ftext .frule { font-weight: 700; font-size: 14px; font-family: var(--serif); }
+  .flagrow .ftext .fdetail { font-size: 13px; color: var(--muted); margin-top: 2px; }
+  .factgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 100%), 1fr)); gap: 12px 18px; margin: 18px 0; padding: 14px; background: var(--panel); border: 1px solid var(--line); }
+  .fact .fl { font-size: 10px; text-transform: uppercase; letter-spacing: 0.9px; color: var(--muted); font-weight: 700; }
+  .fact .fv { font-size: 13px; word-break: break-word; margin-top: 2px; }
+  .subblock { margin-top: 18px; }
+  .subblock h4 { font-family: var(--serif); font-size: 14px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .subblock .desc { font-size: 13.5px; color: var(--text); font-family: var(--serif); font-style: italic; line-height: 1.55; }
+  .subline { font-size: 12.5px; padding: 5px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 14px; }
+  .verify { margin-top: 18px; }
+
+  /* Score-band tiers */
+  details.tier { border: 1px solid var(--line); border-left: 5px solid var(--muted); border-radius: 0; overflow: hidden; margin-bottom: 14px; }
+  details.tier.tier-30 { border-left-color: var(--bad); }
+  details.tier.tier-20 { border-left-color: var(--high); }
+  details.tier.tier-15 { border-left-color: var(--med); }
+  details.tier.tier-10 { border-left-color: var(--muted); }
+  summary.tierhead {
+    list-style: none; cursor: pointer; user-select: none; display: flex; align-items: center; gap: 14px;
+    padding: 16px 22px; font-family: var(--serif); font-weight: 700; font-size: 19px;
+    background: var(--bg2); color: var(--text);
+  }
+  summary.tierhead::-webkit-details-marker { display: none; }
+  summary.tierhead:hover { background: var(--line); }
+  summary.tierhead:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
+  summary.tierhead .tlabel { flex: 1; }
+  .tiercount { font-size: 13px; font-weight: 600; color: var(--muted); font-family: var(--mono); }
+  details.tier[open] > summary.tierhead .chev { transform: rotate(90deg); }
+  .tier-body { display: flex; flex-direction: column; gap: 0; padding: 0; }
+
+  .empty { text-align: center; color: var(--muted); padding: 60px 0; font-style: italic; font-family: var(--serif); font-size: 17px; }
+  .empty.err { color: var(--bad); font-style: normal; }
+
+  details.awardsfold {
+    background: #ffffff; border: 1px solid var(--line-strong); border-radius: 4px;
+    padding: 20px 24px; margin-bottom: 18px;
+  }
+  details.awardsfold > summary {
+    list-style: none; cursor: pointer; padding: 0;
+    display: flex; justify-content: space-between; align-items: center; gap: 24px;
+    flex-wrap: wrap;
+  }
+  details.awardsfold .aftoggle-label {
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    color: var(--muted); letter-spacing: 0.3px; margin-left: 6px;
+  }
+  details.awardsfold[open] .aftoggle-label::before { content: "[collapse]"; }
+  details.awardsfold[open] .aftoggle-label { font-size: 0; }
+  details.awardsfold[open] .aftoggle-label::before { font-size: 13px; }
+  details.awardsfold > summary::-webkit-details-marker { display: none; }
+  details.awardsfold .aftitle {
+    margin: 0; padding-bottom: 0; border-bottom: none;
+    display: flex; align-items: center; gap: 14px;
+  }
+  details.awardsfold .aftitle::before { content: none; }
+  details.awardsfold .afchev {
+    display: inline-block; color: inherit; font-size: 28px;
+    line-height: 1; transition: transform 0.2s ease;
+  }
+  details.awardsfold[open] > summary .afchev { transform: rotate(90deg); }
+  details.awardsfold .afnums {
+    display: flex; gap: 36px; flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+  details.awardsfold .afnum { text-align: right; }
+  details.awardsfold .afnum .n {
+    font-family: var(--serif); font-size: 28px; font-weight: 700;
+    letter-spacing: -1px; color: var(--text); line-height: 1;
+  }
+  details.awardsfold .afnum .l {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+    color: var(--muted); margin-top: 4px; font-weight: 600;
+    white-space: nowrap;
+  }
+  details.awardsfold > .awardsfold-body { margin-top: 18px; }
+
+  @media (max-width: 760px) {
+    details.awardsfold > summary { padding: 16px 14px; }
+    details.awardsfold > .awardsfold-body { padding: 0 14px 18px; }
+    details.awardsfold .afnums {
+      width: 100%; gap: 18px;
+      justify-content: space-between;
+    }
+    details.awardsfold .afnum:first-child { text-align: left; }
+    details.awardsfold .afnum .n { font-size: 26px; }
+  }
+
+  #flags { margin-top: 40px; }
+  .flags-intro {
+    color: var(--muted); font-family: var(--serif); font-size: 16px;
+    line-height: 1.65; margin: 0 0 24px;
+  }
+  .flag-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  }
+  .flag-card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-left: 4px solid var(--line-strong); border-radius: 4px;
+    padding: 20px 22px;
+  }
+  .flag-card[data-sev="CRITICAL"] { border-left-color: var(--bad); }
+  .flag-card[data-sev="STRUCTURAL_FILTER"] { border-left-color: var(--muted); }
+  details.flag-card { padding: 16px 22px; }
+  details.flag-card > summary {
+    list-style: none; cursor: pointer; padding: 0;
+    display: flex; align-items: center; gap: 12px;
+  }
+  details.flag-card > summary::-webkit-details-marker { display: none; }
+  details.flag-card > summary .afchev {
+    display: inline-block; color: var(--text); font-size: 22px;
+    line-height: 1; transition: transform 0.2s ease;
+  }
+  details.flag-card[open] > summary .afchev { transform: rotate(90deg); }
+  details.flag-card > summary .flag-title {
+    margin: 0; padding: 0; flex: 1; font-size: 16px;
+  }
+  details.flag-card > summary .aftoggle-label {
+    font-family: var(--mono); font-size: 12.5px; font-weight: 500;
+    color: var(--muted); letter-spacing: 0.3px; margin-left: auto;
+  }
+  details.flag-card[open] > summary .aftoggle-label::before { content: "[collapse]"; }
+  details.flag-card[open] > summary .aftoggle-label { font-size: 0; }
+  details.flag-card[open] > summary .aftoggle-label::before { font-size: 12.5px; }
+  details.flag-card > .flag-card-body { margin-top: 14px; }
+  .flag-head {
+    display: flex; align-items: center; gap: 10px; margin-bottom: 8px;
+  }
+  .flag-code {
+    font-family: var(--mono); font-size: 16px; font-weight: 700;
+    color: var(--text); letter-spacing: 0.5px;
+  }
+  .flag-title {
+    font-size: 17px; font-weight: 700; color: var(--text);
+    margin: 0 0 12px; line-height: 1.35;
+  }
+  .flag-what, .flag-why {
+    font-family: var(--serif); font-size: 14.5px; line-height: 1.6;
+    color: var(--text); margin: 0 0 10px;
+  }
+  .flag-what strong, .flag-why strong {
+    color: var(--muted); font-weight: 700; font-family: inherit;
+  }
+  .flag-why { margin-bottom: 0; }
+  .flags-foot {
+    margin-top: 22px; padding: 16px 20px;
+    background: var(--panel); border: 1px solid var(--line);
+    border-left: 4px solid var(--accent); border-radius: 4px;
+    color: var(--muted); font-family: var(--serif); font-size: 14px;
+    line-height: 1.6;
+  }
+  blockquote { padding: 8px 0; color: var(--text); font-size: 15px; font-family: var(--serif); font-style: italic; margin: 14px 0; }
+  footer { margin-top: 60px; padding: 28px 0 0; border-top: 2px double var(--line-strong); font-size: 12.5px; color: var(--muted); font-family: var(--serif); font-style: italic; text-align: center; }
+
+  @media (max-width: 760px) {
+    .wrap { padding: 0 14px 70px; }
+    .topinner { padding: 16px 14px 10px; gap: 12px; flex-wrap: wrap; }
+    nav.topnav { padding: 4px 14px 12px; gap: 10px 22px; font-size: 12px; flex-wrap: wrap; justify-content: center; }
+    nav.topnav a { white-space: nowrap; }
+    h1 { font-size: 30px; }
+    .actions { gap: 6px; flex-wrap: wrap; }
+    button.btn, a.btn { padding: 9px 12px; font-size: 11px; letter-spacing: 0.6px; }
+    section { margin-top: 30px; }
+    h2.sec { font-size: 22px; margin-bottom: 16px; padding-bottom: 10px; }
+    .card { padding: 16px 16px; }
+    .card .num { font-size: 32px; }
+    .chart-grid, .chart-grid-wide { grid-template-columns: 1fr; gap: 12px; }
+    .flag-grid { grid-template-columns: 1fr; gap: 12px; }
+    .flag-card { padding: 16px 16px; }
+    .flag-title { font-size: 16px; }
+    .flags-intro { font-size: 15px; }
+    .chartbox { padding: 14px 12px; }
+    .chartbox .chart-head { flex-wrap: wrap; gap: 6px; }
+    .chartbox .cv { height: 280px; }
+    .chartbox.tall .cv { height: 360px; }
+    .filterbar { padding: 10px 12px; gap: 8px; }
+    .filterbar input[type=search] { min-width: 0; width: 100%; }
+    .filterbar select, .filterbar .fdate { flex: 1 1 auto; }
+    summary.awardrow { grid-template-columns: 54px 1fr 30px; padding: 14px 14px; gap: 14px; }
+    summary.awardrow .money { grid-column: 2; text-align: left; }
+    .money .amt { font-size: 17px; }
+    .recipient { font-size: 16px; }
+    .award-body { padding: 4px 14px 18px; }
+    .flagrow { grid-template-columns: 1fr; }
+    .scorebox .s { font-size: 28px; }
+    summary.tierhead { padding: 12px 14px; font-size: 16px; }
+    .fact .fv, .recipient, .ident .sub, .subblock .desc, .subline { overflow-wrap: anywhere; word-break: break-word; }
+  }
+  @media (max-width: 420px) {
+    h1 { font-size: 26px; }
+    .topinner { padding: 12px 12px 8px; }
+    .actions { width: 100%; }
+    button.btn, a.btn { flex: 1 1 auto; justify-content: center; }
+    .card .num { font-size: 28px; }
+    .chartbox .cv { height: 240px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="topinner">
+    <div>
+      <h1>contract<span>watch</span></h1>
+    </div>
+    <div class="actions">
+      <button type="button" class="btn secondary" id="exportBtn">Export CSV</button>
+      <a href="https://github.com/contractwatch" target="_blank" rel="noopener noreferrer" class="btn secondary" aria-label="GitHub"><svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" style="vertical-align:-2px;margin-right:6px;"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>GitHub</a>
+      <button class="btn" id="scanBtn">Generate / Refresh</button>
+    </div>
+  </div>
+  <nav class="topnav">
+    <a href="#overview">Overview</a>
+    <a href="#charts">Patterns</a>
+    <a href="#flags">Flags</a>
+    <a href="#awards">Flagged Awards</a>
+    <a href="#about">About</a>
+  </nav>
+</header>
+
+<div class="wrap">
+
+  <div id="scanPanel">
+    <div class="scanhead">
+      <div class="scanphase"><span class="spinner"></span><span id="scanPhase">Starting scan</span></div>
+      <div style="display:flex;gap:14px;align-items:center;">
+        <span class="mono" id="scanElapsed" style="color:var(--muted);font-size:13px;">0:00</span>
+        <button class="btn ghost" id="cancelBtn">Cancel</button>
+      </div>
+    </div>
+    <div class="progress indet" id="progress"><div class="fill" id="progressFill"></div></div>
+    <div class="scanstats">
+      <div class="scanstat"><div class="label">Awards scanned</div><div class="num tnum" id="scAwards">0</div></div>
+      <div class="scanstat"><div class="label">Flagged</div><div class="num tnum" id="scFlags">0</div></div>
+    </div>
+  </div>
+
+  <section id="overview">
+    <h2 class="sec">Overview</h2>
+    <div class="metric-grid" id="metricGrid"></div>
+  </section>
+
+  <section id="charts">
+    <h2 class="sec">Patterns</h2>
+    <div class="chart-grid-wide">
+      <div class="chartbox tall">
+        <div class="chart-head"><h3>Flagged awards by fiscal year</h3></div>
+        <div class="cv"><canvas id="chartFlags"></canvas></div>
+      </div>
+      <div class="chartbox tall">
+        <div class="chart-head"><h3>Top recipients by flagged dollars</h3>
+          <select class="chart-fy" data-chart="chartRecipientsDollars" aria-label="Filter by fiscal year"></select></div>
+        <div class="cv"><canvas id="chartRecipientsDollars"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="flags">
+    <h2 class="sec">The Flags</h2>
+    <p class="flags-intro">Three pattern checks (F01, F02, F03) run uniformly against every $1M+ federal prime contract in the dataset. The fourth card below describes the structural filter that strips false positives before flags publish. Together they are the entire screening framework. A fired flag is descriptive, not a finding: many flagged awards have routine explanations and are best read as worth a closer look.</p>
+
+    <div class="flag-grid">
+
+      <details class="flag-card" data-sev="CRITICAL">
+        <summary>
+          <span class="afchev" aria-hidden="true">&#9656;</span>
+          <span class="flag-code">F01</span>
+          <h3 class="flag-title">No prior federal contracts plus sole-source above $10M</h3>
+          <span class="aftoggle-label">[expand]</span>
+        </summary>
+        <div class="flag-card-body">
+          <p class="flag-what"><strong>What it checks.</strong> The award obligation exceeds ten million dollars, the recipient has no federal awards predating this one in the dataset, and the award was non-competitive.</p>
+          <p class="flag-why"><strong>Why it matters.</strong> A vendor with no prior federal history receiving a large non-competitive award is statistically uncommon. Both conditions independently warrant scrutiny; their co-occurrence at this dollar level is rare and worth a closer look.</p>
+        </div>
+      </details>
+
+      <details class="flag-card" data-sev="CRITICAL">
+        <summary>
+          <span class="afchev" aria-hidden="true">&#9656;</span>
+          <span class="flag-code">F02</span>
+          <h3 class="flag-title">No prior federal contracts plus competitive solicitation with one offer above $25M</h3>
+          <span class="aftoggle-label">[expand]</span>
+        </summary>
+        <div class="flag-card-body">
+          <p class="flag-what"><strong>What it checks.</strong> The award obligation exceeds twenty-five million dollars, the recipient has no federal awards predating this one in the dataset, and the award was issued as a competitive solicitation that received only one offer.</p>
+          <p class="flag-why"><strong>Why it matters.</strong> A competitive solicitation that draws a single offer from a vendor with no prior federal history is statistically uncommon at this dollar threshold. Distinct from F01: F01 catches awards where competition was waived; this flag catches awards where competition was nominal but produced no contest.</p>
+        </div>
+      </details>
+
+      <details class="flag-card" data-sev="CRITICAL">
+        <summary>
+          <span class="afchev" aria-hidden="true">&#9656;</span>
+          <span class="flag-code">F03</span>
+          <h3 class="flag-title">No prior federal contracts plus first contract above $25M</h3>
+          <span class="aftoggle-label">[expand]</span>
+        </summary>
+        <div class="flag-card-body">
+          <p class="flag-what"><strong>What it checks.</strong> The award obligation exceeds twenty-five million dollars, and the recipient has no federal awards predating this one in the dataset. Unlike F01 and F02, F03 does not consider how the contract is classified for competition. It fires regardless of whether the award is recorded as sole-source or competitive.</p>
+          <p class="flag-why"><strong>Why it matters.</strong> F03 catches awards that public reporting describes as effectively no-bid even when the formal procurement record classifies them differently. F01 catches awards explicitly recorded as sole-source; F02 catches competitive solicitations that drew only one offer. F03 closes the gap by treating the dollar size itself as the signal: a first contract above twenty-five million dollars to an entity with no federal history is statistically uncommon regardless of how the procurement was coded.</p>
+        </div>
+      </details>
+
+      <details class="flag-card" data-sev="STRUCTURAL_FILTER">
+        <summary>
+          <span class="afchev" aria-hidden="true">&#9656;</span>
+          <span class="flag-code">SF</span>
+          <h3 class="flag-title">Structural filter: Flag matches stripped before publishing</h3>
+          <span class="aftoggle-label">[expand]</span>
+        </summary>
+        <div class="flag-card-body">
+          <p class="flag-what"><strong>What it does.</strong> The structural filter is a second pass that removes flag matches with a known, non-anomalous explanation. What publishes is the subset that does not have one.</p>
+          <p class="flag-why"><strong>Why it matters.</strong> The flags rely on "no prior federal contracts" as a meaningful signal. That signal breaks when the entity is legally new but operationally familiar. A subsidiary spun up for one contract carries the parent's federal history under a different UEI. A joint venture formed for a single procurement is brand-new by definition. A facility operator with a fresh legal name continues work that has been federally funded for years. The filter removes these so the published set reflects entities actually new to federal business.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <section id="awards">
+    <details class="awardsfold" id="awardsFold">
+      <summary class="awardsfold-summary">
+        <h2 class="sec aftitle"><span class="afchev" aria-hidden="true">&#9656;</span>Flagged Awards <span class="aftoggle-label">[expand]</span></h2>
+        <div class="afnums">
+          <div class="afnum"><div class="n tnum" id="afCount">.</div><div class="l">Flagged awards</div></div>
+          <div class="afnum"><div class="n tnum" id="afDollars">.</div><div class="l">Total obligation</div></div>
+        </div>
+      </summary>
+      <div class="awardsfold-body">
+    <div class="filterbar" id="filterBar">
+      <input type="search" id="fSearch" placeholder="Search recipient, UEI, PIID" aria-label="Search recipient, UEI, or PIID">
+      <select id="fFlag" aria-label="Filter by flag type"><option value="">All flags</option></select>
+      <div class="flex-break"></div>
+      <select id="fAgency" aria-label="Filter by agency"><option value="">All agencies</option></select>
+      <select id="fSort" aria-label="Sort order">
+        <option value="date-desc">Action date, newest</option>
+        <option value="date-asc">Action date, oldest</option>
+        <option value="oblig-desc">Obligation, high to low</option>
+        <option value="oblig-asc">Obligation, low to high</option>
+        <option value="name-asc">Recipient, A to Z</option>
+      </select>
+      <label class="fdate">From <input type="date" id="fFrom"></label>
+      <label class="fdate">To <input type="date" id="fTo"></label>
+      <button type="button" class="btn ghost" id="clearBtn">Clear</button>
+      <button type="button" class="btn ghost" id="exportBtnInline">Export CSV</button>
+    </div>
+    <div class="resultcount" id="resultCount"></div>
+    <div class="feed" id="feed"><div class="empty">Loading scan results...</div></div>
+      </div>
+    </details>
+  </section>
+
+  <section id="about">
+    <h2 class="sec">About</h2>
+    <blockquote>
+      Independent and open source. No affiliation with any federal agency, contractor, or
+      funding source. <a href="https://github.com/contractwatch" target="_blank" rel="noopener noreferrer">github.com/contractwatch</a>, MIT licensed.
+    </blockquote>
+  </section>
+
+</div>
+
+<script>
+"use strict";
+
+const FLAG_META = {
+  F01_NO_HISTORY_SOLE_SOURCE:  { sev: "CRITICAL", label: "No prior federal contracts plus sole-source above $10M" },
+  F02_NO_HISTORY_ONE_OFFER:    { sev: "CRITICAL", label: "No prior federal contracts plus competitive solicitation with one offer above $25M" },
+  F03_FIRST_LARGE_AWARD:       { sev: "CRITICAL", label: "No prior federal contracts plus first contract above $25M" },
+};
+const SEV_CLASS = { CRITICAL: "crit" };
+const SEV_RANK = { CRITICAL: 3 };
+const COMPETITION = {
+  D: "Full and open", A: "Full and open (action obligated)", NDO: "Not competed",
+  NNS: "Sole source", ONO: "Sole source", SP1: "Sole source", SP2: "Sole source", SS: "Sole source",
+};
+let MODE = "static";
+let DATA = { awards: [], stats: {}, scan: {}, generated_at: "", last_action_date: "" };
+let VISIBLE = [];
+let CHARTS = {};
+let pollTimer = null, elapsedTimer = null, scanStartMs = 0;
+const FILTERS = {
+  search: "", severities: new Set(["CRITICAL"]),
+  flag: "", agency: "", sort: "date-desc", from: "", to: "",
+};
+
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) =>
+  ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+
+// Acronyms and short forms that should stay uppercase in titleCase().
+// Add more here as you spot more cases on the live site.
+const KEEP_CAPS = new Set([
+  "LLC", "INC", "INC.", "LLP", "LP", "LTD", "LTD.", "CORP", "CORP.",
+  "CO", "CO.", "PA", "PA.", "PC", "PC.", "JV",
+  "USA", "USDA", "DOJ", "DOD", "DHS", "DOL", "DOI", "DOE", "DOT",
+  "HHS", "VA", "EPA", "NSA", "FBI", "CIA", "FDA", "CDC", "NIH", "FAA",
+  "NSF", "NASA", "GSA", "OPM", "SBA", "SEC", "FTC", "FCC", "TSA",
+  "OAGS", "FPDS", "PRISM", "ALP", "GOCO", "FFRDC", "FAPIIS",
+  "BAE", "CACI", "IBM", "KBR", "SAIC", "RTX", "GE", "AECOM",
+  "DXC", "HII", "SES", "MIT", "JPL", "MITRE", "PNNL",
+  "II", "III", "IV", "VI", "VII", "VIII", "IX", "XI", "XII",
+  "AT&T", "P&G",
+]);
+
+// USASpending recipient names sometimes appear with "THE " prefix and other
+// times with ", THE" suffix for the same legal entity (e.g.
+// "THE REGENTS OF THE UNIVERSITY OF CALIFORNIA" vs "REGENTS OF THE
+// UNIVERSITY OF CALIFORNIA, THE"). Normalize for chart aggregation keys so
+// the variants collapse into one bar.
+function normalizeRecipientKey(name) {
+  if (!name) return "Unknown";
+  let n = String(name).trim().toUpperCase();
+  if (n.startsWith("THE ")) n = n.slice(4);
+  if (n.endsWith(", THE")) n = n.slice(0, -5);
+  n = n.replace(/\s+/g, " ").trim();
+  return n;
+}
+
+// Common name parts that take internal capitals: McDonald, MacArthur.
+function titleCase(s) {
+  if (!s) return s;
+  // Split on word boundaries but keep separators (space, hyphen, slash, paren)
+  return s.split(/([\s\-/()&,.])/).map(part => {
+    if (!part || /^[\s\-/()&,.]+$/.test(part)) return part;
+    const up = part.toUpperCase();
+    if (KEEP_CAPS.has(up)) return up;
+    // Pure number stays as-is
+    if (/^\d+$/.test(part)) return part;
+    // Mixed alphanumeric like "L3HARRIS" → "L3Harris"
+    if (/^\d/.test(part)) {
+      const m = part.match(/^(\d+)(.*)$/);
+      const rest = (m[2] || "").toLowerCase();
+      return m[1] + (rest ? rest[0].toUpperCase() + rest.slice(1) : "");
+    }
+    // McX / MacX special handling
+    const lower = part.toLowerCase();
+    if (lower.startsWith("mc") && part.length > 2) {
+      return "Mc" + lower[2].toUpperCase() + lower.slice(3);
+    }
+    if (lower.startsWith("mac") && part.length > 3 && /[bcdfghjklmnpqrstvwxyz]/i.test(part[3])) {
+      return "Mac" + lower[3].toUpperCase() + lower.slice(4);
+    }
+    return lower[0].toUpperCase() + lower.slice(1);
+  }).join("");
+}
+const money = (n) => "$" + (Number(n) || 0).toLocaleString("en-US", { maximumFractionDigits: 0 });
+function moneyShort(n) {
+  n = Number(n) || 0;
+  const unit = (v, suffix) =>
+    "$" + (v >= 100 ? v.toFixed(0) : v.toFixed(1)).replace(/\.0$/, "") + suffix;
+  if (n >= 1e9) return unit(n / 1e9, "B");
+  if (n >= 1e6) return unit(n / 1e6, "M");
+  if (n >= 1e3) return unit(n / 1e3, "K");
+  return "$" + n.toFixed(0);
+}
+function fmtDate(s) {
+  if (!s) return "";
+  const d = new Date(s);
+  if (isNaN(d)) return String(s).slice(0, 10);
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" });
+}
+function formatLastScan(s) {
+  if (!s) return "n/a";
+  const d = new Date(s + "T00:00:00Z");
+  if (isNaN(d)) return String(s);
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
+}
+function relTime(s) {
+  if (!s) return "unknown";
+  const d = new Date(s);
+  if (isNaN(d)) return String(s);
+  const mins = Math.round((Date.now() - d.getTime()) / 60000);
+  if (mins < 1) return "just now";
+  if (mins < 60) return mins + (mins === 1 ? " minute ago" : " minutes ago");
+  const hrs = Math.round(mins / 60);
+  if (hrs < 48) return hrs + (hrs === 1 ? " hour ago" : " hours ago");
+  const days = Math.round(hrs / 24);
+  return days + (days === 1 ? " day ago" : " days ago");
+}
+function tierOf(_a) { return "CRITICAL"; }
+
+// --- Data loading ---
+
+async function detectMode() {
+  try {
+    const ctrl = new AbortController();
+    const t = setTimeout(() => ctrl.abort(), 2500);
+    const res = await fetch("/api/health", { signal: ctrl.signal, cache: "no-store" });
+    clearTimeout(t);
+    if (res.ok) {
+      const j = await res.json();
+      if (j && j.status === "ok") { MODE = "live"; return; }
+    }
+  } catch (e) { /* falls through to static */ }
+  MODE = "static";
+}
+
+async function loadData() {
+  if (MODE === "live") {
+    const res = await fetch("/api/data", { cache: "no-store" });
+    if (!res.ok) throw new Error("API returned " + res.status);
+    const j = await res.json();
+    DATA = {
+      awards: j.awards || [], stats: j.stats || {}, scan: j.scan || {},
+      generated_at: j.generated_at || "", last_action_date: j.last_action_date || "",
+    };
+  } else {
+    const [latRes, statRes] = await Promise.all([
+      fetch("/data/latest.json", { cache: "no-store" }),
+      fetch("/data/stats.json", { cache: "no-store" }).catch(() => null),
+    ]);
+    if (!latRes.ok) throw new Error("latest.json returned " + latRes.status);
+    const lat = await latRes.json();
+    const stats = statRes && statRes.ok ? await statRes.json() : {};
+    DATA = {
+      awards: lat.awards || [], stats: stats, scan: {},
+      generated_at: lat.generated_at || "", last_action_date: lat.last_action_date || "",
+    };
+  }
+  DATA.awards.forEach((a) => { a._tier = tierOf(a); });
+}
+
+// --- Rendering ---
+
+function severityCounts(awards) {
+  const c = { CRITICAL: 0 };
+  for (const a of awards) for (const f of (a.flag_details || []))
+    if (c[f.severity] != null) c[f.severity]++;
+  return c;
+}
+
+function renderHeader() {
+  // Status dot, status text, and footer "snapshot generated" line were removed
+  // from the markup; this function is intentionally a no-op so the call sites
+  // (renderAll) keep working without each having to be edited.
+}
+
+function flagCodesFor(sev) {
+  const nums = Object.keys(FLAG_META)
+    .filter((c) => FLAG_META[c].sev === sev)
+    .map((c) => parseInt(c.slice(1, 3), 10))
+    .sort((a, b) => a - b);
+  const fmt = (n) => "F" + String(n).padStart(2, "0");
+  const parts = [];
+  for (let i = 0; i < nums.length; ) {
+    let j = i;
+    while (j + 1 < nums.length && nums[j + 1] === nums[j] + 1) j++;
+    parts.push(i === j ? fmt(nums[i]) : fmt(nums[i]) + "-" + fmt(nums[j]));
+    i = j + 1;
+  }
+  return parts.join(", ");
+}
+
+function renderOverview() {
+  const aw = DATA.awards;
+  const sev = severityCounts(aw);
+  const dollars = aw.reduce((s, a) => s + (Number(a.obligation) || 0), 0);
+  const scanned = DATA.stats.total_awards_scanned;
+  const cards = [
+    { label: "Awards scanned", num: scanned != null ? Number(scanned).toLocaleString() : "n/a",
+      note: "above $1M", color: "var(--neutral)" },
+    { label: "Awards flagged", num: aw.length.toLocaleString(),
+      note: "", color: "var(--text)" },
+    { label: "Dollars flagged", num: moneyShort(dollars), note: "", color: "var(--accent)" },
+    { label: "Coverage since", num: "Oct 2017", note: "Last scan: " + formatLastScan(DATA.last_action_date), color: "var(--good)", small: true },
+  ];
+  $("metricGrid").innerHTML = cards.map((c) =>
+    `<div class="card"><div class="label">${esc(c.label)}</div>` +
+    `<div class="num tnum${c.small ? " small" : ""}" style="color:${c.color}">${esc(c.num)}</div>` +
+    `<div class="note">${esc(c.note)}</div></div>`).join("");
+}
+
+function chartTheme() {
+  if (!window.Chart) return;
+  Chart.defaults.color = "#6b6055";
+  Chart.defaults.borderColor = "#c9c1ac";
+  Chart.defaults.font.family = '-apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif';
+}
+function destroyCharts() { for (const k in CHARTS) { CHARTS[k].destroy(); } CHARTS = {}; }
+
+// Per-chart FY filter state. Empty string = "all FYs".
+const CHART_FY = {
+  chartFlags: "", chartAgencies: "",
+  chartRecipientsDollars: "", chartRecipientsCount: "",
+};
+
+// Federal fiscal year for an action_date string (YYYY-MM-DD).
+// FY runs Oct 1 of (year-1) through Sep 30 of (year). E.g. 2024-10-15 -> FY25.
+function dateToFY(s) {
+  if (!s || s.length < 7) return null;
+  const y = parseInt(s.slice(0, 4), 10);
+  const m = parseInt(s.slice(5, 7), 10);
+  if (!y || !m) return null;
+  const fy = (m >= 10) ? (y + 1) : y;
+  return "FY" + String(fy).slice(-2);
+}
+
+function awardsForChart(chartId) {
+  const fy = CHART_FY[chartId];
+  if (!fy) return DATA.awards;
+  return DATA.awards.filter((a) => dateToFY(a.action_date) === fy);
+}
+
+function getAvailableFYs() {
+  const set = new Set();
+  for (const a of DATA.awards) {
+    const fy = dateToFY(a.action_date);
+    if (fy) set.add(fy);
+  }
+  // Newest first (FY26, FY25, FY24, ...)
+  return [...set].sort().reverse();
+}
+
+function populateFYDropdowns() {
+  const fys = getAvailableFYs();
+  document.querySelectorAll(".chart-fy").forEach((sel) => {
+    const id = sel.dataset.chart;
+    const current = CHART_FY[id] || "";
+    // Rebuild options so newly-available FYs show up after a refresh
+    sel.innerHTML =
+      `<option value="">All FYs (${DATA.awards.length})</option>` +
+      fys.map((fy) => {
+        const n = DATA.awards.filter((a) => dateToFY(a.action_date) === fy).length;
+        return `<option value="${fy}"${fy === current ? " selected" : ""}>${fy} (${n})</option>`;
+      }).join("");
+  });
+}
+
+function onChartFYChange(chartId, value) {
+  CHART_FY[chartId] = value;
+  if (CHARTS[chartId]) CHARTS[chartId].destroy();
+  const rows = awardsForChart(chartId);
+  CHART_RENDERERS[chartId](rows);
+}
+
+// Hooked up in setupListeners() once at page load.
+function setupChartFilterListeners() {
+  document.querySelectorAll(".chart-fy").forEach((sel) => {
+    sel.addEventListener("change", (e) =>
+      onChartFYChange(sel.dataset.chart, sel.value));
+  });
+}
+
+const SEVHEX = { CRITICAL: "#991b1b" };
+
+function labelMax() { return window.innerWidth < 760 ? 18 : 32; }
+function truncLabel(s) {
+  const m = labelMax();
+  return s.length > m ? s.slice(0, m - 1) + "…" : s;
+}
+
+function renderChartFlags(aw) {
+  const fyCounts = {};
+  for (const a of aw) {
+    const fy = dateToFY(a.action_date);
+    if (!fy) continue;
+    fyCounts[fy] = (fyCounts[fy] || 0) + 1;
+  }
+  // Rolling window: show the 9 most recent fiscal years. As each new FY
+  // arrives, the oldest one falls off the back. Adjust the slice value to
+  // change the window size.
+  const fys = Object.keys(fyCounts).sort().slice(-9);
+  CHARTS.chartFlags = new Chart($("chartFlags"), {
+    type: "line",
+    data: { labels: fys,
+      datasets: [{ data: fys.map((fy) => fyCounts[fy]),
+        borderColor: SEVHEX.CRITICAL,
+        backgroundColor: SEVHEX.CRITICAL,
+        pointBackgroundColor: SEVHEX.CRITICAL,
+        pointRadius: 5, pointHoverRadius: 7,
+        borderWidth: 2, tension: 0.25, fill: false }] },
+    options: { plugins: { legend: { display: false } },
+      scales: { y: { beginAtZero: true, ticks: { precision: 0 } } }, maintainAspectRatio: false },
+  });
+}
+
+function renderCharts() {
+  if (!window.Chart) return;
+  destroyCharts();
+  // Each chart renders against awards filtered by its own dropdown state.
+  renderChartFlags(awardsForChart("chartFlags"));
+  renderChartRecipientsDollars(awardsForChart("chartRecipientsDollars"));
+  populateFYDropdowns();
+}
+
+function renderChartAgencies(aw) {
+  const byAgency = {};
+  for (const a of aw) {
+    const k = a.agency || "Unknown";
+    byAgency[k] = (byAgency[k] || 0) + (Number(a.obligation) || 0);
+  }
+  const top = Object.keys(byAgency).map((k) => ({ k, v: byAgency[k] }))
+    .sort((x, y) => y.v - x.v).slice(0, 15);
+  CHARTS.chartAgencies = new Chart($("chartAgencies"), {
+    type: "bar",
+    data: { labels: top.map((t) => truncLabel(titleCase(t.k))),
+      datasets: [{ data: top.map((t) => t.v), backgroundColor: "#1e3a5f" }] },
+    options: { indexAxis: "y", plugins: { legend: { display: false },
+      tooltip: { callbacks: {
+        title: (items) => titleCase(top[items[0].dataIndex].k),
+        label: (c) => moneyShort(c.raw),
+      } } },
+      scales: {
+        x: { beginAtZero: true, ticks: { callback: (v) => moneyShort(v) } },
+        y: { ticks: { autoSkip: false, font: { size: 11 } } },
+      },
+      maintainAspectRatio: false },
+  });
+}
+
+// Shared aggregation for the two recipient charts. Returns an object keyed
+// by normalized recipient key, with longest-seen variant for display.
+function aggregateRecipients(aw) {
+  const byRecipient = {};
+  for (const a of aw) {
+    const rawName = a.recipient || "Unknown";
+    const k = normalizeRecipientKey(rawName);
+    if (!byRecipient[k]) byRecipient[k] = { dollars: 0, count: 0, display: rawName };
+    byRecipient[k].dollars += (Number(a.obligation) || 0);
+    byRecipient[k].count++;
+    if (rawName.length > byRecipient[k].display.length) {
+      byRecipient[k].display = rawName;
+    }
+  }
+  return byRecipient;
+}
+
+function renderChartRecipientsDollars(aw) {
+  const byRecipient = aggregateRecipients(aw);
+  // Hard cap: only the top 15 recipients by flagged dollars are displayed.
+  // The underlying values change as the dataset changes, but the chart
+  // never shows more than 15 rows.
+  const rows = Object.keys(byRecipient).map((k) =>
+    ({ k: byRecipient[k].display, v: byRecipient[k].dollars }))
+    .sort((x, y) => y.v - x.v).slice(0, 15);
+  CHARTS.chartRecipientsDollars = new Chart($("chartRecipientsDollars"), {
+    type: "bar",
+    data: { labels: rows.map((t) => truncLabel(titleCase(t.k))),
+      datasets: [{ data: rows.map((t) => t.v), backgroundColor: "#b91c1c" }] },
+    options: { indexAxis: "y", plugins: { legend: { display: false },
+      tooltip: { callbacks: {
+        title: (items) => titleCase(rows[items[0].dataIndex].k),
+        label: (c) => moneyShort(c.raw),
+      } } },
+      scales: {
+        x: { beginAtZero: true, ticks: { callback: (v) => moneyShort(v) } },
+        y: { ticks: { autoSkip: false, font: { size: 11 } } },
+      },
+      maintainAspectRatio: false },
+  });
+}
+
+function renderChartRecipientsCount(aw) {
+  const byRecipient = aggregateRecipients(aw);
+  const rows = Object.keys(byRecipient).map((k) =>
+    ({ k: byRecipient[k].display, v: byRecipient[k].count }))
+    .sort((x, y) => y.v - x.v).slice(0, 15);
+  CHARTS.chartRecipientsCount = new Chart($("chartRecipientsCount"), {
+    type: "bar",
+    data: { labels: rows.map((t) => truncLabel(titleCase(t.k))),
+      datasets: [{ data: rows.map((t) => t.v), backgroundColor: "#b45309" }] },
+    options: { indexAxis: "y", plugins: { legend: { display: false },
+      tooltip: { callbacks: {
+        title: (items) => titleCase(rows[items[0].dataIndex].k),
+        label: (c) => `${c.raw} flagged awards`,
+      } } },
+      scales: {
+        x: { beginAtZero: true, ticks: { precision: 0 } },
+        y: { ticks: { autoSkip: false, font: { size: 11 } } },
+      },
+      maintainAspectRatio: false },
+  });
+}
+
+// Map of chart-id -> renderer, used by onChartFYChange to rebuild one chart.
+const CHART_RENDERERS = {
+  chartFlags: renderChartFlags,
+  chartAgencies: renderChartAgencies,
+  chartRecipientsDollars: renderChartRecipientsDollars,
+  chartRecipientsCount: renderChartRecipientsCount,
+};
+
+function populateFilters() {
+  const flagSel = $("fFlag");
+  flagSel.innerHTML = '<option value="">All flags</option>' +
+    Object.keys(FLAG_META).map((c) =>
+      `<option value="${c}">${c.slice(0, 3)} ${esc(FLAG_META[c].label)}</option>`).join("");
+  const agencies = [...new Set(DATA.awards.map((a) => a.agency).filter(Boolean))].sort();
+  $("fAgency").innerHTML = '<option value="">All agencies</option>' +
+    agencies.map((a) => `<option value="${esc(a)}">${esc(titleCase(a))}</option>`).join("");
+}
+
+function applyFilters() {
+  let rows = DATA.awards.slice();
+  const q = FILTERS.search.toLowerCase().trim();
+  if (q) rows = rows.filter((a) =>
+    (a.recipient || "").toLowerCase().includes(q) ||
+    (a.uei || "").toLowerCase().includes(q) ||
+    (a.piid || "").toLowerCase().includes(q));
+  rows = rows.filter((a) => {
+    for (const f of (a.flag_details || []))
+      if (FILTERS.severities.has(f.severity)) return true;
+    return false;
+  });
+  if (FILTERS.flag) rows = rows.filter((a) => (a.flag_codes || []).includes(FILTERS.flag));
+  if (FILTERS.agency) rows = rows.filter((a) => a.agency === FILTERS.agency);
+  if (FILTERS.from) rows = rows.filter((a) => (a.action_date || "") >= FILTERS.from);
+  if (FILTERS.to) rows = rows.filter((a) => (a.action_date || "") <= FILTERS.to);
+
+  const s = FILTERS.sort;
+  rows.sort((x, y) => {
+    if (s === "oblig-desc") return (y.obligation || 0) - (x.obligation || 0);
+    if (s === "oblig-asc") return (x.obligation || 0) - (y.obligation || 0);
+    if (s === "date-desc") return (y.action_date || "").localeCompare(x.action_date || "");
+    if (s === "date-asc") return (x.action_date || "").localeCompare(y.action_date || "");
+    if (s === "name-asc") return (x.recipient || "").localeCompare(y.recipient || "");
+    return 0;
+  });
+  VISIBLE = rows;
+  renderFeed(rows);
+}
+
+function awardSummary(a, idx) {
+  const details = (a.flag_details || []).slice();
+  const flagCount = details.length;
+  const chips = details.map((f) => {
+    const cls = SEV_CLASS[f.severity] || "med";
+    const meta = FLAG_META[f.code] || {};
+    return `<span class="chip ${cls}" title="${esc(meta.label || f.code)}">${esc(f.code.slice(0, 3))}</span>`;
+  }).join("");
+
+  return `<details class="award" data-tier="${esc(a._tier)}" data-idx="${idx}">` +
+    `<summary class="awardrow">` +
+      `<div class="scorebox"><div class="s b tnum">${flagCount}</div><div class="l">${flagCount === 1 ? "Flag" : "Flags"}</div></div>` +
+      `<div class="ident"><div class="recipient">${esc(titleCase(a.recipient || "Unknown recipient"))}</div>` +
+        `<div class="sub">${esc(titleCase(a.agency || ""))}${a.office ? " &middot; " + esc(titleCase(a.office)) : ""}</div>` +
+        `<div class="uei mono">UEI ${esc(a.uei || "n/a")}${a.state ? " &middot; " + esc(a.state) : ""}</div>` +
+        `<div class="chips">${chips}</div></div>` +
+      `<div class="money"><div class="amt tnum">${moneyShort(a.obligation)}</div>` +
+        `<div class="dt">${esc(fmtDate(a.action_date))}</div></div>` +
+      `<div class="chev">&#8250;</div>` +
+    `</summary>` +
+    `<div class="award-body"></div>` +
+    `</details>`;
+}
+
+function awardBody(a) {
+  const details = (a.flag_details || []).slice().sort(
+    (x, y) => (x.code || "").localeCompare(y.code || ""));
+  const flagList = details.map((f) => {
+    const meta = FLAG_META[f.code] || {};
+    const short = (f.code || "").split("_")[0] || f.code;
+    return `<div class="flagrow"><span class="pill crit">${esc(short)}</span>` +
+      `<div class="ftext"><div class="frule">${esc(meta.label || f.code)}</div>` +
+      `<div class="fdetail">${esc(f.detail || "")}</div></div></div>`;
+  }).join("");
+
+  const facts = [
+    ["PIID", a.piid], ["Contract type", a.contract_type],
+    ["Competition", a.competition ? (COMPETITION[a.competition] || a.competition) : ""],
+    ["NAICS", a.naics], ["PSC", a.psc],
+    ["Period", (a.start_date || a.end_date) ? (fmtDate(a.start_date) + " to " + fmtDate(a.end_date)) : ""],
+    ["Awarding office", titleCase(a.office)], ["Recipient state", a.state],
+  ].filter((f) => f[1]).map((f) =>
+    `<div class="fact"><div class="fl">${esc(f[0])}</div><div class="fv">${esc(f[1])}</div></div>`).join("");
+
+  let extra = "";
+  if (a.description)
+    extra += `<div class="subblock"><h4>Description</h4><div class="desc">${esc(a.description)}</div></div>`;
+
+  const verify = a.usaspending_url
+    ? `<div class="verify"><a href="${esc(a.usaspending_url)}" target="_blank" rel="noopener">View full record on USASpending.gov &#8599;</a></div>`
+    : "";
+
+  return `<div class="flaglist">${flagList}</div>` +
+    `<div class="factgrid">${facts}</div>${extra}${verify}`;
+}
+
+function renderFeed(rows) {
+  const feed = $("feed");
+  $("resultCount").textContent =
+    `Showing ${rows.length} of ${DATA.awards.length} flagged awards`;
+  if (!DATA.awards.length) {
+    feed.innerHTML = '<div class="empty">No flagged awards yet. Run a scan to populate the dashboard.</div>';
+    return;
+  }
+  if (!rows.length) {
+    feed.innerHTML = '<div class="empty">No awards match the current filters.</div>';
+    return;
+  }
+  rows.forEach((a, i) => { a._vi = i; });
+  feed.innerHTML = rows.map((a) => awardSummary(a, a._vi)).join("");
+}
+
+function renderAll() {
+  renderHeader();
+  renderOverview();
+  renderCharts();
+  renderAwardsFoldSummary();
+  populateFilters();
+  applyFilters();
+}
+
+function renderAwardsFoldSummary() {
+  const aw = DATA.awards || [];
+  const totalDollars = aw.reduce((s, a) => s + (Number(a.obligation) || 0), 0);
+  $("afCount").textContent = aw.length.toLocaleString();
+  $("afDollars").textContent = moneyShort(totalDollars);
+}
+
+// --- Scan control (live mode) ---
+
+const PHASE_TEXT = {
+  queued: "Queued", fetching: "Fetching the award list", scanning: "Scanning awards",
+  sam: "Resolving SAM entities", exporting: "Writing results",
+  deploying: "Publishing to contractwatch.org", done: "Done",
+  error: "Scan error", cancelled: "Scan cancelled",
+};
+
+function setScanning(on) {
+  $("scanPanel").classList.toggle("on", on);
+  $("scanBtn").disabled = on;
+  $("scanBtn").innerHTML = on
+    ? '<span class="spinner"></span> Scanning'
+    : "Generate / Refresh";
+}
+
+function updateScanPanel(st) {
+  $("scanPhase").textContent = PHASE_TEXT[st.phase] || "Working";
+  $("scAwards").textContent = (st.awards_scanned || 0).toLocaleString();
+  $("scFlags").textContent = (st.flags_found || 0).toLocaleString();
+  const bar = $("progress"), fill = $("progressFill");
+  if (st.phase === "scanning" && st.awards_total) {
+    bar.classList.remove("indet");
+    fill.style.width = (st.percent || 0) + "%";
+  } else {
+    bar.classList.add("indet");
+  }
+  if (st.awards_scanned) $("scanBtn").innerHTML =
+    '<span class="spinner"></span> Scanning ' + st.awards_scanned;
+}
+
+function tickElapsed() {
+  const sec = Math.floor((Date.now() - scanStartMs) / 1000);
+  $("scanElapsed").textContent = Math.floor(sec / 60) + ":" + String(sec % 60).padStart(2, "0");
+}
+
+async function pollStatus() {
+  let st;
+  try {
+    const res = await fetch("/api/scan/status", { cache: "no-store" });
+    st = await res.json();
+  } catch (e) { return; }
+  updateScanPanel(st);
+  if (st.state !== "running") {
+    clearInterval(pollTimer); clearInterval(elapsedTimer);
+    pollTimer = elapsedTimer = null;
+    setScanning(false);
+    try { await loadData(); renderAll(); } catch (e) { /* keep prior view */ }
+  }
+}
+
+function beginPolling() {
+  scanStartMs = Date.now();
+  setScanning(true);
+  if (!elapsedTimer) { tickElapsed(); elapsedTimer = setInterval(tickElapsed, 1000); }
+  if (!pollTimer) { pollStatus(); pollTimer = setInterval(pollStatus, 3000); }
+}
+
+async function startScan() {
+  try {
+    const res = await fetch("/api/scan", { method: "POST", headers: { "Content-Type": "application/json" }, body: "{}" });
+    // 202 started or 409 already running: either way, attach to the live view.
+    beginPolling();
+  } catch (e) {
+    console.error("Could not start scan:", e.message);
+  }
+}
+
+async function checkInProgressScan() {
+  try {
+    const res = await fetch("/api/scan/status", { cache: "no-store" });
+    const st = await res.json();
+    if (st.state === "running") { updateScanPanel(st); beginPolling(); }
+  } catch (e) { /* ignore */ }
+}
+
+// --- Wiring ---
+
+function wireControls() {
+  $("fSearch").addEventListener("input", (e) => { FILTERS.search = e.target.value; applyFilters(); });
+  $("fFlag").addEventListener("change", (e) => { FILTERS.flag = e.target.value; applyFilters(); });
+  $("fAgency").addEventListener("change", (e) => { FILTERS.agency = e.target.value; applyFilters(); });
+  $("fSort").addEventListener("change", (e) => { FILTERS.sort = e.target.value; applyFilters(); });
+  $("fFrom").addEventListener("change", (e) => { FILTERS.from = e.target.value; applyFilters(); });
+  $("fTo").addEventListener("change", (e) => { FILTERS.to = e.target.value; applyFilters(); });
+  document.querySelectorAll(".sevtoggle").forEach((el) => {
+    el.addEventListener("click", () => {
+      const sev = el.dataset.sev;
+      if (FILTERS.severities.has(sev)) FILTERS.severities.delete(sev);
+      else FILTERS.severities.add(sev);
+      el.classList.toggle("on");
+      el.setAttribute("aria-pressed", el.classList.contains("on") ? "true" : "false");
+      applyFilters();
+    });
+  });
+  $("clearBtn").addEventListener("click", () => {
+    FILTERS.search = ""; FILTERS.flag = ""; FILTERS.agency = "";
+    FILTERS.sort = "date-desc"; FILTERS.from = ""; FILTERS.to = "";
+    FILTERS.severities = new Set(["CRITICAL"]);
+    $("fSearch").value = ""; $("fFlag").value = ""; $("fAgency").value = "";
+    $("fSort").value = "date-desc"; $("fFrom").value = ""; $("fTo").value = "";
+    document.querySelectorAll(".sevtoggle").forEach((el) => {
+      el.classList.add("on");
+      el.setAttribute("aria-pressed", "true");
+    });
+    applyFilters();
+  });
+  $("scanBtn").addEventListener("click", startScan);
+  $("cancelBtn").addEventListener("click", () => {
+    fetch("/api/scan/cancel", { method: "POST" }).catch(() => {});
+  });
+  $("exportBtnInline").addEventListener("click", () => $("exportBtn").click());
+  $("exportBtn").addEventListener("click", () => {
+    const cols = [
+      "piid","recipient","uei","state","agency","office",
+      "obligation","action_date","start_date","end_date",
+      "contract_type","competition","naics","psc","description",
+      "flag_codes","flag_details","usaspending_url",
+    ];
+    const esc = (v) => {
+      if (v === null || v === undefined) return "";
+      let s;
+      if (Array.isArray(v)) {
+        s = v.map(x => (x && typeof x === "object") ? (x.detail || x.label || x.code || "") : x).join("; ");
+      } else {
+        s = String(v);
+      }
+      return /[",\n\r]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+    };
+    const lines = [cols.join(",")];
+    for (const a of VISIBLE) lines.push(cols.map(c => esc(a[c])).join(","));
+    const blob = new Blob(["﻿" + lines.join("\r\n")], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    const d = new Date();
+    const stamp = String(d.getMonth() + 1).padStart(2, "0")
+                + String(d.getDate()).padStart(2, "0")
+                + String(d.getFullYear()).slice(-2);
+    link.href = url; link.download = `contractwatch-awards-${stamp}.csv`;
+    link.click();
+    URL.revokeObjectURL(url);
+  });
+  // Build each award's detail body the first time it is expanded. The toggle
+  // event does not bubble, so this listens in the capture phase.
+  $("feed").addEventListener("toggle", (e) => {
+    const det = e.target;
+    if (!det.classList || !det.classList.contains("award") || !det.open) return;
+    const body = det.querySelector(".award-body");
+    if (!body || body.dataset.built) return;
+    const a = VISIBLE[Number(det.dataset.idx)];
+    if (a) { body.innerHTML = awardBody(a); body.dataset.built = "1"; }
+  }, true);
+}
+
+async function init() {
+  chartTheme();
+  wireControls();
+  setupChartFilterListeners();
+  await detectMode();
+  if (MODE === "static") {
+    $("scanBtn").remove();
+  } else {
+    try {
+      const sres = await fetch("/api/scan/status", { cache: "no-store" });
+      const sjson = await sres.json();
+      if (sjson.scanner_disabled) $("scanBtn").remove();
+    } catch (e) { /* leave button as-is on probe failure */ }
+  }
+  try {
+    await loadData();
+    renderAll();
+  } catch (e) {
+    $("feed").innerHTML = '<div class="empty err">Could not load scan data: ' + esc(e.message) + "</div>";
+  }
+  if (MODE === "live") checkInProgressScan();
+}
+
+window.addEventListener("DOMContentLoaded", init);
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "ContractWatch",
+  "url": "https://contractwatch.org/",
+  "description": "Federal contract award records aggregated from USASpending.gov, FY18 to present."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Dataset",
+  "name": "ContractWatch Federal Contract Award Monitor",
+  "description": "Publicly reported federal prime contract award records aggregated from USASpending.gov, FY18 to present, with pattern-based observations against the underlying data.",
+  "url": "https://contractwatch.org/",
+  "keywords": ["federal contract awards", "USASpending", "federal procurement", "government contract data"],
+  "isAccessibleForFree": true,
+  "creator": { "@type": "Organization", "name": "ContractWatch", "url": "https://contractwatch.org/" },
+  "distribution": [
+    { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://contractwatch.org/data/latest.json" },
+    { "@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": "https://contractwatch.org/data/stats.json" }
+  ],
+  "isBasedOn": ["https://api.usaspending.gov/", "https://open.gsa.gov/api/entity-api/"]
+}
+</script>
+
+</body>
+</html>
