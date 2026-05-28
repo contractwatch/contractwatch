@@ -1,16 +1,30 @@
 # contractwatch
 
-> Federal contract award data sourced from USASpending.gov.
+> Federal contract award anomaly flagging dashboard. Source data is USASpending.gov.
 
 contractwatch aggregates publicly reported federal contract award records and surfaces pattern-based observations against the underlying data. All source data is public and available directly from USASpending.gov.
 
 ## About
 
-contractwatch screens every federal contract award above $1M against three patterns: F01 (no prior federal history plus sole-source above $10M), F02 (no prior federal history plus competitive solicitation with one offer above $25M), F03 (no prior federal history plus first contract above $25M). A structural filter removes recipients that fire these patterns by design. Federal-prime subsidiaries, joint ventures, municipal authorities, healthcare providers, ANC and tribal entities, and foreign government recipients are excluded so the dashboard surfaces cases that lack a structural explanation. Flagging is descriptive, not accusatory.
+contractwatch screens every federal contract award above $1M against three patterns: F01 (no prior federal history plus sole-source above $10M), F02 (no prior federal history plus competitive solicitation with one offer above $25M), F03 (no prior federal history plus first contract above $25M). A structural filter then removes recipients that fire these patterns by program design.
+
+A fired flag is descriptive, not a finding. Many flagged awards have routine explanations and are best read as worth a closer look. Every flagged award on the dashboard links to its USASpending record so readers can review the underlying contract directly.
+
+## Structural filter
+
+The structural filter removes flag results when the no-prior-history pattern is explained by entity type or contract structure rather than anomaly. Categories include: major federal-prime subsidiaries (Lockheed, Boeing, RTX, MITRE, Battelle, etc.), joint ventures formed for specific procurements, ANC and tribal subsidiaries, Native Hawaiian Organizations, US utilities, state and local government, public universities, foreign government recipients and Foreign Military Sales partners, FFRDC and DOE national lab operators, healthcare providers, bridge-contract extensions, heavy-construction primes, and a curated list of approximately 800 individually-verified recipient names.
+
+## Dashboard features
+
+- Sort and filter by agency, state, NAICS, PSC, fiscal year, flag code, dollars, or action date
+- Per-award detail: full description, period of performance, contract type, competition mechanism, awarding office, flag rationale
+- Direct link to each award's USASpending record
+- Export CSV button generates a download of the currently-visible (filtered/sorted) awards client-side
+- Historical trends page aggregates flagged awards by fiscal year, agency, and NAICS
 
 ## Updates
 
-The site attempts to refresh daily. A scheduled scan reads new awards from USASpending and re-runs the pattern checks. Coverage goes back to October 2017 (start of FY18). The "Last scan" date on the dashboard reflects the most recent award action date present in the dataset.
+A scheduled scan refreshes the dataset daily, reading new awards from USASpending and re-running the pattern checks. Coverage goes back to October 2017 (start of fiscal year 2018). The "Last scan" date on the dashboard reflects the most recent award action date in the dataset.
 
 ## Data sources
 
@@ -19,19 +33,22 @@ The site attempts to refresh daily. A scheduled scan reads new awards from USASp
 
 ## Endpoints
 
-- [/](https://contractwatch.org/) - main data view
+- [/](https://contractwatch.org/) - main flagged-awards view
+- [/historical.html](https://contractwatch.org/historical.html) - aggregate trends
 - [/data/latest.json](https://contractwatch.org/data/latest.json) - current flagged-award snapshot as JSON
-- [/data/stats.json](https://contractwatch.org/data/stats.json) - aggregate statistics across the snapshot
+- [/data/stats.json](https://contractwatch.org/data/stats.json) - aggregate statistics
 - [/sitemap.xml](https://contractwatch.org/sitemap.xml)
 - [/robots.txt](https://contractwatch.org/robots.txt)
 
-## Source code
+## Repository and documentation
 
-- [github.com/contractwatch](https://github.com/contractwatch) - repositories
+- [github.com/contractwatch/contractwatch](https://github.com/contractwatch/contractwatch) - source code, MIT license
+- README.md in the repository documents the architecture, setup, and configuration
+- operators_guide.html in the repository is a visual reference covering the full schema, every structural rule's match logic, every safelist's current contents, and tips for forkers adding new flags
 
 ## Verification
 
-Every row links back to its corresponding USASpending.gov award record. Readers are encouraged to consult the upstream record directly.
+Every row on the dashboard links back to its corresponding USASpending.gov award record. Readers are encouraged to consult the upstream record directly.
 
 ## FAQ
 
@@ -42,7 +59,16 @@ Q: Does a flag mean wrongdoing?
 A: No. A flag means the award matches a pattern that, statistically, is uncommon at the dollar threshold for the flag. Many flagged awards have routine explanations. The flagging is a starting point for inquiry, not a finding.
 
 Q: How often does the data update?
-A: A scheduled scan attempts to refresh the dataset daily. If a scan fails (upstream outage, API key rotation, deploy error) the previous data remains visible until the next successful run.
+A: A scheduled scan attempts to refresh the dataset daily. If a scan fails (upstream outage, API timeout, deploy error) the previous data remains visible until the next successful run.
 
 Q: Why are some obvious "no prior history" entities not flagged?
-A: They match a structural-filter pattern (municipal authority, hospital, joint venture, federal-prime subsidiary, ANC/tribal entity, foreign government recipient) where the absence of prior federal history is explained by the entity type rather than by anomaly.
+A: They match a structural-filter pattern (municipal authority, hospital, joint venture, federal-prime subsidiary, ANC or tribal entity, foreign government recipient, bridge contract extension, etc.) where the absence of prior federal history is explained by the entity type or contract structure rather than by anomaly.
+
+Q: What dollar field does the dashboard use?
+A: contractwatch filters on `current_total_value_of_award` from USASpending, which represents the contract ceiling (the government's committed total). This is more useful for shell-pattern detection than per-transaction obligation, because the ceiling reflects the trust signal being extended to the vendor.
+
+Q: Can I run my own copy?
+A: Yes. The project is MIT-licensed. Clone github.com/contractwatch/contractwatch, follow the setup instructions in README.md, and either deploy to your own Cloudflare Pages account or serve the static `web/` folder from any host.
+
+Q: What is NOT covered by these flags?
+A: The three flags target the no-prior-history large-award pattern. They do not detect mischarging or labor billing fraud (requires audit data), defective pricing (requires sealed cost data), bid rigging (requires sealed bids), pass-through arrangements (requires subcontract data), bribery, or product substitution. Those categories require investigative or audit access beyond what public data exposes.
