@@ -43,7 +43,6 @@ A scheduled monthly job refreshes the dataset from the latest USASpending bulk a
 
 - [github.com/contractwatch/contractwatch](https://github.com/contractwatch/contractwatch) - source code, MIT license
 - README.md in the repository documents the architecture, setup, and configuration
-- operators_guide.html in the repository is a visual reference covering the full schema, every structural rule's match logic, every safelist's current contents, and tips for forkers adding new flags
 
 ## Verification
 
