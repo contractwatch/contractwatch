@@ -491,21 +491,22 @@ def current_fy():
     return today.year + 1 if today.month >= 10 else today.year
 
 
-def discover_snapshot_date(max_months_back=3):
-    """Discover the most recent USASpending bulk archive snapshot date.
+def discover_snapshot_date(required_fys, max_months_back=3):
+    """Discover the most recent date where ALL required fiscal-year archives
+    are published.
 
     USASpending publishes monthly. The snapshot date is embedded in archive
     filenames as YYYYMMDD. This function HEAD-probes likely publish dates
-    (typically days 5-8 of each month) against a known-stable FY URL until
-    one returns 200. Tests against prior-FY (FY-1) for stability, since the
-    current FY archive may not exist yet in early October when the federal
-    fiscal year flips.
+    (typically days 5-8 of each month) walking backward from today through
+    each required FY, returning the most recent date at which every FY in
+    `required_fys` returns 200. This avoids the partial-publish trap where
+    one FY is live at the latest date but another (often the current FY) is
+    not yet, which would silently produce a stale-data run.
 
-    Returns the discovered YYYYMMDD string. Raises if nothing recent is
-    reachable within max_months_back months.
+    Returns the discovered YYYYMMDD string. Raises if no recent date has
+    all required FYs available within max_months_back months.
     """
     today = date.today()
-    test_fy = max(current_fy() - 1, 2015)
     template = (
         "https://files.usaspending.gov/award_data_archive/"
         "FY{fy}_All_Contracts_Full_{date}.zip"
@@ -525,18 +526,25 @@ def discover_snapshot_date(max_months_back=3):
             if candidate > today:
                 continue
             date_str = candidate.strftime("%Y%m%d")
-            url = template.format(fy=test_fy, date=date_str)
-            try:
-                r = requests.head(
-                    url, headers=HEADERS, timeout=15, allow_redirects=True
-                )
-                if r.status_code == 200:
-                    return date_str
-            except requests.RequestException:
-                continue
+            all_present = True
+            for fy in required_fys:
+                url = template.format(fy=fy, date=date_str)
+                try:
+                    r = requests.head(
+                        url, headers=HEADERS, timeout=15, allow_redirects=True
+                    )
+                    if r.status_code != 200:
+                        all_present = False
+                        break
+                except requests.RequestException:
+                    all_present = False
+                    break
+            if all_present:
+                return date_str
     raise RuntimeError(
-        f"could not discover a recent USASpending snapshot date "
-        f"(probed FY{test_fy} URLs back {max_months_back} months from {today})"
+        f"no recent USASpending snapshot date has all of "
+        f"{['FY' + str(f) for f in required_fys]} published "
+        f"(probed back {max_months_back} months from {today})"
     )
 
 
@@ -555,16 +563,23 @@ def generate_jobs(start_fy, end_fy, snapshot_date):
 
 
 def jobs_for_mode(mode):
-    """Resolve a --mode keyword into a jobs list plus the snapshot date."""
+    """Resolve a --mode keyword into a jobs list plus the snapshot date.
+
+    Snapshot date is discovered only after the required FY set is known so
+    that the chosen date is one at which every FY in the set is actually
+    published (avoiding partial-publish runs).
+    """
     fy = current_fy()
-    snapshot = discover_snapshot_date()
     if mode == "initial":
-        return generate_jobs(2015, fy, snapshot), snapshot
-    if mode == "monthly":
+        required_fys = list(range(2015, fy + 1))
+    elif mode == "monthly":
         # Prev closed FY captures late-reported stragglers; current FY is
         # the active fiscal year absorbing nearly all the meaningful change.
-        return generate_jobs(fy - 1, fy, snapshot), snapshot
-    raise ValueError(f"unknown mode: {mode}")
+        required_fys = [fy - 1, fy]
+    else:
+        raise ValueError(f"unknown mode: {mode}")
+    snapshot = discover_snapshot_date(required_fys)
+    return generate_jobs(required_fys[0], required_fys[-1], snapshot), snapshot
 
 
 def main():

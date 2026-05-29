@@ -85,11 +85,13 @@ if [ -e "$LOCKFILE" ] && kill -0 "$(cat "$LOCKFILE" 2>/dev/null)" 2>/dev/null; t
 fi
 echo $$ > "$LOCKFILE"
 
-# Disk space guard. Full bulk rebuild holds ~20 GB of archives in memory and
-# writes a ~400 MB SQLite database. 25 GB headroom is comfortable.
+# Disk space guard. --mode monthly downloads ~3-4 GB across 2 archives and
+# holds them in memory during parse. 10 GB headroom covers that with margin
+# for the WAL-mode DB write amplification. Use --mode initial for a full
+# rebuild, which needs ~25 GB.
 FREE_GB=$(df -g "$SCRIPT_DIR" | awk 'NR==2 {print $4}')
-if [ -z "$FREE_GB" ] || [ "$FREE_GB" -lt 25 ]; then
-  echo "[$(date -u +%FT%TZ)] less than 25GB free on volume, aborting bulk refresh"
+if [ -z "$FREE_GB" ] || [ "$FREE_GB" -lt 10 ]; then
+  echo "[$(date -u +%FT%TZ)] less than 10GB free on volume, aborting bulk refresh"
   PHASE=disk_full
   EXIT_CODE=2
   exit 2
