@@ -19,20 +19,25 @@ Live status:
     visit http://localhost:8000/loader.html) for a live progress dashboard
     that polls the status file every 2 seconds.
 
-Usage:
-    python tools/bulk_loader.py tools/jobs.example.json
+Usage (evergreen modes, no jobs file needed):
+    python tools/bulk_loader.py --mode initial   # FY15 through current FY (one-time setup / full rebuild)
+    python tools/bulk_loader.py --mode monthly   # prev FY + current FY (what monthly_scan.sh runs)
+
+Advanced (explicit jobs file, overrides --mode):
     python tools/bulk_loader.py /path/to/your_jobs.json
 
-Jobs file format (list of dicts):
+Jobs file format (list of dicts), for the advanced path only:
     [
       {"label": "FY18",
        "file_url": "https://files.usaspending.gov/award_data_archive/FY2018_All_Contracts_Full_20260506.zip"},
       ...
     ]
 
-The latest archive URLs (snapshot date in the filename) are published on
-the USASpending Award Data Archive page. They refresh monthly. Pull the
-current set before each rebuild.
+In --mode initial/monthly the loader computes the current fiscal year from
+today's date (federal FY starts Oct 1) and discovers the latest USASpending
+bulk archive snapshot date via HEAD probes against a known-stable FY URL.
+URLs are then generated internally. No file edits required month over month
+or year over year.
 
 Schema convention:
     Each unique contract_award_unique_key gets ONE row in the awards table,
@@ -44,6 +49,7 @@ Schema convention:
     signal we care about and keeps row counts honest (one row per award,
     no per-FY duplication).
 """
+import argparse
 import csv
 import io
 import json
@@ -56,7 +62,7 @@ import threading
 import time
 import zipfile
 from collections import deque
-from datetime import datetime
+from datetime import date, datetime, timedelta
 
 import requests
 
@@ -476,15 +482,123 @@ def parse_and_upsert(job, zip_bytes, conn):
     return len(award_tuples)
 
 
-def main():
-    if len(sys.argv) < 2:
-        print(f"usage: {sys.argv[0]} <jobs.json>", file=sys.stderr)
-        sys.exit(1)
-    jobs_path = sys.argv[1]
-    with open(jobs_path) as f:
-        jobs = json.load(f)
+def current_fy():
+    """Current US federal fiscal year. FY starts Oct 1.
 
-    _say(f"BULK LOADER: {len(jobs)} jobs from {jobs_path}")
+    Example: today 2026-05-29 -> FY26. today 2026-10-01 -> FY27.
+    """
+    today = date.today()
+    return today.year + 1 if today.month >= 10 else today.year
+
+
+def discover_snapshot_date(max_months_back=3):
+    """Discover the most recent USASpending bulk archive snapshot date.
+
+    USASpending publishes monthly. The snapshot date is embedded in archive
+    filenames as YYYYMMDD. This function HEAD-probes likely publish dates
+    (typically days 5-8 of each month) against a known-stable FY URL until
+    one returns 200. Tests against prior-FY (FY-1) for stability, since the
+    current FY archive may not exist yet in early October when the federal
+    fiscal year flips.
+
+    Returns the discovered YYYYMMDD string. Raises if nothing recent is
+    reachable within max_months_back months.
+    """
+    today = date.today()
+    test_fy = max(current_fy() - 1, 2015)
+    template = (
+        "https://files.usaspending.gov/award_data_archive/"
+        "FY{fy}_All_Contracts_Full_{date}.zip"
+    )
+    for months_back in range(0, max_months_back + 1):
+        target_month = today.month - months_back
+        target_year = today.year
+        while target_month < 1:
+            target_month += 12
+            target_year -= 1
+        # Try most-likely publish days first.
+        for day in [6, 5, 7, 4, 8, 3, 9, 10]:
+            try:
+                candidate = date(target_year, target_month, day)
+            except ValueError:
+                continue
+            if candidate > today:
+                continue
+            date_str = candidate.strftime("%Y%m%d")
+            url = template.format(fy=test_fy, date=date_str)
+            try:
+                r = requests.head(
+                    url, headers=HEADERS, timeout=15, allow_redirects=True
+                )
+                if r.status_code == 200:
+                    return date_str
+            except requests.RequestException:
+                continue
+    raise RuntimeError(
+        f"could not discover a recent USASpending snapshot date "
+        f"(probed FY{test_fy} URLs back {max_months_back} months from {today})"
+    )
+
+
+def generate_jobs(start_fy, end_fy, snapshot_date):
+    """Build the loader job list for a fiscal-year range at a snapshot date."""
+    return [
+        {
+            "label": f"FY{fy % 100:02d}",
+            "file_url": (
+                "https://files.usaspending.gov/award_data_archive/"
+                f"FY{fy}_All_Contracts_Full_{snapshot_date}.zip"
+            ),
+        }
+        for fy in range(start_fy, end_fy + 1)
+    ]
+
+
+def jobs_for_mode(mode):
+    """Resolve a --mode keyword into a jobs list plus the snapshot date."""
+    fy = current_fy()
+    snapshot = discover_snapshot_date()
+    if mode == "initial":
+        return generate_jobs(2015, fy, snapshot), snapshot
+    if mode == "monthly":
+        # Prev closed FY captures late-reported stragglers; current FY is
+        # the active fiscal year absorbing nearly all the meaningful change.
+        return generate_jobs(fy - 1, fy, snapshot), snapshot
+    raise ValueError(f"unknown mode: {mode}")
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Download and ingest USASpending bulk archive ZIPs."
+    )
+    parser.add_argument(
+        "--mode",
+        choices=["initial", "monthly"],
+        help="initial: FY15 through current FY (one-time setup). "
+             "monthly: prev FY + current FY (scheduled refresh). "
+             "URLs are generated from today's date and a discovered snapshot.",
+    )
+    parser.add_argument(
+        "jobs_file",
+        nargs="?",
+        help="legacy: explicit JSON jobs file path (overrides --mode).",
+    )
+    args = parser.parse_args()
+    if not args.mode and not args.jobs_file:
+        parser.error("either --mode initial/monthly or a jobs_file path is required")
+    if args.mode and args.jobs_file:
+        parser.error("--mode and an explicit jobs_file are mutually exclusive")
+
+    if args.jobs_file:
+        with open(args.jobs_file) as f:
+            jobs = json.load(f)
+        _say(f"BULK LOADER: {len(jobs)} jobs from {args.jobs_file}")
+    else:
+        _say(f"BULK LOADER: --mode {args.mode}: discovering current USASpending snapshot date...")
+        jobs, snapshot = jobs_for_mode(args.mode)
+        labels = ",".join(j["label"] for j in jobs)
+        _say(f"BULK LOADER: snapshot {snapshot}, {len(jobs)} jobs ({labels})")
+
     _say(f"DB: {DB_PATH}")
     _say(f"MIN_OBLIGATION floor: ${MIN_OBLIGATION:,}")
     _say(f"Live status: open web/loader.html in a browser pointed at this checkout")

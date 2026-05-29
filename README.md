@@ -95,12 +95,14 @@ Then edit `.env` to set any of the optional variables documented in the Configur
 This step downloads USASpending's annual bulk archives, parses them, and loads the resulting awards into a SQLite database at `contractwatch.db` in the repository root.
 
 ```bash
-uv run python tools/bulk_loader.py tools/jobs.example.json
+uv run python tools/bulk_loader.py --mode initial
 ```
 
-The job is driven by `tools/jobs.example.json`, which lists the FY2015 through FY2026 archive URLs to fetch. FY15, FY16, and FY17 are loaded as **history-only**: they populate the prior-history lookback that the flag pipeline uses to decide "is this entity new to federal contracting" but they are never themselves evaluated as flag candidates. The dashboard begins at FY18 (start of October 2017). USASpending rotates the archive filenames roughly monthly; if the URLs in the file 404, open [files.usaspending.gov/award_data_archive/](https://files.usaspending.gov/award_data_archive/) in a browser, find the current snapshot date, and edit `jobs.example.json` accordingly.
+`--mode initial` loads FY2015 through the current federal fiscal year. The loader computes the current FY from today's date (FY starts Oct 1) and discovers the latest USASpending bulk archive snapshot date via HEAD probes against a known-stable FY URL. No URL editing is required when fiscal years roll over or when USASpending publishes a new monthly snapshot. The monthly scheduled refresh uses `--mode monthly`, which loads only the previous closed FY plus the current FY (the active years that change month over month).
 
-Expect roughly 26 minutes total wall time on a fast connection. The loader pipelines downloads and parsing: while one archive is being parsed (~2 min), the next archive is already being fetched (~45 sec at typical USASpending S3 speed). Total downloaded across the 12 archives is about 19.76 GB; the resulting SQLite database after deduplication is around 356 MB. Watch live progress in a browser by running this in a **separate terminal window**:
+FY15, FY16, and FY17 are loaded as **history-only**: they populate the prior-history lookback that the flag pipeline uses to decide "is this entity new to federal contracting" but they are never themselves evaluated as flag candidates. The dashboard begins at FY18 (start of October 2017).
+
+Expect roughly 26 minutes total wall time on a fast connection for the initial load. The loader pipelines downloads and parsing: while one archive is being parsed (~2 min), the next archive is already being fetched (~45 sec at typical USASpending S3 speed). Total downloaded across the 12 archives is about 19.76 GB; the resulting SQLite database after deduplication is around 356 MB. Subsequent monthly refreshes (`--mode monthly`) download just 2 archives (~3-4 GB, ~5 min). Watch live progress in a browser by running this in a **separate terminal window**:
 
 ```bash
 python -m http.server 8000 -d web
@@ -197,8 +199,7 @@ contractwatch/
 │   └── structural_filter.py  rules + curated safe-recipient list
 │
 ├── tools/
-│   ├── bulk_loader.py            load USASpending archive ZIPs into the DB
-│   ├── jobs.example.json         example jobs file for bulk_loader.py
+│   ├── bulk_loader.py            load USASpending archive ZIPs into the DB; --mode initial (FY15-current) or --mode monthly (prev FY + current FY); URLs and snapshot date generated internally
 │   ├── reflag_all.py             bulk SQL re-flag of the full DB (1.5s)
 │   └── build_review_queue.py     diff post-deploy latest.json against prior snapshot; write logs/review_queue_<date>.json of new-and-uninvestigated awards
 │

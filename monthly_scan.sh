@@ -96,8 +96,8 @@ if [ -z "$FREE_GB" ] || [ "$FREE_GB" -lt 25 ]; then
 fi
 
 PHASE=bulk_load
-echo "[$(date -u +%FT%TZ)] bulk load starting (FY15-FY26, pipelined)"
-uv run python tools/bulk_loader.py tools/jobs.example.json
+echo "[$(date -u +%FT%TZ)] bulk load starting (--mode monthly: prev FY + current FY)"
+uv run python tools/bulk_loader.py --mode monthly
 EXIT_CODE=$?
 if [ "$EXIT_CODE" -ne 0 ]; then
   echo "[$(date -u +%FT%TZ)] bulk load failed (exit $EXIT_CODE)"
