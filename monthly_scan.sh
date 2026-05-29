@@ -25,6 +25,15 @@
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$SCRIPT_DIR" || exit 1
 
+# Source local .env if present so CONTRACTWATCH_NOTIFY_PHONE and other
+# user-set vars are available. .env is gitignored.
+if [ -f "$SCRIPT_DIR/.env" ]; then
+  set -a
+  # shellcheck disable=SC1091
+  . "$SCRIPT_DIR/.env"
+  set +a
+fi
+
 STATUS=/tmp/contractwatch.status.json
 LOCKFILE=/tmp/contractwatch.lock
 PHASE=startup
@@ -36,9 +45,34 @@ write_status() {
 EOF
 }
 
+notify_imessage() {
+  # Send an iMessage to CONTRACTWATCH_NOTIFY_PHONE via macOS Messages.app.
+  # Silent no-op if the env var is not set or osascript is unavailable
+  # (i.e. not on macOS). Send failures are logged but never abort the script.
+  local body="$1"
+  if [ -z "${CONTRACTWATCH_NOTIFY_PHONE:-}" ]; then
+    return 0
+  fi
+  if ! command -v osascript >/dev/null 2>&1; then
+    return 0
+  fi
+  local escaped
+  escaped=$(printf '%s' "$body" | python3 -c 'import sys; s=sys.stdin.read(); print(s.replace("\\","\\\\").replace("\"","\\\"").replace("\n","\\n"), end="")' 2>/dev/null) || escaped="$body"
+  osascript <<APPLESCRIPT >/dev/null 2>&1 || echo "[$(date -u +%FT%TZ)] notify_imessage send failed (non-fatal)"
+tell application "Messages"
+  set targetService to id of (1st service whose service type is iMessage)
+  set targetBuddy to buddy "$CONTRACTWATCH_NOTIFY_PHONE" of service id targetService
+  send "$escaped" to targetBuddy
+end tell
+APPLESCRIPT
+}
+
 cleanup() {
   rm -f "$LOCKFILE"
   write_status "$PHASE" "$EXIT_CODE"
+  if [ "$EXIT_CODE" -ne 0 ] && [ "$PHASE" != "concurrent_skip" ]; then
+    notify_imessage "ContractWatch refresh FAILED. phase=$PHASE exit=$EXIT_CODE host=$(hostname -s)"
+  fi
 }
 trap cleanup EXIT
 
@@ -108,3 +142,26 @@ EXIT_CODE=0
 # stale (any phase failure leaves it untouched).
 date -u +%FT%TZ > /tmp/contractwatch.success.txt
 echo "[$(date -u +%FT%TZ)] monthly refresh complete"
+
+# Send a success summary via iMessage. Pull headline stats from the freshly
+# regenerated stats.json. Silent no-op if CONTRACTWATCH_NOTIFY_PHONE unset.
+STATS_FILE="$SCRIPT_DIR/web/data/stats.json"
+if [ -f "$STATS_FILE" ]; then
+  SUCCESS_MSG=$(python3 - <<PY 2>/dev/null
+import json
+try:
+    with open("$STATS_FILE") as f:
+        d = json.load(f)
+    flagged = d.get("total_awards_flagged", 0)
+    obl = d.get("displayed_obligation_total", 0) or 0
+    scanned = d.get("total_awards_scanned", 0)
+    snap = d.get("bulk_archive_snapshot_date", "?")
+    print(f"ContractWatch refresh OK. {flagged} flagged across \${obl/1e9:.2f}B from {scanned:,} scanned. Snapshot {snap}.")
+except Exception as e:
+    print(f"ContractWatch refresh OK. Stats unreadable: {e}")
+PY
+)
+  notify_imessage "$SUCCESS_MSG"
+else
+  notify_imessage "ContractWatch refresh OK. Host=$(hostname -s)."
+fi
