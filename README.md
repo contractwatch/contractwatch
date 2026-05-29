@@ -55,6 +55,8 @@ USASpending bulk archives (annual FY zips)
 
 A scheduled monthly refresh (`monthly_scan.sh`, fired by launchd on the 8th of each month) re-runs this whole pipeline once a month against the latest USASpending bulk archive snapshot. `scan.py` remains available for manual catch-up scans against the live USASpending API when needed, but is no longer scheduled.
 
+After deploy, `monthly_scan.sh` runs `tools/build_review_queue.py` to write a local-only `logs/review_queue_<date>.json` of new-and-uninvestigated awards, and sends an iMessage success summary with headline stats if `CONTRACTWATCH_NOTIFY_PHONE` is set.
+
 ## Prerequisites
 
 Before starting, the following must be installed on the local machine.
