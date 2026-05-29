@@ -1133,6 +1133,7 @@ open http://localhost:8000/loader.html</code></pre>
       <tr><td><code>CONTRACTWATCH_EXCLUDED_AGENCIES</code></td><td>(empty)</td><td>Pipe-delimited agency names to skip at ingestion and strip at reflag time</td></tr>
       <tr><td><code>CONTRACTWATCH_BACKFILL_DAYS</code></td><td>{BACKFILL_DAYS}</td><td>Ad-hoc catch-up window in days (used only by manual <code>scan.py</code> runs)</td></tr>
       <tr><td><code>CONTRACTWATCH_CF_PROJECT</code></td><td><code>{CLOUDFLARE_PROJECT}</code></td><td>Cloudflare Pages project name for <code>wrangler pages deploy</code></td></tr>
+      <tr><td><code>CONTRACTWATCH_NOTIFY_PHONE</code></td><td>(empty)</td><td>Optional E.164 phone for iMessage notifications from <code>monthly_scan.sh</code> (success summary on a clean run, failure alert with phase and exit code on any phase failure). macOS only. Leave empty to disable.</td></tr>
     </tbody>
   </table>
 

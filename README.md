@@ -235,9 +235,10 @@ You can also skip Cloudflare entirely and serve `web/` from anywhere: `python -m
 
 All env vars are optional. See [`.env.example`](.env.example) for the full list.
 
-- `CONTRACTWATCH_EXCLUDED_AGENCIES` — pipe-delimited agency names to skip at ingestion and strip at reflag time
-- `CONTRACTWATCH_BACKFILL_DAYS` — default lookback window in days for the manual `scan.py` catch-up tool, default 2 (used only when scan.py is invoked without explicit `--start`/`--end` / `--days` flags)
-- `CONTRACTWATCH_CF_PROJECT` — Cloudflare Pages project name for `monthly_scan.sh`
+- `CONTRACTWATCH_EXCLUDED_AGENCIES`: pipe-delimited agency names to skip at ingestion and strip at reflag time
+- `CONTRACTWATCH_BACKFILL_DAYS`: default lookback window in days for the manual `scan.py` catch-up tool, default 2 (used only when scan.py is invoked without explicit `--start`/`--end` / `--days` flags)
+- `CONTRACTWATCH_CF_PROJECT`: Cloudflare Pages project name for `monthly_scan.sh`
+- `CONTRACTWATCH_NOTIFY_PHONE`: optional E.164 phone (e.g. `+15551234567`) for iMessage notifications from `monthly_scan.sh`. Sends one success message with headline stats on a clean run and one failure message with phase plus exit code on any phase failure. macOS only (uses Messages.app via osascript). Leave empty to disable.
 
 ## Adjusting the flags
 
