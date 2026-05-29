@@ -136,6 +136,14 @@ else
   echo "[$(date -u +%FT%TZ)] wrangler not available, skipping Cloudflare deploy"
 fi
 
+PHASE=review_queue
+echo "[$(date -u +%FT%TZ)] building review queue (new awards vs prior snapshot)"
+uv run python tools/build_review_queue.py
+RQ_EXIT=$?
+if [ "$RQ_EXIT" -ne 0 ]; then
+  echo "[$(date -u +%FT%TZ)] review queue build failed (exit $RQ_EXIT), non-fatal"
+fi
+
 PHASE=done
 EXIT_CODE=0
 # Touch the success marker. External monitors can alert if this file goes
@@ -156,7 +164,15 @@ try:
     obl = d.get("displayed_obligation_total", 0) or 0
     scanned = d.get("total_awards_scanned", 0)
     snap = d.get("bulk_archive_snapshot_date", "?")
-    print(f"ContractWatch refresh OK. {flagged} flagged across \${obl/1e9:.2f}B from {scanned:,} scanned. Snapshot {snap}.")
+    queue_file = f"logs/review_queue_{snap}.json"
+    queue_count = ""
+    try:
+        with open(queue_file) as q:
+            qd = json.load(q)
+        queue_count = f" {qd.get('review_queue_count', 0)} new to review."
+    except Exception:
+        pass
+    print(f"ContractWatch refresh OK. {flagged} flagged across \${obl/1e9:.2f}B from {scanned:,} scanned. Snapshot {snap}.{queue_count}")
 except Exception as e:
     print(f"ContractWatch refresh OK. Stats unreadable: {e}")
 PY
