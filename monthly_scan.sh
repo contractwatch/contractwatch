@@ -126,16 +126,27 @@ fi
 
 PHASE=deploy
 CF_PROJECT="${CONTRACTWATCH_CF_PROJECT:-contractwatch}"
-if command -v wrangler >/dev/null 2>&1 || command -v npx >/dev/null 2>&1; then
-  echo "[$(date -u +%FT%TZ)] deploying to Cloudflare Pages (project=$CF_PROJECT)"
+# Prefer a direct wrangler binary if available. Homebrew's node@24 keg-only
+# install puts npx at /opt/homebrew/opt/node@24/bin/npx, which is NOT in
+# launchd's default PATH. wrangler itself (when installed via `npm install -g`)
+# lands in /opt/homebrew/bin and IS in launchd's PATH. Falling back to npx
+# only when a direct wrangler binary isn't present keeps the scheduled job
+# working under launchd's stripped environment.
+if command -v wrangler >/dev/null 2>&1; then
+  echo "[$(date -u +%FT%TZ)] deploying to Cloudflare Pages (project=$CF_PROJECT) via wrangler"
+  wrangler pages deploy web --project-name="$CF_PROJECT" --commit-dirty=true
+  EXIT_CODE=$?
+elif command -v npx >/dev/null 2>&1; then
+  echo "[$(date -u +%FT%TZ)] deploying to Cloudflare Pages (project=$CF_PROJECT) via npx wrangler"
   npx --yes wrangler pages deploy web --project-name="$CF_PROJECT" --commit-dirty=true
   EXIT_CODE=$?
-  if [ "$EXIT_CODE" -ne 0 ]; then
-    echo "[$(date -u +%FT%TZ)] deploy failed (exit $EXIT_CODE)"
-    exit "$EXIT_CODE"
-  fi
 else
-  echo "[$(date -u +%FT%TZ)] wrangler not available, skipping Cloudflare deploy"
+  echo "[$(date -u +%FT%TZ)] neither wrangler nor npx available, skipping Cloudflare deploy"
+  EXIT_CODE=0
+fi
+if [ "$EXIT_CODE" -ne 0 ]; then
+  echo "[$(date -u +%FT%TZ)] deploy failed (exit $EXIT_CODE)"
+  exit "$EXIT_CODE"
 fi
 
 PHASE=review_queue
