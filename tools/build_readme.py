@@ -193,7 +193,8 @@ def repo_tree():
         ("│", "", False),
         ("├── scan.py", "CLI: live scan via USASpending API", False),
         ("├── export_json.py", "build web/data/latest.json and stats.json", False),
-        ("├── daily_scan.sh", "launchd-friendly catch-up + export + deploy", False),
+        ("├── monthly_scan.sh", "launchd-friendly bulk-load + reflag + export + deploy", False),
+        ("├── serve_loader.sh", "detached HTTP server for web/loader.html (use with AI coding assistants)", False),
         ("│", "", False),
         ("├── engine/", "core flag pipeline", True),
         ("│   ├── __init__.py", "", False),
@@ -235,7 +236,7 @@ def gitignored_block():
         (".env", "your local env (gitignored; .env.example is the template)"),
         (".venv/", "Python virtualenv from `uv sync`"),
         ("__pycache__/", "Python bytecode cache"),
-        ("contractwatch.db, *.db-*", "SQLite database, ~9 GB after a full build (rebuild with tools/bulk_loader.py)"),
+        ("contractwatch.db, *.db-*", "SQLite database, ~356 MB after a full FY15-FY26 build at the $1M floor (rebuild with tools/bulk_loader.py)"),
         ("data/archives/", "Bulk USASpending FY archive zips (download fresh from files.usaspending.gov)"),
         ("web/data/", "Generated dashboard JSON (regenerate with export_json.py)"),
         (".wrangler/", "Cloudflare Wrangler local cache"),
@@ -768,8 +769,11 @@ details.rule-rationale-fold .rule-meta {{ padding: 0 14px 12px; }}
     that match three anomaly patterns. Anything that fires a flag is then run
     through a structural filter that strips noise: defense-prime subsidiaries,
     joint ventures, ANC and tribal 8(a) firms, FFRDC operators, foreign-government
-    recipients, US utilities, state and local governments, and a hand-curated list
-    of recipients verified safe through review.
+    recipients, US utilities, state and local governments, and a curated list of
+    individually verified recipient names. The curated list is maintained by
+    batching new candidates and verifying each against SAM.gov, USASpending, and
+    public web sources; investigation is performed by Claude Opus models with
+    each batch reviewed and approved by a human before names are committed.
   </p>
   <p>
     Survivors of the filter are exported to a static JSON file and rendered by a
@@ -812,7 +816,7 @@ details.rule-rationale-fold .rule-meta {{ padding: 0 14px 12px; }}
   tools/bulk_loader.py          (one-time / monthly rebuild)
         |
         v
-  contractwatch.db              (SQLite, single file, ~9 GB)
+  contractwatch.db              (SQLite, single file, ~356 MB)
         |
         v
   tools/reflag_all.py           (1.5 sec full re-flag)
@@ -827,9 +831,10 @@ details.rule-rationale-fold .rule-meta {{ padding: 0 14px 12px; }}
         v
   web/index.html                ->  Cloudflare Pages  ->  contractwatch.org</code></pre>
   <p>
-    Daily catch-up runs through <code>scan.py</code> and <code>daily_scan.sh</code>,
-    pulling only newly modified awards from USASpending's API. The bulk archives
-    are touched once at initial build and again roughly monthly to refresh.
+    The bulk archives are the authoritative refresh path, touched once at
+    initial build and again monthly via <code>monthly_scan.sh</code> on launchd.
+    <code>scan.py</code> remains available for manual catch-up against the live
+    USASpending API when needed, but it is no longer scheduled.
   </p>
 
   <h3>Design principles</h3>
@@ -879,7 +884,7 @@ details.rule-rationale-fold .rule-meta {{ padding: 0 14px 12px; }}
 <section class="tab" id="tab-loader">
   <h2 class="sec">Loader &amp; data</h2>
   <p>
-    ContractWatch loads federal contract data from USASpending.gov in two paths: <code>tools/bulk_loader.py</code> (one-time / monthly rebuild from annual archive ZIPs) and <code>scan.py</code> (daily catch-up via USASpending API). Both paths write into the same <code>contractwatch.db</code> SQLite file using the schema below.
+    ContractWatch loads federal contract data from USASpending.gov via <code>tools/bulk_loader.py</code> (monthly rebuild from annual archive ZIPs covering FY15-FY26). <code>scan.py</code> is available for manual catch-up against the live USASpending API outside the monthly cadence but is not scheduled. Both write into the same <code>contractwatch.db</code> SQLite file using the schema below.
   </p>
 
   <h3>Why 19 columns out of 297</h3>
@@ -930,10 +935,10 @@ details.rule-rationale-fold .rule-meta {{ padding: 0 14px 12px; }}
     </p>
   </div>
 
-  <h3>Daily catch-up vs bulk rebuild</h3>
+  <h3>Bulk rebuild vs ad-hoc catch-up</h3>
   <ul>
-    <li><strong>Bulk rebuild</strong> (<code>tools/bulk_loader.py</code>): downloads annual FY archive ZIPs from USASpending, parses ~5M rows total, dedupes to one row per <code>contract_award_unique_key</code> keeping the latest <code>action_date</code>, and bulk-inserts. ~45 minutes, ~15 GB download, ~10 GB DB. Run once initially and roughly monthly to refresh.</li>
-    <li><strong>Daily catch-up</strong> (<code>scan.py</code> / <code>daily_scan.sh</code>): hits the USASpending search API for awards whose <code>last_modified_date</code> falls within the trailing <code>CONTRACTWATCH_BACKFILL_DAYS</code> window (default 2). Upserts each into the same schema. Cheap, fast, no archive download.</li>
+    <li><strong>Bulk rebuild</strong> (<code>tools/bulk_loader.py</code>): downloads annual FY archive ZIPs from USASpending (FY15-FY26), parses millions of rows total, dedupes to one row per <code>contract_award_unique_key</code> keeping the latest <code>action_date</code>, and bulk-inserts. Loader is pipelined: while one archive is being parsed, the next is already being downloaded. ~26 minutes wall time, ~19.76 GB downloaded, ~356 MB DB. Scheduled monthly via <code>monthly_scan.sh</code> on the 8th of each month.</li>
+    <li><strong>Manual catch-up</strong> (<code>scan.py</code>): hits the USASpending search API for awards whose <code>last_modified_date</code> falls within a supplied date window (e.g. <code>scan.py --start 2026-05-06 --end 2026-05-28 --min-amount 1000000</code>). Upserts each into the same schema. Available for ad-hoc use when fresher data than the monthly bulk archive is needed; not scheduled by default.</li>
   </ul>
 
   <h3>MIN_OBLIGATION floor</h3>
@@ -1034,7 +1039,7 @@ details.rule-rationale-fold .rule-meta {{ padding: 0 14px 12px; }}
       <strong><a href="https://github.com/astral-sh/uv">uv</a></strong>, the Python package manager from Astral. Used in place of pip + virtualenv. Install on macOS or Linux with <code>curl -LsSf https://astral.sh/uv/install.sh | sh</code>, or on Windows with <code>powershell -c "irm https://astral.sh/uv/install.ps1 | iex"</code>. ContractWatch uses <code>uv</code> for environment isolation and dependency resolution because it is roughly 10x faster than pip and handles Python version installation in one tool.
     </li>
     <li>
-      <strong>Approximately 25 GB of free disk space.</strong> Roughly 15 GB for the downloaded USASpending bulk archives and 9 GB for the SQLite database that gets built from them.
+      <strong>Approximately 25 GB of free disk space.</strong> Roughly 20 GB for the downloaded USASpending bulk archives (held in memory during processing) plus a few hundred MB for the resulting SQLite database. Add a few GB of headroom for working files. The 12 fiscal-year archives total about 19.76 GB downloaded; the final database after deduplication is around 356 MB.
     </li>
     <li>
       <strong>Optional: <code>wrangler</code>.</strong> Cloudflare's CLI for deploying static sites to Cloudflare Pages. Only required if pushing the dashboard to a Cloudflare-hosted site. Install with <code>npm install -g wrangler</code>. The dashboard can also be served locally or from any other static host without wrangler.
@@ -1070,10 +1075,10 @@ details.rule-rationale-fold .rule-meta {{ padding: 0 14px 12px; }}
   </p>
 <pre><code>uv run python tools/bulk_loader.py tools/jobs.example.json</code></pre>
   <p>
-    The job is driven by <code>tools/jobs.example.json</code>, which lists the FY2018 through FY2026 archive URLs to fetch. USASpending rotates the archive filenames roughly monthly; if the URLs in the file 404, open <a href="https://files.usaspending.gov/award_data_archive/">files.usaspending.gov/award_data_archive/</a> in a browser, find the current snapshot date, and edit <code>jobs.example.json</code> accordingly.
+    The job is driven by <code>tools/jobs.example.json</code>, which lists the FY2015 through FY2026 archive URLs to fetch. FY15, FY16, and FY17 are loaded as <strong>history-only</strong>: they populate the prior-history lookback the flag pipeline uses to decide "is this entity new to federal contracting" but they are never themselves evaluated as flag candidates (the reflag SQL gates on the FY18 cutoff). The dashboard begins at FY18 (start of October 2017). USASpending rotates the archive filenames roughly monthly; if the URLs in the file 404, open <a href="https://files.usaspending.gov/award_data_archive/">files.usaspending.gov/award_data_archive/</a> in a browser, find the current snapshot date, and edit <code>jobs.example.json</code> accordingly.
   </p>
   <p>
-    Expect roughly 45 minutes total wall time: about 15 minutes downloading the ~15 GB of zip archives, then 30 minutes parsing the CSVs and bulk-inserting roughly 5 million rows into SQLite. The resulting database is around 9 GB on disk. Watch live progress in a browser by also running:
+    Expect roughly 26 minutes total wall time on a fast connection. The loader pipelines downloads and parsing: while one archive is being parsed (~2 min), the next archive is already being fetched (~45 sec at typical USASpending S3 speed). Total downloaded across the 12 archives is about 19.76 GB; the resulting SQLite database after deduplication is around 356 MB. Watch live progress in a browser by also running:
   </p>
 <pre><code>python -m http.server 8000 -d web &amp;
 open http://localhost:8000/loader.html</code></pre>
@@ -1108,17 +1113,17 @@ open http://localhost:8000/loader.html</code></pre>
     Then open <a href="http://localhost:8000/">http://localhost:8000/</a> in a browser. The dashboard reads the JSON files generated in step 5 and renders the flagged awards with sorting, filtering, and per-award detail expansion.
   </p>
 
-  <h3>Daily updates</h3>
+  <h3>Scheduled updates</h3>
   <p>
-    Once the database is built, the day-to-day workflow is the <code>daily_scan.sh</code> shell script. It hits USASpending's search API for any awards modified in the trailing N-day window (default 2 days), upserts them into the database, re-runs the flag pipeline, regenerates the dashboard JSON, and (if <code>wrangler</code> is configured) deploys to Cloudflare Pages.
+    The scheduled workflow is the <code>monthly_scan.sh</code> shell script. It downloads the latest USASpending bulk archives (FY15-FY26), rebuilds the SQLite database, runs the bulk reflag, regenerates the dashboard JSON, and (if <code>wrangler</code> is configured) deploys to Cloudflare Pages. Expect roughly 26 minutes wall time and ~25 GB of free disk.
   </p>
-<pre><code>./daily_scan.sh</code></pre>
+<pre><code>./monthly_scan.sh</code></pre>
   <p>
-    For automated daily runs on macOS, copy <code>launchd/com.contractwatch.plist.example</code> to <code>~/Library/LaunchAgents/com.contractwatch.plist</code>, edit the two hardcoded absolute paths (launchd does not expand <code>~</code>), then load the job:
+    For automated monthly runs on macOS, copy <code>launchd/com.contractwatch.plist.example</code> to <code>~/Library/LaunchAgents/com.contractwatch.plist</code>, edit the two hardcoded absolute paths (launchd does not expand <code>~</code>), then load the job:
   </p>
 <pre><code>launchctl load ~/Library/LaunchAgents/com.contractwatch.plist</code></pre>
   <p>
-    The example template fires once daily at 04:30 local time. Adjust the <code>Hour</code> and <code>Minute</code> values in the plist to change the schedule. To disable the job, run <code>launchctl unload</code> with the same path.
+    The example template fires once a month on the 8th at 07:00 local time. USASpending typically publishes the monthly archive snapshot on the 5th or 6th, so the 8th gives a small buffer for the upstream data to settle. Adjust the <code>Day</code>, <code>Hour</code>, and <code>Minute</code> values in the plist to change the schedule. To disable the job, run <code>launchctl unload</code> with the same path.
   </p>
 
   <h3>Configuration (all env vars optional)</h3>
@@ -1126,7 +1131,7 @@ open http://localhost:8000/loader.html</code></pre>
     <thead><tr><th>Variable</th><th>Default</th><th>Purpose</th></tr></thead>
     <tbody>
       <tr><td><code>CONTRACTWATCH_EXCLUDED_AGENCIES</code></td><td>(empty)</td><td>Pipe-delimited agency names to skip at ingestion and strip at reflag time</td></tr>
-      <tr><td><code>CONTRACTWATCH_BACKFILL_DAYS</code></td><td>{BACKFILL_DAYS}</td><td>Daily catch-up window in days</td></tr>
+      <tr><td><code>CONTRACTWATCH_BACKFILL_DAYS</code></td><td>{BACKFILL_DAYS}</td><td>Ad-hoc catch-up window in days (used only by manual <code>scan.py</code> runs)</td></tr>
       <tr><td><code>CONTRACTWATCH_CF_PROJECT</code></td><td><code>{CLOUDFLARE_PROJECT}</code></td><td>Cloudflare Pages project name for <code>wrangler pages deploy</code></td></tr>
     </tbody>
   </table>
@@ -1160,7 +1165,7 @@ open http://localhost:8000/loader.html</code></pre>
     <li>Create a Cloudflare account and a Pages project named whatever you like.</li>
     <li>Install <code>wrangler</code> and run <code>wrangler login</code>.</li>
     <li>Set <code>CONTRACTWATCH_CF_PROJECT</code> in your <code>.env</code> to your project name.</li>
-    <li>Run <code>wrangler pages deploy web --project-name="$CONTRACTWATCH_CF_PROJECT"</code>, or just run <code>daily_scan.sh</code>.</li>
+    <li>Run <code>wrangler pages deploy web --project-name="$CONTRACTWATCH_CF_PROJECT"</code>, or just run <code>monthly_scan.sh</code>.</li>
   </ol>
   <p>
     You can also skip Cloudflare entirely and serve <code>web/</code> from

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <!--
-  ContractWatch daily-scan launchd job (macOS).
+  ContractWatch monthly bulk-refresh launchd job (macOS).
 
   Install (one-time):
     1. Copy this file to ~/Library/LaunchAgents/com.contractwatch.plist
@@ -9,11 +9,13 @@
        checkout path (must be absolute; launchd does not expand ~).
     3. launchctl load ~/Library/LaunchAgents/com.contractwatch.plist
 
-  daily_scan.sh runs the catch-up scan, regenerates web/data/*.json, and
-  optionally pushes to Cloudflare Pages (skipped if wrangler is not installed).
+  monthly_scan.sh runs the full bulk-archive refresh (download all FY15-FY26
+  archives, rebuild the DB, reflag, export JSON), then optionally pushes to
+  Cloudflare Pages. Expect ~26 minutes wall time and ~25 GB of free disk.
 
-  StartCalendarInterval below runs once daily at 04:30 local time. Adjust
-  Hour/Minute or replace with a StartInterval (seconds) to taste.
+  StartCalendarInterval below fires the 8th of every month at 07:00 local.
+  USASpending publishes the monthly bulk archive snapshot on the 5th-6th,
+  so the 8th gives a small buffer for upstream data to settle.
 -->
 <plist version="1.0">
 <dict>
@@ -23,7 +25,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>/bin/bash</string>
-    <string>/REPLACE/WITH/ABSOLUTE/PATH/TO/contractwatch/daily_scan.sh</string>
+    <string>/REPLACE/WITH/ABSOLUTE/PATH/TO/contractwatch/monthly_scan.sh</string>
   </array>
 
   <key>WorkingDirectory</key>
@@ -37,10 +39,12 @@
 
   <key>StartCalendarInterval</key>
   <dict>
+    <key>Day</key>
+    <integer>8</integer>
     <key>Hour</key>
-    <integer>4</integer>
+    <integer>7</integer>
     <key>Minute</key>
-    <integer>30</integer>
+    <integer>0</integer>
   </dict>
 
   <key>RunAtLoad</key>

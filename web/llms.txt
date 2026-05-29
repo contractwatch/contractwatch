@@ -12,7 +12,7 @@ A fired flag is descriptive, not a finding. Many flagged awards have routine exp
 
 ## Structural filter
 
-The structural filter removes flag results when the no-prior-history pattern is explained by entity type or contract structure rather than anomaly. Categories include: major federal-prime subsidiaries (Lockheed, Boeing, RTX, MITRE, Battelle, etc.), joint ventures formed for specific procurements, ANC and tribal subsidiaries, Native Hawaiian Organizations, US utilities, state and local government, public universities, foreign government recipients and Foreign Military Sales partners, FFRDC and DOE national lab operators, healthcare providers, bridge-contract extensions, heavy-construction primes, and a curated list of approximately 800 individually-verified recipient names.
+The structural filter removes flag results when the no-prior-history pattern is explained by entity type or contract structure rather than anomaly. Categories include: major federal-prime subsidiaries (Lockheed, Boeing, RTX, MITRE, Battelle, etc.), joint ventures formed for specific procurements, ANC and tribal subsidiaries, Native Hawaiian Organizations, US utilities, state and local government, public universities, foreign government recipients and Foreign Military Sales partners, FFRDC and DOE national lab operators, healthcare providers, bridge-contract extensions, heavy-construction primes, and a curated list of approximately 1,400 individually-verified recipient names.
 
 ## Dashboard features
 
@@ -23,12 +23,13 @@ The structural filter removes flag results when the no-prior-history pattern is 
 
 ## Updates
 
-A scheduled scan refreshes the dataset daily, reading new awards from USASpending and re-running the pattern checks. Coverage goes back to October 2017 (start of fiscal year 2018). The "Last scan" date on the dashboard reflects the most recent award action date in the dataset.
+A scheduled monthly job refreshes the dataset from the latest USASpending bulk archive snapshot and re-runs the pattern checks. USASpending publishes the monthly snapshot on the 5th or 6th of each month; the refresh fires on the 8th to give the upstream data a buffer to settle. The database covers federal fiscal years 2015 through the current year. FY15, FY16, and FY17 are loaded as history-only context for the no-prior-history check and are never evaluated as flag candidates; flagged awards on the dashboard begin at FY18 (October 2017). The "Last refresh" date on the dashboard reflects the USASpending bulk archive snapshot date the dashboard was built against.
 
 ## Data sources
 
-- [USASpending.gov API](https://api.usaspending.gov/) - prime contract awards
-- [USASpending.gov bulk archives](https://files.usaspending.gov/award_data_archive/) - per-fiscal-year contract action snapshots used for the initial database build
+- [USASpending.gov bulk archives](https://files.usaspending.gov/award_data_archive/) - per-fiscal-year "All Contracts Full" snapshots, the authoritative source for all dashboard data; loaded monthly via `tools/bulk_loader.py`
+- [USASpending.gov API](https://api.usaspending.gov/) - available for ad-hoc manual catch-up via `scan.py` outside the monthly bulk cadence; not part of the scheduled refresh
+- [SAM.gov Entity Management API](https://api.sam.gov/) - used during structural-filter curation to verify entity formation date, addresses, business types, and registration history
 
 ## Endpoints
 
@@ -56,14 +57,23 @@ A: Every federal contract award with obligation above $1M is read from USASpendi
 Q: Does a flag mean wrongdoing?
 A: No. A flag means the award matches a pattern that, statistically, is uncommon at the dollar threshold for the flag. Many flagged awards have routine explanations. The flagging is a starting point for inquiry, not a finding.
 
+Q: Why these three flags?
+A: The three flags all target the same underlying pattern: a recipient with no prior federal contract history pulling a large award. F01 catches the explicit version (sole-source above $10M), F02 catches the soft version (competitive solicitation that drew exactly one offer above $25M), F03 catches the implicit version (a first-ever federal contract above $25M regardless of competition mechanism). One pattern, three doors.
+
 Q: How often does the data update?
-A: A scheduled scan attempts to refresh the dataset daily. If a scan fails (upstream outage, API timeout, deploy error) the previous data remains visible until the next successful run.
+A: Once a month, on the 8th, from the latest USASpending bulk archive snapshot. If a refresh fails (upstream outage, download error, deploy error) the previous data remains visible until the next successful run.
 
 Q: Why are some obvious "no prior history" entities not flagged?
 A: They match a structural-filter pattern (municipal authority, hospital, joint venture, federal-prime subsidiary, ANC or tribal entity, foreign government recipient, bridge contract extension, etc.) where the absence of prior federal history is explained by the entity type or contract structure rather than by anomaly.
 
 Q: What dollar field does the dashboard use?
 A: contractwatch filters on `current_total_value_of_award` from USASpending, which represents the contract ceiling (the government's committed total). This is more useful for shell-pattern detection than per-transaction obligation, because the ceiling reflects the trust signal being extended to the vendor.
+
+Q: Why the $1M load floor?
+A: Empirical testing settled this. Flag count over load floor follows a U-shaped curve and $1M is the local optimum. Below $1M, tiny follow-on contracts start counting as prior history and mask shell-pattern awards where a new entity received a large first contract. Above $1M, legitimate mid-size vendors whose biggest prior was in the $1M to $5M range start qualifying as "no history" and flood the list. The three flag thresholds themselves ($10M for F01, $25M for F02 and F03) sit well above the load floor; awards between $1M and the flag threshold contribute to the prior-history lookback but never trigger a flag themselves.
+
+Q: How are entities added to the structural filter?
+A: The filter has two layers: pattern-based structural rules and a curated list of approximately 1,400 individually verified recipient names. Curated list candidates are batched and verified against SAM.gov entity records (formation date, address, business types, ownership, registration history), USASpending contract history, and public web sources (company website, news coverage, public-company filings). Investigation is performed by Claude Opus models with each batch reviewed and approved by a human before names are committed to the filter. When verification is ambiguous, the entity stays on the dashboard for human review rather than getting safelisted. The filter is updated periodically rather than on every monthly refresh; the current curated list reflects investigation of recipients flagged across FY18-FY26 contract data.
 
 Q: Can I run my own copy?
 A: Yes. The project is MIT-licensed. Clone github.com/contractwatch/contractwatch, follow the setup instructions in README.md, and either deploy to your own Cloudflare Pages account or serve the static `web/` folder from any host.

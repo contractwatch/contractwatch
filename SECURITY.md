@@ -8,7 +8,7 @@ Please report security vulnerabilities privately via [GitHub Security Advisories
 
 - Code-level vulnerabilities in the engine, loader, or scanner (SQL injection, path traversal, deserialization issues, dependency CVEs, etc.)
 - Structural filter bypass patterns: an entity-naming or description-pattern technique that lets a flag-eligible award be incorrectly stripped from the dashboard
-- Data poisoning vectors in the bulk loader or daily scan paths
+- Data poisoning vectors in the bulk loader or scan paths
 
 ## Not in scope
 

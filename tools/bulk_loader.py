@@ -48,6 +48,7 @@ import csv
 import io
 import json
 import os
+import queue
 import sqlite3
 import sys
 import tempfile
@@ -404,18 +405,49 @@ def bulk_upsert_awards(conn, award_tuples, label):
         _update_fy(label, upserted=n, upsert_total=total)
 
 
-def process_one_job(job, conn):
-    label = job.get("label") or job["file_url"].split("/")[-1].split(".")[0]
-    _say(f"=== JOB {label} ===")
-    file_url = job["file_url"]
-    _say(f"[{label}] url: {file_url}")
+def _job_label(job):
+    return job.get("label") or job["file_url"].split("/")[-1].split(".")[0]
 
-    try:
-        zip_bytes = polite_download(file_url, label=label)
-    except Exception as exc:
-        _say(f"[{label}] download FAILED after retries: {exc}")
-        _update_fy(label, status="failed", error=str(exc))
-        return 0
+
+def _download_worker(jobs, q):
+    """Producer thread. Downloads each archive sequentially in jobs-file order
+    and pushes (job, zip_bytes, exc) onto the queue. Pushes a None sentinel
+    when done.
+
+    Queue has maxsize=1, so the producer blocks once it has one zip waiting
+    for the consumer. Peak memory is bounded at roughly:
+        1 zip being downloaded + 1 zip waiting in queue + 1 zip being parsed
+    which is ~5 GB at USASpending's typical 1.5 GB-per-FY archive size.
+
+    Order is preserved: parser receives archives in the same chronological
+    order they appear in the jobs file. This keeps the INSERT OR REPLACE
+    dedup-by-latest-action-date semantics correct (later FYs overwrite
+    earlier FYs for multi-year IDV rows).
+    """
+    for job in jobs:
+        label = _job_label(job)
+        file_url = job["file_url"]
+        _say(f"[{label}] download starting (pipelined)")
+        try:
+            zip_bytes = polite_download(file_url, label=label)
+            # Download is done but the parser may still be busy on a previous
+            # archive. Mark this FY as "ready" so the loader page does not
+            # mislead viewers into thinking we have multiple parallel
+            # downloads in flight.
+            _update_fy(label, status="ready")
+            q.put((job, zip_bytes, None))
+        except Exception as exc:
+            _say(f"[{label}] download FAILED: {exc}")
+            q.put((job, None, exc))
+    q.put(None)
+
+
+def parse_and_upsert(job, zip_bytes, conn):
+    """Consumer half. Schema-checks columns, parses+dedupes, bulk upserts.
+    Returns count of awards upserted (0 on schema-mismatch failure)."""
+    label = _job_label(job)
+    _say(f"=== JOB {label} ===")
+    _say(f"[{label}] url: {job['file_url']}")
 
     ok, missing = smoke_test_columns(zip_bytes, label)
     if not ok:
@@ -424,6 +456,10 @@ def process_one_job(job, conn):
         return 0
 
     award_tuples = process_zip(zip_bytes, label)
+    # Free the raw zip bytes before the upsert phase. Reduces peak memory
+    # while the upsert holds the awards list in RAM.
+    del zip_bytes
+
     bulk_upsert_awards(conn, award_tuples, label)
 
     db_total = sqlite3.connect(DB_PATH).execute(
@@ -462,15 +498,35 @@ def main():
     total = 0
     failed = 0
     t_all = time.time()
+
+    # Pipeline: a background thread downloads the next archive while the main
+    # thread parses and upserts the current one. Queue depth 1 keeps the
+    # producer at most one archive ahead of the consumer.
+    download_queue = queue.Queue(maxsize=1)
+    downloader = threading.Thread(
+        target=_download_worker, args=(jobs, download_queue), daemon=True
+    )
+    downloader.start()
+
     try:
-        for job in jobs:
+        while True:
+            item = download_queue.get()
+            if item is None:
+                break
+            job, zip_bytes, exc = item
+            label = _job_label(job)
+            if exc is not None:
+                _update_fy(label, status="failed", error=str(exc))
+                failed += 1
+                continue
             try:
-                total += process_one_job(job, conn)
+                total += parse_and_upsert(job, zip_bytes, conn)
             except Exception as exc:
                 failed += 1
-                _say(f"!! JOB FAILED: {job.get('label')}: {exc}")
+                _say(f"!! JOB FAILED: {label}: {exc}")
                 continue
     finally:
+        downloader.join(timeout=5)
         conn.close()
 
     elapsed_min = (time.time() - t_all) / 60
@@ -479,6 +535,25 @@ def main():
                f"{total:,} awards upserted, {failed} jobs failed, "
                f"awards table now has {n_final:,} rows")
     _say(f"=== {summary} ===")
+
+    # Capture the bulk-archive snapshot date from the first job's URL filename.
+    # USASpending names archives like FY2026_All_Contracts_Full_20260506.zip,
+    # where 20260506 is the snapshot publish date. This is the "data current
+    # through" date the dashboard surfaces as "Last refresh" so readers know
+    # how fresh the upstream data is, distinct from when monthly_scan.sh ran.
+    import re as _re
+    snapshot_iso = ""
+    for j in jobs:
+        m = _re.search(r"_(\d{8})\.zip", j.get("file_url", ""))
+        if m:
+            yyyymmdd = m.group(1)
+            snapshot_iso = f"{yyyymmdd[0:4]}-{yyyymmdd[4:6]}-{yyyymmdd[6:8]}"
+            break
+    if snapshot_iso:
+        from engine import db as _db
+        _db.set_scan_state("bulk_archive_snapshot_date", snapshot_iso)
+        _say(f"Bulk archive snapshot date: {snapshot_iso}")
+
     _say("Next steps:")
     _say("  uv run python reflag_all.py     # apply F01/F02/F03 + structural filter")
     _say("  uv run python export_json.py    # regenerate web/data/latest.json")

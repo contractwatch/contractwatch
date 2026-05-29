@@ -66,6 +66,7 @@ def init_db(db_path=None):
             CREATE INDEX IF NOT EXISTS idx_flags_award ON flags(award_id);
             CREATE INDEX IF NOT EXISTS idx_flags_code ON flags(flag_code);
             CREATE INDEX IF NOT EXISTS idx_awards_office ON awards(awarding_office);
+            CREATE INDEX IF NOT EXISTS idx_awards_uei ON awards(recipient_uei);
         """)
 
 

@@ -57,7 +57,7 @@
     "Per-award detail expansion with full description, period of performance, contract type, competition mechanism, and flag rationale",
     "Direct USASpending record link for every flagged award",
     "CSV export of currently visible (filtered and sorted) awards",
-    "Daily-refreshed dataset via scheduled scan against the USASpending API"
+    "Monthly-refreshed dataset from the USASpending bulk archive snapshot"
   ],
   "url": "https://contractwatch.org"
 }
@@ -85,10 +85,18 @@
     },
     {
       "@type": "Question",
+      "name": "Why these three flags?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The three flags all target the same underlying pattern: a recipient with no prior federal contract history pulling a large award. F01 catches the explicit version (sole-source above $10M), F02 catches the soft version (competitive solicitation that drew exactly one offer above $25M), F03 catches the implicit version (a first-ever federal contract above $25M regardless of competition mechanism). One pattern, three doors."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "How often does the data update?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "A scheduled scan attempts to refresh the dataset daily. If a scan fails due to upstream outage, API timeout, or deploy error, the previous data remains visible until the next successful run."
+        "text": "Once a month, on the 8th, from the latest USASpending bulk archive snapshot. If a refresh fails due to upstream outage, download error, or deploy error, the previous data remains visible until the next successful run."
       }
     },
     {
@@ -97,6 +105,14 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "They match a structural filter pattern (municipal authority, hospital, joint venture, federal-prime subsidiary, ANC or tribal entity, foreign government recipient, bridge contract extension, etc.) where the absence of prior federal history is explained by the entity type or contract structure rather than by anomaly."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How are entities added to the structural filter?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The filter has two layers: pattern-based structural rules and a curated list of approximately 1,400 individually verified recipient names. Curated list candidates are batched and verified against SAM.gov entity records, USASpending contract history, and public web sources. Investigation is performed by Claude Opus models with each batch reviewed and approved by a human before names are committed. When verification is ambiguous, the entity stays on the dashboard for human review rather than getting safelisted. The filter is updated periodically rather than on every monthly refresh."
       }
     },
     {
@@ -113,14 +129,6 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "Yes. The project is MIT-licensed. Clone github.com/contractwatch/contractwatch, follow the setup instructions in README.md, and either deploy to your own Cloudflare Pages account or serve the static web folder from any host."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is not covered by these flags?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "The three flags target the no-prior-history large-award pattern. They do not detect mischarging or labor billing fraud (requires audit data), defective pricing (requires sealed cost data), bid rigging (requires sealed bids), pass-through arrangements (requires subcontract data), bribery, or product substitution. Those categories require investigative or audit access beyond what public data exposes."
       }
     }
   ]
@@ -506,6 +514,55 @@
     line-height: 1.6;
   }
   blockquote { padding: 8px 0; color: var(--text); font-size: 15px; font-family: var(--serif); font-style: italic; margin: 14px 0; }
+  details.faqfold {
+    background: #ffffff; border: 1px solid var(--line); border-radius: 4px;
+    padding: 14px 18px; margin-bottom: 18px;
+  }
+  details.faqfold > summary {
+    list-style: none; cursor: pointer; padding: 0;
+    display: flex; align-items: center; gap: 14px;
+    font-family: var(--serif); font-size: 18px; font-weight: 600;
+    color: var(--text); letter-spacing: -0.1px;
+  }
+  details.faqfold > summary::-webkit-details-marker { display: none; }
+  details.faqfold .afchev {
+    display: inline-block; color: var(--text); font-size: 22px;
+    line-height: 1; transition: transform 0.2s ease;
+  }
+  details.faqfold[open] > summary .afchev { transform: rotate(90deg); }
+  details.faqfold .faqfold-label { flex: 1; }
+  details.faqfold .aftoggle-label {
+    font-family: var(--mono); font-size: 13px; font-weight: 500;
+    color: var(--muted); letter-spacing: 0.3px;
+  }
+  details.faqfold[open] .aftoggle-label::before { content: "[collapse]"; }
+  details.faqfold[open] .aftoggle-label { font-size: 0; }
+  details.faqfold[open] .aftoggle-label::before { font-size: 13px; }
+  details.faqfold .faqfold-body { margin-top: 8px; }
+  .faq-list { display: flex; flex-direction: column; gap: 8px; margin-top: 14px; }
+  details.faq-item {
+    background: var(--panel); border: 1px solid var(--line); border-radius: 4px;
+    padding: 0;
+  }
+  details.faq-item > summary {
+    list-style: none; cursor: pointer;
+    padding: 14px 18px;
+    display: flex; align-items: center; gap: 12px;
+    font-size: 15px; font-weight: 600; color: var(--text);
+  }
+  details.faq-item > summary::-webkit-details-marker { display: none; }
+  details.faq-item > summary::before {
+    content: "+"; display: inline-block; width: 16px; flex-shrink: 0;
+    color: var(--muted); font-weight: 400; font-size: 18px; line-height: 1;
+    transition: transform 0.15s ease;
+  }
+  details.faq-item[open] > summary::before { content: "−"; }
+  details.faq-item > .faq-body {
+    padding: 0 18px 16px; color: var(--text); font-size: 14px; line-height: 1.65;
+    border-top: 1px solid var(--line); padding-top: 14px; margin: 0 0;
+  }
+  details.faq-item > .faq-body p { margin: 0 0 10px; }
+  details.faq-item > .faq-body p:last-child { margin-bottom: 0; }
   footer { margin-top: 60px; padding: 28px 0 0; border-top: 2px double var(--line-strong); font-size: 12.5px; color: var(--muted); font-family: var(--serif); font-style: italic; text-align: center; }
 
   @media (max-width: 760px) {
@@ -570,6 +627,7 @@
     <a href="#charts">Patterns</a>
     <a href="#flags">Flags</a>
     <a href="#awards">Flagged Awards</a>
+    <a href="#faq">FAQ</a>
     <a href="#about">About</a>
   </nav>
 </header>
@@ -705,6 +763,112 @@
     </details>
   </section>
 
+  <section id="faq">
+    <h2 class="sec">FAQ</h2>
+    <details class="faqfold" id="faqFold">
+      <summary class="faqfold-summary">
+        <span class="afchev" aria-hidden="true">&#9656;</span>
+        <span class="faqfold-label">Show all questions</span>
+        <span class="aftoggle-label">[expand]</span>
+      </summary>
+      <div class="faqfold-body">
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>What does a flag mean?</summary>
+        <div class="faq-body">
+          <p>A flag is descriptive, not a finding. It means an award matches a statistical pattern that is uncommon at the dollar threshold for that flag. Many flagged awards have routine explanations. The flagging is a starting point for inquiry, not a conclusion.</p>
+          <p>Every flagged row links to its USASpending record so the underlying contract can be reviewed directly.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why these three flags?</summary>
+        <div class="faq-body">
+          <p>The three flags all target the same underlying pattern: a recipient with no prior federal contract history pulling a large award. They differ in which procurement pathway carried the award through.</p>
+          <p>F01 catches the explicit version (sole-source above $10M). F02 catches the soft version (competitive solicitation that drew exactly one offer above $25M). F03 catches the implicit version (a first-ever federal contract above $25M regardless of competition mechanism). One pattern, three doors.</p>
+          <p>This pattern category is timeless: whatever the FAR looks like after the current rewrite, a brand-new entity pulling a huge contract will remain worth watching, because the procurement record will still capture vendor history and award size regardless of how the surrounding regulation gets reshaped.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Where does the data come from?</summary>
+        <div class="faq-body">
+          <p>The data source is <a href="https://www.usaspending.gov/" target="_blank" rel="noopener noreferrer">USASpending.gov</a>, the federal government's authoritative public spending dataset. Specifically, the annual "All Contracts Full" bulk archive ZIPs at <a href="https://files.usaspending.gov/award_data_archive/" target="_blank" rel="noopener noreferrer">files.usaspending.gov/award_data_archive/</a>, which contain the transaction-level history for each fiscal year.</p>
+          <p>Every flagged award on the dashboard links back to its USASpending record so the underlying contract can be reviewed directly.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How often does the data update?</summary>
+        <div class="faq-body">
+          <p>The dashboard refreshes monthly from the latest USASpending bulk archive snapshot. USASpending publishes the monthly snapshot on the 5th or 6th of each month; the refresh fires on the 8th to give the upstream data a buffer to settle. The dashboard's freshness window is therefore up to 30 days.</p>
+          <p>The monthly cadence is deliberate. The flag patterns target multi-year shell-like structures rather than time-sensitive activity, and a monthly bulk-archive snapshot is a more stable, reproducible source than ad-hoc API polling.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why does the structural filter exist?</summary>
+        <div class="faq-body">
+          <p>Without it, the dashboard would be flooded with awards that fire the no-prior-history pattern by program design rather than by anomaly. A federal-prime subsidiary spinning up under a new legal entity, an Alaska Native Corporation subsidiary, a joint venture formed for one specific procurement, a Federally Funded Research and Development Center operator transition, a healthcare provider getting its first Medicare contract, a foreign government recipient, or a bridge contract extension under a new vehicle: every one of these will trigger F01, F02, or F03 by structure, not by anomaly.</p>
+          <p>The structural filter strips these mechanically explainable cases before publication so the dashboard surfaces only the residual signal: awards where the no-prior-history pattern is not explained by entity type, sector, or contract architecture. Approximately 1,400 individually verified recipient names are baked into the filter alongside the structural rules.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why are some obvious no-prior-history entities not flagged?</summary>
+        <div class="faq-body">
+          <p>They match a structural filter rule (municipal authority, hospital, joint venture, federal-prime subsidiary, Alaska Native Corporation or tribal entity, foreign government recipient, bridge contract extension, FFRDC operator, etc.) where the absence of prior federal history is explained by the entity type or contract structure rather than by anomaly. The structural filter strips these before the flag reaches the dashboard.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How are entities added to the structural filter?</summary>
+        <div class="faq-body">
+          <p>The filter has two layers: pattern-based structural rules (federal-prime subsidiaries, ANCs, joint ventures, FFRDC operators, healthcare providers, foreign government recipients, bridge contracts, etc.) and a curated list of individually verified recipient names. Pattern rules catch entities by structural signal; the curated list handles cases where the structural signal is ambiguous and individual verification is needed.</p>
+          <p>For the curated list, candidates are batched and verified against SAM.gov entity records (formation date, address, business types, ownership, registration history), USASpending contract history (prior federal work under the same UEI), and public web sources (company website, news coverage, public-company filings). Verification looks for clear indicators of an established legitimate entity: real physical address, formation well before the federal contract, real product or service, business activity consistent with the contract type, recognizable corporate identity. Entities that pass on all dimensions are added to the curated list.</p>
+          <p>The batched investigation is performed by Claude Opus models running against the data sources above, with each batch reviewed and approved by a human before names are committed to the structural filter. When verification is ambiguous, the entity stays on the dashboard for human review rather than getting safelisted. Better to leave a legitimate company flagged than to safelist a wholesome-named shell. The filter is updated periodically rather than on every monthly refresh; the current curated list reflects investigation of recipients flagged across FY18-FY26 contract data.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Can I export the data?</summary>
+        <div class="faq-body">
+          <p>Yes. The "Export CSV" button in the page header generates a CSV of the currently visible awards, respecting any active filters and sort order, and triggers a browser download. The file contains 18 columns including PIID, recipient, UEI, agency, obligation, action date, contract type, competition mechanism, flag codes, flag rationale, and the USASpending record link.</p>
+          <p>The CSV is generated client-side from the loaded JSON. No server round-trip and no separate export step.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why the $1M load floor?</summary>
+        <div class="faq-body">
+          <p>Empirical testing settled this. The relationship between load floor and useful flag output is U-shaped, and $1M sits at the bottom of the curve.</p>
+          <p><strong>Below $1M</strong>: tiny follow-on contracts begin counting as "prior federal history" to the algorithm. Shell-pattern awards where a brand-new entity receives a large first contract and then a small administrative follow-on shortly after get masked: the small follow-on looks like prior experience, so the large first award no longer flags. The entities most worth attention drop off the list.</p>
+          <p><strong>At $1M</strong>: shells stand out, and mid-size vendors with genuine $1M-and-above prior history are properly excluded. The dashboard surfaces the entities that have no real federal track record before pulling a large award.</p>
+          <p><strong>Above $1M</strong>: legitimate mid-size vendors whose biggest prior contract was in the $1M to $5M range start qualifying as "no history" because their real history is no longer visible. The list fills with established companies whose federal footprint just happens to sit below the higher floor. More volume, lower signal-to-noise ratio.</p>
+          <p>The three flag thresholds themselves ($10M for F01 sole-source, $25M for F02 and F03) sit well above the load floor. Awards between $1M and the flag threshold contribute to the prior-history lookback but never trigger a flag themselves.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What dollar field do the flags compare against?</summary>
+        <div class="faq-body">
+          <p>The flag thresholds compare against <code>current_total_value_of_award</code>, which represents the contract ceiling: the government's committed total value, including all option years and ceiling raises to date. This is more useful for shell-pattern detection than per-transaction obligation, because the ceiling reflects the trust signal being extended to the vendor.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Why does "Coverage since" say October 2014 when flagged awards begin in FY18?</summary>
+        <div class="faq-body">
+          <p>October 2014 is the start of federal fiscal year 2015. The federal fiscal year runs October 1 through September 30, named for the calendar year in which it ends. FY15 = Oct 1, 2014 through Sep 30, 2015. The loader pulls FY15 onward into the database so the no-prior-history check has a real lookback window for FY18 candidates. Flagged awards on the dashboard begin at FY18; FY15-17 records are loaded as history context only and are never themselves evaluated as flag candidates.</p>
+        </div>
+      </details>
+
+    </div>
+      </div>
+    </details>
+  </section>
+
   <section id="about">
     <h2 class="sec">About</h2>
     <blockquote>
@@ -821,6 +985,19 @@ function formatLastScan(s) {
   if (isNaN(d)) return String(s);
   return d.toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric", timeZone: "UTC" });
 }
+function monthYearFromIso(s) {
+  if (!s) return "n/a";
+  const d = new Date(s + "T00:00:00Z");
+  if (isNaN(d)) return "n/a";
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", timeZone: "UTC" });
+}
+function nextMonthYearFromIso(s) {
+  if (!s) return "n/a";
+  const d = new Date(s + "T00:00:00Z");
+  if (isNaN(d)) return "n/a";
+  d.setUTCMonth(d.getUTCMonth() + 1);
+  return d.toLocaleDateString("en-US", { year: "numeric", month: "long", timeZone: "UTC" });
+}
 function relTime(s) {
   if (!s) return "unknown";
   const d = new Date(s);
@@ -912,18 +1089,33 @@ function renderOverview() {
   const sev = severityCounts(aw);
   const dollars = aw.reduce((s, a) => s + (Number(a.obligation) || 0), 0);
   const scanned = DATA.stats.total_awards_scanned;
+  const snapshot = DATA.stats.bulk_archive_snapshot_date;
   const cards = [
     { label: "Awards scanned", num: scanned != null ? Number(scanned).toLocaleString() : "n/a",
-      note: "above $1M", color: "var(--neutral)" },
+      note: "above $1M, the load floor", color: "var(--neutral)",
+      tooltip: "Every federal contract award above the $1M load floor across FY15-FY26 is loaded into the database. Smaller awards are excluded because empirical testing showed they introduce noise without adding signal. The three flag thresholds ($10M for F01, $25M for F02 and F03) sit well above this floor; awards between $1M and the flag threshold contribute to the prior-history lookback but never trigger a flag themselves." },
     { label: "Awards flagged", num: aw.length.toLocaleString(),
-      note: "", color: "var(--text)" },
-    { label: "Dollars flagged", num: moneyShort(dollars), note: "", color: "var(--accent)" },
-    { label: "Coverage since", num: "Oct 2017", note: "Last scan: " + formatLastScan(DATA.last_action_date), color: "var(--good)", small: true },
+      note: "survived the structural filter", color: "var(--text)",
+      tooltip: "Awards that triggered one of the three flag patterns (F01, F02, F03) and then survived the structural filter. The filter strips cases where the no-prior-history pattern is mechanically explained by entity type or contract structure (federal-prime subsidiaries, Alaska Native Corporations, joint ventures, FFRDC operators, healthcare providers, bridge contracts, etc.). Roughly two-thirds of raw flag candidates are stripped by the filter, so the dashboard surfaces only the residual signal." },
+    { label: "Dollars flagged", num: moneyShort(dollars), note: "sum of contract ceilings",
+      color: "var(--accent)",
+      tooltip: "Sum of the current_total_value_of_award field across every flagged award. That field represents the contract ceiling: the government's latest committed total value, including all exercised options and ceiling raises. Not actual obligated dollars to date. The flag thresholds ($10M for F01, $25M for F02 and F03) compare against this same ceiling field, so the totals are methodologically consistent." },
+    { label: "Coverage since", num: "Oct 2014", note: "FY15-17 used as history only; flags begin FY18",
+      color: "var(--good)", small: true,
+      tooltip: "The loader pulls federal contract awards back to FY15 (October 2014) to populate the no-prior-history lookback. FY15, FY16, and FY17 are never evaluated as flag candidates themselves; the dashboard only surfaces flagged awards starting from FY18 (October 2017)." },
+    { label: "Last refresh", num: monthYearFromIso(snapshot),
+      note: "USASpending bulk archive snapshot", color: "var(--good)", small: true,
+      tooltip: "Date the USASpending bulk archive snapshot used by this dashboard was published. The full dataset was reloaded against this snapshot on the next monthly refresh." },
+    { label: "Next refresh", num: nextMonthYearFromIso(snapshot),
+      note: "scheduled monthly on the 8th", color: "var(--good)", small: true,
+      tooltip: "The next monthly bulk refresh fires on the 8th of the next month (USASpending typically publishes the new snapshot on the 5th or 6th, so the 8th gives a buffer)." },
   ];
-  $("metricGrid").innerHTML = cards.map((c) =>
-    `<div class="card"><div class="label">${esc(c.label)}</div>` +
-    `<div class="num tnum${c.small ? " small" : ""}" style="color:${c.color}">${esc(c.num)}</div>` +
-    `<div class="note">${esc(c.note)}</div></div>`).join("");
+  $("metricGrid").innerHTML = cards.map((c) => {
+    const titleAttr = c.tooltip ? ` title="${esc(c.tooltip)}"` : "";
+    return `<div class="card"${titleAttr}><div class="label">${esc(c.label)}</div>` +
+      `<div class="num tnum${c.small ? " small" : ""}" style="color:${c.color}">${esc(c.num)}</div>` +
+      `<div class="note">${esc(c.note)}</div></div>`;
+  }).join("");
 }
 
 function chartTheme() {

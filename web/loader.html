@@ -90,6 +90,7 @@
   }
   .badge.queued    { background: rgba(152,162,179,0.15); color: var(--muted); }
   .badge.downloading { background: rgba(96,165,250,0.18); color: var(--neutral); }
+  .badge.ready     { background: rgba(125,211,252,0.18); color: var(--neutral); }
   .badge.parsing   { background: rgba(167,139,250,0.18); color: var(--purple); }
   .badge.loading   { background: rgba(245,158,11,0.18); color: var(--accent2); }
   .badge.done      { background: rgba(52,211,153,0.18); color: var(--good); }
@@ -196,7 +197,7 @@
 
 <script>
 const REFRESH_MS = 2000;
-const STATUS_KEYS = ["queued","downloading","parsing","loading","done","failed"];
+const STATUS_KEYS = ["queued","downloading","ready","parsing","loading","done","failed"];
 
 function fmtNum(n) { return (n||0).toLocaleString(); }
 function fmtMB(n) {
@@ -213,15 +214,18 @@ function renderFy(fy) {
   const status = fy.status || "queued";
   const cls = (status === "done") ? "done"
             : (status === "failed") ? "failed"
-            : (["downloading","parsing","loading"].includes(status) ? "active" : "");
+            : (["downloading","ready","parsing","loading"].includes(status) ? "active" : "");
   const pct = (status === "done") ? 100
             : (status === "loading" && fy.upsert_total) ? Math.round(fy.upserted / fy.upsert_total * 100)
             : (status === "parsing") ? Math.min(95, fy.rows_scanned ? Math.round(fy.awards_kept / Math.max(fy.rows_scanned, 1) * 100) : 80)
+            : (status === "ready") ? 100
             : (fy.pct || 0);
 
   let primary = "";
   if (status === "downloading") {
     primary = `${fmtMB(fy.downloaded_mb)} / ${fmtMB(fy.total_mb)}<br><span class="mono" style="font-size:11px">${(fy.speed_mbps||0).toFixed(1)} MB/s, attempt ${fy.attempt||1}</span>`;
+  } else if (status === "ready") {
+    primary = `<span style="color:var(--neutral)">Downloaded, waiting for parser</span><br><span class="mono" style="font-size:11px">${fmtMB(fy.total_mb)} in memory</span>`;
   } else if (status === "parsing") {
     primary = `Parsing CSV<br><span class="mono" style="font-size:11px">${fmtNum(fy.rows_scanned)} rows, ${fmtNum(fy.awards_kept)} kept</span>`;
   } else if (status === "loading") {

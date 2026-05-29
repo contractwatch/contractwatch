@@ -37,6 +37,10 @@ from engine.flags import (
 from engine.structural_filter import apply_structural_filter
 
 # Shared NOT EXISTS subquery: this UEI has no awards before action_date.
+# The subquery against table b deliberately has no FY gate. Pre-FY18 rows
+# (FY15-17 loaded as lookback) MUST count as prior history when evaluating
+# FY18+ candidates; otherwise vendors with established pre-FY18 federal
+# track records would falsely qualify as "no history."
 NO_PRIOR_AWARDS = """
   NOT EXISTS (
     SELECT 1 FROM awards b
@@ -45,9 +49,17 @@ NO_PRIOR_AWARDS = """
   )
 """
 
+# Outer SELECT gates on FY18 cutoff. Pre-FY18 rows are loaded as lookback
+# only and never evaluated as flag candidates themselves. This mirrors the
+# PUBLISH_FILTERS pre_fy18 rule in engine/structural_filter.py (defense in
+# depth: even if the publish filter is removed, the reflag never produces
+# pre-FY18 flags).
+PUBLISH_CUTOFF = "2017-10-01"
+
 F01_SQL = f"""
 SELECT a.* FROM awards a
-WHERE a.current_total_value_of_award >= ?
+WHERE a.action_date >= '{PUBLISH_CUTOFF}'
+  AND a.current_total_value_of_award >= ?
   AND a.sole_source = 1
   AND a.recipient_uei IS NOT NULL
   AND a.action_date IS NOT NULL
@@ -56,7 +68,8 @@ WHERE a.current_total_value_of_award >= ?
 
 F02_SQL = f"""
 SELECT a.* FROM awards a
-WHERE a.current_total_value_of_award >= ?
+WHERE a.action_date >= '{PUBLISH_CUTOFF}'
+  AND a.current_total_value_of_award >= ?
   AND (a.sole_source IS NULL OR a.sole_source = 0)
   AND a.number_of_offers = 1
   AND TRIM(COALESCE(a.competition_type, '')) IN ({",".join("?" * len(COMPETITIVE_CODES))})
@@ -67,7 +80,8 @@ WHERE a.current_total_value_of_award >= ?
 
 F03_SQL = f"""
 SELECT a.* FROM awards a
-WHERE a.current_total_value_of_award >= ?
+WHERE a.action_date >= '{PUBLISH_CUTOFF}'
+  AND a.current_total_value_of_award >= ?
   AND a.recipient_uei IS NOT NULL
   AND a.action_date IS NOT NULL
   AND {NO_PRIOR_AWARDS}

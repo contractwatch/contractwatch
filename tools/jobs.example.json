@@ -1,5 +1,17 @@
 [
   {
+    "label": "FY15",
+    "file_url": "https://files.usaspending.gov/award_data_archive/FY2015_All_Contracts_Full_20260506.zip"
+  },
+  {
+    "label": "FY16",
+    "file_url": "https://files.usaspending.gov/award_data_archive/FY2016_All_Contracts_Full_20260506.zip"
+  },
+  {
+    "label": "FY17",
+    "file_url": "https://files.usaspending.gov/award_data_archive/FY2017_All_Contracts_Full_20260506.zip"
+  },
+  {
     "label": "FY18",
     "file_url": "https://files.usaspending.gov/award_data_archive/FY2018_All_Contracts_Full_20260506.zip"
   },

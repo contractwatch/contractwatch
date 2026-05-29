@@ -136,6 +136,7 @@ def build_stats(conn, rows):
         "count_medium": severity["MEDIUM"],
         "last_scan_window": _scan_state(conn, "last_scan_window"),
         "last_scan_finished_at": _scan_state(conn, "last_scan_finished_at"),
+        "bulk_archive_snapshot_date": _scan_state(conn, "bulk_archive_snapshot_date"),
         "flag_distribution": [
             {"code": row["flag_code"], "severity": row["severity"], "count": row["n"]}
             for row in flag_dist
