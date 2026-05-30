@@ -1486,8 +1486,9 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     # are established SDVOSB/SDB defense contractors. SanMar is the well-known
     # wholesale apparel distributor. S.C.A. is a 25-year UK shipping
     # consultancy. HTA-Triad is a Healthcare Trust of America real-estate SPE.
-    # Kept on dashboard: Salus (known shell), ERI Services (no SAM record),
-    # CODA Research (no SAM record), SafeSource Direct (2021 PPE JV).
+    # Kept on dashboard: Salus (known shell), CODA Research (no SAM record),
+    # SafeSource Direct (2021 PPE JV). ERI Services moved to filter 2026-05-30
+    # after confirming NORESCO operating identity (see entry near end of list).
     "ZEVA INCORPORATED",
     "SAALEX CORP",
     "LOVELL GOVERNMENT SERVICES INC.",
@@ -2333,6 +2334,18 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "ACELRX PHARMACEUTICALS, INC.",
     "DALE ROGERS TRAINING CENTER, INC.",
     "DERCO AEROSPACE, INC.",
+
+    # 2026-05-30: ERI Services, Inc. (UEI NJ8DHCK185A5) is the legacy legal
+    # entity for what now operates as NORESCO, LLC under Carrier Global Corp.
+    # NORESCO maintains two fully active SAM registrations under different
+    # UEIs (YJYYEDBU9Y69, N76WVJGHHQH4), both renewed Aug 2025. The flagged
+    # activity is mods to a 2008 NAVFAC ESPC IDV (PIID N4740800D8117 order
+    # 0002) with statutory term through 2028-11-30. Root cause is a missing
+    # novation per FAR 42.1204, not contractor misconduct. Flag re-fires on
+    # every annual ESPC mod through 2028 and would dominate the dashboard
+    # for ~3 more years on a single vehicle. Compliance-hygiene pattern,
+    # not fraud signal.
+    "ERI SERVICES, INC.",
 })
 
 
