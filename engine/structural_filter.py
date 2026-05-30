@@ -834,8 +834,6 @@ def is_anc_or_tribal_subsidiary(ctx) -> bool:
 # receiving large awards). Those stay on the dashboard.
 
 CURATED_SAFE_RECIPIENT_NAMES = frozenset({
-    # Top-15 dashboard review (2026-05-28): 13 added after SAM.gov verification
-    # confirmed legitimate non-shell status.
     "AMERICA'S HEALTH INSURANCE PLANS, INC.",
     "AMERICA'S BLOOD CENTERS",
     "HELLFIRE SYSTEMS, LLC",
@@ -849,10 +847,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "GLOBAL HEALTH INVESTMENT CORPORATION",
     "PARATEK PHARMACEUTICALS, INC",
     "OSANG LLC",
-    # Pattern-bucket pass (2026-05-28): 46 added after pattern + SAM/public-knowledge
-    # verification. Categories: pharma startups with verified addresses and real
-    # websites; government and academic entities; established trade associations;
-    # major prime JVs; well-known healthcare subsidiaries.
     "MODEX THERAPEUTICS, INC",
     "MEDICINES COMPANY, THE",
     "VEDANTA BIOSCIENCES, INC.",
@@ -899,11 +893,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "NAVAL ACADEMY ATHLETIC ASSOCIATION",
     "COLORADO FOUNDATION FOR MEDICAL CARE",
     "FOUNDATION FOR ATLANTA VETERANS EDUCATION AND RESEARCH, INC.",
-    # $50M-$500M tier review (2026-05-28): 50 added after a combination of
-    # public-company knowledge, well-known federal contractor recognition, and
-    # SAM verification. Categories: major public/pharma/financial firms, major
-    # subsidiary or JV identities, established federal IT services and defense
-    # contractors, USAID humanitarian implementers.
     "HOFFMANN-LA ROCHE INC.",
     "SHIONOGI INC",
     "MEDIWOUND LTD",
@@ -954,14 +943,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "ASCEND PERFORMANCE MATERIALS TEXAS INC",
     "TRUE NORTH COMMUNICATIONS INC",
     "SOS SECURITY LLC",
-    # $25M-$50M tier agent review (2026-05-28): 3 Opus agents verified 315
-    # candidates via SAM.gov + USASpending + web search; 271 confirmed as
-    # legitimate established entities (real federal contractors, established
-    # subsidiaries, JVs, ANCs, healthcare orgs, pharma startups with proper
-    # SAM history). The 44 'keep' verdicts surfaced shell-pattern candidates
-    # worth human review (Stonington Hospitality, Universal Strategic Advisors,
-    # CRE8AD8, MEDEA, Do Know Harm, Veterans Command, Federal Government
-    # Experts, Lori O May, Rehabplus Staffing, etc.).
     "4J THERAPEUTICS INC",
     "AAR AIRCRAFT SERVICES, INC.",
     "ACUCYBER LLC",
@@ -1233,15 +1214,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "WOOD FEDERAL SOLUTIONS, INC.",
     "XATOR LLC",
     "XTENFER CONSULTING INC.",
-    # Under-$25M tier agent review (2026-05-28): 3 Opus agents verified 253
-    # candidates; 238 confirmed as legitimate established entities (heavy
-    # concentration of ANC subsidiaries, Native Hawaiian organizations,
-    # tribal subsidiaries, public-company subs, and BARDA/RADx-funded
-    # diagnostics startups). The 15 'keep' verdicts surfaced shell-pattern
-    # candidates including the ProPublica-documented Bayhill Defense N95
-    # failure, Allied Sonoran (2024 Wyoming LLC, $14M FAA), Edge Ops
-    # (SAM registered weeks before $12M DHS), Ardent Group (sole
-    # proprietorship with LLC name, $21M DHS), and others.
     "5600 FISHERS LANE LLC",
     "ABRIDGE AI INC",
     "ACATO INFORMATION MANAGEMENT, LLC",
@@ -1480,15 +1452,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "WOLFSPEED, INC.",
     "WOLTERS KLUWER HEALTH, INC.",
     "XOMA LTD.",
-    # $100M+ tier sweep (2026-05-28): 7 of 11 confirmed legitimate after
-    # individual SAM verification. Zeva is a real PKI/identity small business
-    # whose $1B Treasury figure is an IDIQ ceiling. Saalex, Lovell, Core4CE
-    # are established SDVOSB/SDB defense contractors. SanMar is the well-known
-    # wholesale apparel distributor. S.C.A. is a 25-year UK shipping
-    # consultancy. HTA-Triad is a Healthcare Trust of America real-estate SPE.
-    # Kept on dashboard: Salus (known shell), CODA Research (no SAM record),
-    # SafeSource Direct (2021 PPE JV). ERI Services moved to filter 2026-05-30
-    # after confirming NORESCO operating identity (see entry near end of list).
     "ZEVA INCORPORATED",
     "SAALEX CORP",
     "LOVELL GOVERNMENT SERVICES INC.",
@@ -2082,12 +2045,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "YORK SPACE SYSTEMS LLC",
     "Z SYSTEMS CORPORATION",
     "ZEIDERS ENTERPRISES, INC.",
-
-    # Added 2026-05-27 from top-300-by-dollar Opus-agent batch investigation.
-    # Each entry has a cited public source (10-K, press release, Wikipedia,
-    # SEC filing, or government program documentation) verified by the agent.
-
-    # Subsidiaries of major federal primes / public companies
     "EAGLE GROUP INTERNATIONAL LLC",
     "BLACKHORSE, A PARSONS LLC",
     "SPACE GROUND SYSTEM SOLUTIONS, INC.",
@@ -2127,8 +2084,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "CENTERLINE LOGISTICS CORP",
     "HP ENTERPRISE SERVICES, LLC",
     "TRANSOCEANIC CABLE SHIP COMPANY LLC",
-
-    # ANCSA Alaska Native Corporation / tribal subsidiaries
     "NORTH WIND TEST LLC",
     "BOWHEAD MARINE SUPPORT SERVICES LLC",
     "SUNITNA RIVER LLC",
@@ -2139,8 +2094,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "DATA NETWORKS, INC.",
     "ECHOTA TECHNOLOGIES CORPORATION",
     "KIRA TRAINING SERVICES LLC",
-
-    # Joint ventures with named partners
     "HYGEIA SOLUTIONS PARTNERS LLC",
     "NOVILO TECHNOLOGY SOLUTIONS, LLC",
     "STANTEC/AECOM LLC",
@@ -2149,8 +2102,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "APOGEE-SAIC CAPABILITIES INTEGRATOR, LLC",
     "3A, LLC",
     "CIVILEON RESEARCH AND TECHNOLOGY, LLC",
-
-    # Fortune 500 / major commercial brands with new federal UEI
     "CARNIVAL CORPORATION",
     "U.S. BANCORP",
     "U S FOODS INC",
@@ -2163,8 +2114,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "ALLISON TRANSMISSION INC",
     "QATARENERGY",
     "ONE GAS INC",
-
-    # Established federal nonprofits, R&D institutes, FFRDC-class
     "AMERICAN TYPE CULTURE COLLECTION",
     "ALBERT B. SABIN VACCINE INSTITUTE, INC. (THE)",
     "MALARIA CONSORTIUM",
@@ -2188,8 +2137,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "SOUTHWEST EDUCATIONAL DEVELOPMENT CORPORATION",
     "NATIONAL RURAL SUPPORT PROGRAMME",
     "UNITED NETWORK FOR ORGAN SHARING",
-
-    # Established federal primes / mid-tier defense+IT firms
     "PLOWSHARE GROUP, INC",
     "WESTON SOLUTIONS INC",
     "CDM FED. PROGRAMS CORP.",
@@ -2241,8 +2188,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "THINKWELL GROUP, LLC",
     "IT CORPORATION",
     "THE IQ BUSINESS GROUP, INC.",
-
-    # State/local government, AbilityOne, public universities
     "MISSOURI HIGHER EDUCATION LOAN AUTHORITY",
     "MISSOURI DEPARTMENT OF SOCIAL SERVICES",
     "MISSISSIPPI DEPARTMENT OF REHABILITATION SERVICE",
@@ -2257,20 +2202,13 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "ICAHN SCHOOL OF MEDICINE AT MOUNT SINAI",
     "THE UNIVERISTY OF TEXAS M.D. ANDERSON CANCER CENTER",
     "PECKHAM VOCATIONAL INDUSTRIES, INC.",
-
-    # Added 2026-05-28 from dashboard review with operator.
     "NATIONAL INDUSTRIES FOR THE BLIND",
     "LEONARDO US AIRCRAFT, LLC",
     "EMORY UNIVERSITY",
     "CONSORTIUM OF UNIVERSITIES OF THE WASHINGTON METROPOLITAN AREA",
-
-    # Second 2026-05-28 dashboard pass.
     "JVYS",
     "BELLESE TECHNOLOGIES, LLC",
     "RCF INFORMATION SYSTEMS, INC.",
-
-    # Third 2026-05-28 dashboard pass (40 entities verified via Opus agents +
-    # training data; SAGE SYSTEMS TECHNOLOGIES, LLC deliberately excluded).
     "AIRCRAFT TRANSPORT SERVICES, INC.",
     "AL RAWABET COMMERCIAL SERVICES & CONTRACTING CO. W.L.L.",
     "APR ENERGY USA, LLC",
@@ -2325,8 +2263,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "GEORGIA VOCATIONAL REHABILITATION AGENCY",
     "PROLOGIC, INC.",
     "PUBLIC HEALTH, CALIFORNIA DEPARTMENT OF",
-
-    # Fourth 2026-05-28 dashboard pass.
     "UNITED SOLUTIONS AND SERVICES LLC",
     "DEPARTMENT OF PUBLIC HEALTH CONNECTICUT",
     "OSU-UNIVERSITY MULTISPECTRAL LABORATORIES LLC",
@@ -2334,17 +2270,6 @@ CURATED_SAFE_RECIPIENT_NAMES = frozenset({
     "ACELRX PHARMACEUTICALS, INC.",
     "DALE ROGERS TRAINING CENTER, INC.",
     "DERCO AEROSPACE, INC.",
-
-    # 2026-05-30: ERI Services, Inc. (UEI NJ8DHCK185A5) is the legacy legal
-    # entity for what now operates as NORESCO, LLC under Carrier Global Corp.
-    # NORESCO maintains two fully active SAM registrations under different
-    # UEIs (YJYYEDBU9Y69, N76WVJGHHQH4), both renewed Aug 2025. The flagged
-    # activity is mods to a 2008 NAVFAC ESPC IDV (PIID N4740800D8117 order
-    # 0002) with statutory term through 2028-11-30. Root cause is a missing
-    # novation per FAR 42.1204, not contractor misconduct. Flag re-fires on
-    # every annual ESPC mod through 2028 and would dominate the dashboard
-    # for ~3 more years on a single vehicle. Compliance-hygiene pattern,
-    # not fraud signal.
     "ERI SERVICES, INC.",
 })
 
