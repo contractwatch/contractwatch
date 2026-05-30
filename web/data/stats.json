@@ -1,0 +1,30 @@
+{
+  "generated_at": "2026-05-30T22:08:41Z",
+  "total_awards_scanned": 504431,
+  "total_awards_flagged": 108,
+  "displayed_awards": 108,
+  "displayed_obligation_total": 5029901655.47,
+  "count_critical": 132,
+  "count_high": 0,
+  "count_medium": 0,
+  "last_scan_window": "",
+  "last_scan_finished_at": "",
+  "bulk_archive_snapshot_date": "2026-05-06",
+  "flag_distribution": [
+    {
+      "code": "F03_FIRST_LARGE_AWARD",
+      "severity": "CRITICAL",
+      "count": 93
+    },
+    {
+      "code": "F01_NO_HISTORY_SOLE_SOURCE",
+      "severity": "CRITICAL",
+      "count": 25
+    },
+    {
+      "code": "F02_NO_HISTORY_ONE_OFFER",
+      "severity": "CRITICAL",
+      "count": 14
+    }
+  ]
+}

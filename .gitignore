@@ -36,8 +36,16 @@ cache/
 # Local logs (bulk loader stdout, agent verification outputs)
 logs/
 
-# Generated dashboard data (rebuild via export_json.py)
-web/data/
+# Generated dashboard data (rebuild via export_json.py).
+# Two exceptions tracked so a clone-and-deploy works without first running
+# the bulk loader: the latest published snapshot and its summary stats.
+# History files and loader status remain ignored (auto-growing and
+# operational respectively). Wildcard form (not bare web/data/) is
+# required so the negation patterns below can re-include specific files.
+web/data/*
+web/data/history/
+!web/data/latest.json
+!web/data/stats.json
 
 # Stale .bak files left by past sed edits
 engine/*.bak-*

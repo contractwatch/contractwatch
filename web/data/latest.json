@@ -1,0 +1,3175 @@
+{
+  "generated_at": "2026-05-30T22:08:41Z",
+  "last_action_date": "2026-04-23",
+  "count": 108,
+  "awards": [
+    {
+      "piid": "FA282312C0074",
+      "recipient": "JAMSADC",
+      "uei": "LLQBB9UC2BZ8",
+      "state": "FL",
+      "agency": "Department of Defense",
+      "office": "FA2487  AFTC PZZD (EGLIN)",
+      "obligation": 40758909.88,
+      "action_date": "2017-10-25",
+      "start_date": "2017-10-25",
+      "end_date": "2017-07-31",
+      "contract_type": "COST NO FEE",
+      "competition": "D",
+      "naics": "541519",
+      "psc": "7030",
+      "description": "BASE-LEVEL SOFTWARE SUPPORT (BLSS)",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for JAMSADC (UEI: LLQBB9UC2BZ8); first federal contract $40,758,910"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_FA282312C0074_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "SAQMPD06C0036",
+      "recipient": "QUALITY SUPPORT, INC.",
+      "uei": "HUQPMM9N41F9",
+      "state": "MD",
+      "agency": "Department of State",
+      "office": "ACQUISITIONS - AQM MOMENTUM",
+      "obligation": 71541927.01,
+      "action_date": "2018-02-26",
+      "start_date": "2018-02-26",
+      "end_date": "2016-03-11",
+      "contract_type": "COMBINATION (APPLIES TO AWARDS WHERE TWO OR MORE OF THE ABOVE APPLY)",
+      "competition": "D",
+      "naics": "561499",
+      "psc": "R699",
+      "description": "CA/VO OPERATIONS",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for QUALITY SUPPORT, INC. (UEI: HUQPMM9N41F9); first federal contract $71,541,927"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_SAQMPD06C0036_1900_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HSTS0512CSPP036",
+      "recipient": "VMD-MT SECURITY",
+      "uei": "SQ3JAHMLSMZ4",
+      "state": "VA",
+      "agency": "Department of Homeland Security",
+      "office": "MISSION ESSENTIALS",
+      "obligation": 63277486.11,
+      "action_date": "2018-03-01",
+      "start_date": "2018-03-01",
+      "end_date": "2017-06-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "561612",
+      "psc": "S206",
+      "description": "IGF::CT::IGF SECURITY SCREENING SERVICES AT EYW, ROC, AND TUP.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for VMD-MT SECURITY (UEI: SQ3JAHMLSMZ4); first federal contract $63,277,486"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HSTS0512CSPP036_7013_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W91WAW10C0077",
+      "recipient": "REHABPLUS STAFFING GROUP, INC.",
+      "uei": "M18FLX8UJ1Q4",
+      "state": "MD",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-PICA",
+      "obligation": 27373016.52,
+      "action_date": "2018-03-27",
+      "start_date": "2018-03-27",
+      "end_date": "2012-09-29",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "624190",
+      "psc": "Q201",
+      "description": "EXCEPTIONAL FAMILY MEMBER PROGRAM (EFMP)",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for REHABPLUS STAFFING GROUP, INC. (UEI: M18FLX8UJ1Q4); competitive solicitation received 1 offer; obligation $27,373,017"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for REHABPLUS STAFFING GROUP, INC. (UEI: M18FLX8UJ1Q4); first federal contract $27,373,017"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W91WAW10C0077_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "70FBR618C00000001",
+      "recipient": "PISTOL POINT, LLC",
+      "uei": "SNMQKH6E1LN4",
+      "state": "TX",
+      "agency": "Department of Homeland Security",
+      "office": "REGION 6 : EMERGENCY PREPAREDNESS A",
+      "obligation": 37084639.5,
+      "action_date": "2018-05-07",
+      "start_date": "2018-05-07",
+      "end_date": "2017-12-09",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "424410",
+      "psc": "8915",
+      "description": "IGF::OT::IGF  SUBSISTENCE FOOD SUPPLY TO BE DELIVERED&DISPERSED BY THE FOOD BANK OF HOUSTON IN SUPPORT OF PRESIDENTIALLY DECLARED DISASTER DR-4332 TX",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for PISTOL POINT, LLC (UEI: SNMQKH6E1LN4); first federal contract $37,084,640"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70FBR618C00000001_7022_-NONE-_-NONE-"
+    },
+    {
+      "piid": "NSFDACS09D1261",
+      "recipient": "IRONWORKS CONSULTING, L.L.C.",
+      "uei": "HAG6C93JXUT9",
+      "state": "VA",
+      "agency": "National Science Foundation",
+      "office": "DIV OF ACQ AND COOPERATIVE SUPPORT",
+      "obligation": 38691751.0,
+      "action_date": "2018-05-18",
+      "start_date": "2017-11-06",
+      "end_date": "2014-08-31",
+      "contract_type": "TIME AND MATERIALS",
+      "competition": "CDO",
+      "naics": "541519",
+      "psc": "D399",
+      "description": "CONTENT, PORTAL, AND SEARCH SERVICES",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for IRONWORKS CONSULTING, L.L.C. (UEI: HAG6C93JXUT9); first federal contract $38,691,751"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_NSFDACS09D1261_4900_GS35F0634R_4730"
+    },
+    {
+      "piid": "HSFE7017C0223",
+      "recipient": "FILCOR INC.",
+      "uei": "ERWBDYQ9KL86",
+      "state": "AL",
+      "agency": "Department of Homeland Security",
+      "office": "INCIDENT SUPPORT SECTION(ISS70)",
+      "obligation": 54370660.0,
+      "action_date": "2018-05-22",
+      "start_date": "2018-05-22",
+      "end_date": "2018-06-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "311991",
+      "psc": "8960",
+      "description": "THE PURPOSE OF THIS CONTRACT IS TO PROCURE MEALS IN SUPPORT OF HURRICANE MARIA.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for FILCOR INC. (UEI: ERWBDYQ9KL86); first federal contract $54,370,660"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HSFE7017C0223_7022_-NONE-_-NONE-"
+    },
+    {
+      "piid": "DJF141200D0012784",
+      "recipient": "GOVERNMENT LOGISTIC SUPPORT SERVICES, LLC",
+      "uei": "CMVZAAG3LWH4",
+      "state": "MD",
+      "agency": "Department of Justice",
+      "office": "FBI-JEH",
+      "obligation": 18910312.54,
+      "action_date": "2018-08-20",
+      "start_date": "2018-08-20",
+      "end_date": "2017-09-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "484210",
+      "psc": "R604",
+      "description": "IGF::OT::IGF GLSS CONTRACT  OPTION YEAR 3 AND 4",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for GOVERNMENT LOGISTIC SUPPORT SERVICES, LLC (UEI: CMVZAAG3LWH4), sole-source $18,910,313"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_DJF141200D0012784_1549_-NONE-_-NONE-"
+    },
+    {
+      "piid": "DEAC2605NT41818",
+      "recipient": "EAGLE FACILITY MANAGEMENT SERVICES",
+      "uei": "HBXNC52MKL33",
+      "state": "WV",
+      "agency": "Department of Energy",
+      "office": "NATIONAL ENERGY TECHNOLOGY LABORATORY",
+      "obligation": 46500000.0,
+      "action_date": "2018-09-18",
+      "start_date": "2018-09-18",
+      "end_date": "2009-11-30",
+      "contract_type": "COST PLUS AWARD FEE",
+      "competition": "C",
+      "naics": "238290",
+      "psc": "Z182",
+      "description": "SITE OPERATIONS SERVICES (SOS)",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for EAGLE FACILITY MANAGEMENT SERVICES (UEI: HBXNC52MKL33), sole-source $46,500,000"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for EAGLE FACILITY MANAGEMENT SERVICES (UEI: HBXNC52MKL33); first federal contract $46,500,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_DEAC2605NT41818_8900_-NONE-_-NONE-"
+    },
+    {
+      "piid": "DOLJ06QA00002",
+      "recipient": "TRAINING AND DEVELOPMENT CORPORATION",
+      "uei": "X4R3DLP3XA29",
+      "state": "ME",
+      "agency": "Department of Labor",
+      "office": "DOL (ETA) OFC OF CONTRACT MGMT",
+      "obligation": 41955289.0,
+      "action_date": "2018-09-28",
+      "start_date": "2018-09-28",
+      "end_date": "2008-06-30",
+      "contract_type": "COST PLUS INCENTIVE FEE",
+      "competition": "A",
+      "naics": "611519",
+      "psc": "U006",
+      "description": "LORING JOB CORPS CENTER",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for TRAINING AND DEVELOPMENT CORPORATION (UEI: X4R3DLP3XA29); first federal contract $41,955,289"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_DOLJ06QA00002_1630_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W9133L11C0015",
+      "recipient": "INNOVATE INTERNATIONAL INTELLIGENCE AND INTEGRATION, LLC",
+      "uei": "W5LHLPFEN8T7",
+      "state": "GA",
+      "agency": "Department of Defense",
+      "office": "W39L USA NG READINESS CENTER",
+      "obligation": 29023545.22,
+      "action_date": "2018-11-15",
+      "start_date": "2018-11-15",
+      "end_date": "2017-12-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541690",
+      "psc": "R408",
+      "description": "LABOR",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for INNOVATE INTERNATIONAL INTELLIGENCE AND INTEGRATION, LLC (UEI: W5LHLPFEN8T7); first federal contract $29,023,545"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W9133L11C0015_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "FA660615C0003",
+      "recipient": "VETERAN FACILITY SERVICES LLC",
+      "uei": "MJD7GNDM8M21",
+      "state": "FL",
+      "agency": "Department of Defense",
+      "office": "FA6606  439 CONF PK",
+      "obligation": 34356050.4,
+      "action_date": "2019-02-19",
+      "start_date": "2019-02-01",
+      "end_date": "2019-02-28",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "561210",
+      "psc": "R706",
+      "description": "IGF::OT::IGF BASE OPERATIONS SUPPORT (BOS) SUPPORT AT WESTOVER ARB, MA",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for VETERAN FACILITY SERVICES LLC (UEI: MJD7GNDM8M21); first federal contract $34,356,050"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_FA660615C0003_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "DTPH56TD0003",
+      "recipient": "CYCLA CORPORATION",
+      "uei": "WJ44Y8Q81827",
+      "state": "VA",
+      "agency": "Department of Transportation",
+      "office": "693JK3 ACQUISITION SERVICES DIV.",
+      "obligation": 54547860.3,
+      "action_date": "2019-02-21",
+      "start_date": "2019-02-21",
+      "end_date": "2017-10-18",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "541611",
+      "psc": "AD21",
+      "description": "TASK ORDER NO. 3 ON CONTRACT DTPH56-07-C-000001",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CYCLA CORPORATION (UEI: WJ44Y8Q81827); competitive solicitation received 1 offer; obligation $54,547,860"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CYCLA CORPORATION (UEI: WJ44Y8Q81827); first federal contract $54,547,860"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_DTPH56TD0003_6957_DTPH5607C000001_6957"
+    },
+    {
+      "piid": "W90BRJ15C0008",
+      "recipient": "SK TELECOM CO.,LTD.",
+      "uei": "DLEBV54N8NH1",
+      "state": "",
+      "agency": "Department of Defense",
+      "office": "W3ZL OFC PM SANG MOD PROG",
+      "obligation": 44046933.0,
+      "action_date": "2019-03-06",
+      "start_date": "2019-03-07",
+      "end_date": "2018-06-21",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "B",
+      "naics": "334614",
+      "psc": "D302",
+      "description": "IGF::OT::IGF BESTCARE 2.0A HEALTH CARE DATABASE",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SK TELECOM CO.,LTD. (UEI: DLEBV54N8NH1), sole-source $44,046,933"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SK TELECOM CO.,LTD. (UEI: DLEBV54N8NH1); first federal contract $44,046,933"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W90BRJ15C0008_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "N0002418C4108",
+      "recipient": "DIESEL ENGINEERING, INC.",
+      "uei": "LKE4G8RMPDN5",
+      "state": "NJ",
+      "agency": "Department of Defense",
+      "office": "NAVSEA HQ",
+      "obligation": 10483408.56,
+      "action_date": "2019-04-01",
+      "start_date": "2019-04-01",
+      "end_date": "2020-09-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "B",
+      "naics": "333613",
+      "psc": "2920",
+      "description": "ENGINE AND TRANSMISSION ASSEMBLY KIT",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for DIESEL ENGINEERING, INC. (UEI: LKE4G8RMPDN5), sole-source $10,483,409"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_N0002418C4108_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HHSN291200445527C",
+      "recipient": "EXPERIMENTAL PATHOLOGY LABORATORIES, INC.",
+      "uei": "E4S8XBDQ4AN1",
+      "state": "VA",
+      "agency": "Department of Health and Human Services",
+      "office": "NATIONAL INSTITUTE OF  HEALTH NIEHS",
+      "obligation": 60555964.35,
+      "action_date": "2019-05-28",
+      "start_date": "2019-05-28",
+      "end_date": "2015-07-30",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "A",
+      "naics": "541710",
+      "psc": "AZ11",
+      "description": "PATHOLOGY SUPPORT FOR THE NTP QA",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for EXPERIMENTAL PATHOLOGY LABORATORIES, INC. (UEI: E4S8XBDQ4AN1); competitive solicitation received 1 offer; obligation $60,555,964"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for EXPERIMENTAL PATHOLOGY LABORATORIES, INC. (UEI: E4S8XBDQ4AN1); first federal contract $60,555,964"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN291200445527C_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "DA02",
+      "recipient": "I T CORPORATION",
+      "uei": "L6FDE1H5ZHW4",
+      "state": "PA",
+      "agency": "Department of Defense",
+      "office": "W2SD ENDIST BALTIMORE",
+      "obligation": 46094155.28,
+      "action_date": "2019-06-21",
+      "start_date": "2019-06-06",
+      "end_date": "2010-04-30",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "A",
+      "naics": "562910",
+      "psc": "Y300",
+      "description": "200212!001246!96CE!CW31  !USA ENGINEER DIST BALTIMORE     !DACW4101D0031  !A!N! !N!DA02               !20020711!20030609!028655181!028655181!028655181!N!IT CORPORATION                !2790 MOSSIDE BOULEVARD    !MONROEVILLE         !PA!15146!17343!001!36!COLONIE             !ALBANY                !NEW YORK  !+000002000000!N!N!000000000000!Y300!RESTORATION ACTIVITIES                            !C2 !CONSTRUCTION                  !5ZOP!OTHER ENVIRONMENTAL PROGRAMS  !562910!E! !5!B!S!B! !D!20030917!B! ! !A! !A!U!U!2!002!B!  !D!Y!Z!  !  !N!C!N! ! ! !Z!Z!A!A!000!A!C!N! ! ! !Y!    !      !0001!",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for I T CORPORATION (UEI: L6FDE1H5ZHW4); first federal contract $46,094,155"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_DA02_9700_DACW4101D0031_9700"
+    },
+    {
+      "piid": "0003",
+      "recipient": "GREAT LAKES SEDIMENT REMEDIATION, LLC",
+      "uei": "JFBVJV2A4TU3",
+      "state": "WI",
+      "agency": "Environmental Protection Agency",
+      "office": "REGION 5 CONTRACTING OFFICE",
+      "obligation": 81412920.67,
+      "action_date": "2019-07-10",
+      "start_date": "2019-07-10",
+      "end_date": "2016-09-07",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "562910",
+      "psc": "F108",
+      "description": "IGF::OT::IGF   GREAT LAKES NATIONAL PROGRAM OFFICE CLEANUP SERVICES (GLNPOCS) CONTRACT  PROJECT TITLE:  EAST BRANCH GRAND CALUMET RIVER REACHES 4A AND 4B REMEDIAL ACTION",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for GREAT LAKES SEDIMENT REMEDIATION, LLC (UEI: JFBVJV2A4TU3); first federal contract $81,412,921"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_0003_6800_EPR51105_6800"
+    },
+    {
+      "piid": "PBGC01CT150014",
+      "recipient": "INTEGRATED MANAGEMENT RESOURCES GROUP, INC.",
+      "uei": "HLMVNK9MDT48",
+      "state": "MD",
+      "agency": "Pension Benefit Guaranty Corporation",
+      "office": "PENSION BENEFIT GUARANTY CORP",
+      "obligation": 37161818.71,
+      "action_date": "2019-09-12",
+      "start_date": "2019-09-12",
+      "end_date": "2019-06-30",
+      "contract_type": "TIME AND MATERIALS",
+      "competition": "D",
+      "naics": "524292",
+      "psc": "R499",
+      "description": "IGF::CL::IGF PVA RICHMOND HEIGHTS, OH",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for INTEGRATED MANAGEMENT RESOURCES GROUP, INC. (UEI: HLMVNK9MDT48); competitive solicitation received 1 offer; obligation $37,161,819"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for INTEGRATED MANAGEMENT RESOURCES GROUP, INC. (UEI: HLMVNK9MDT48); first federal contract $37,161,819"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_PBGC01CT150014_1665_-NONE-_-NONE-"
+    },
+    {
+      "piid": "PBGC01CT150012",
+      "recipient": "INTEGRATED MANAGEMENT RESOURCES GROUP, INC.",
+      "uei": "HLMVNK9MDT48",
+      "state": "MD",
+      "agency": "Pension Benefit Guaranty Corporation",
+      "office": "PENSION BENEFIT GUARANTY CORP",
+      "obligation": 26669857.6,
+      "action_date": "2019-09-12",
+      "start_date": "2019-09-12",
+      "end_date": "2019-06-30",
+      "contract_type": "TIME AND MATERIALS",
+      "competition": "D",
+      "naics": "524292",
+      "psc": "R499",
+      "description": "IGF::CL::IGF",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for INTEGRATED MANAGEMENT RESOURCES GROUP, INC. (UEI: HLMVNK9MDT48); first federal contract $26,669,858"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_PBGC01CT150012_1665_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HSBP1014C00029",
+      "recipient": "BRYMAK UNIVERSAL LLC",
+      "uei": "UFAJK7XPTC33",
+      "state": "MD",
+      "agency": "Department of Homeland Security",
+      "office": "MISSION SUPPORT CONTRACTING DIVISION",
+      "obligation": 45751424.15,
+      "action_date": "2019-09-30",
+      "start_date": "2019-09-30",
+      "end_date": "2019-11-13",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "561210",
+      "psc": "Z1AZ",
+      "description": "BUILDING OPERATIONS, MAINTENANCE AND REPAIRS  IGF::OT::IGF",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for BRYMAK UNIVERSAL LLC (UEI: UFAJK7XPTC33); first federal contract $45,751,424"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HSBP1014C00029_7014_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HUDCOPC23641OPCT0001",
+      "recipient": "CHRONOS REAL ESTATE, LLC",
+      "uei": "ZDP7MWL8BJX3",
+      "state": "TX",
+      "agency": "Department of Housing and Urban Development",
+      "office": "CPO : CPO; ACFO; SFCOD; ATLANTA OPE",
+      "obligation": 40748304.87,
+      "action_date": "2019-09-30",
+      "start_date": "2019-09-30",
+      "end_date": "2019-09-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "522310",
+      "psc": "R402",
+      "description": "ASSET MANAGER (AM) M&M III - AREA 1D",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CHRONOS REAL ESTATE, LLC (UEI: ZDP7MWL8BJX3); first federal contract $40,748,305"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HUDCOPC23641OPCT0001_8600_GS23F0009V_4730"
+    },
+    {
+      "piid": "HHSM500T0004",
+      "recipient": "C2C INNOVATIVE SOLUTIONS, INC.",
+      "uei": "SJJERKL3FLN7",
+      "state": "FL",
+      "agency": "Department of Health and Human Services",
+      "office": "OFC OF ACQUISITION AND GRANTS MGMT",
+      "obligation": 60782376.58,
+      "action_date": "2019-10-09",
+      "start_date": "2019-10-09",
+      "end_date": "2018-12-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541611",
+      "psc": "R499",
+      "description": "QUALIFIED INDEPENDENT CONTRACTOR PART B NORTH APPEALS",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for C2C INNOVATIVE SOLUTIONS, INC. (UEI: SJJERKL3FLN7); first federal contract $60,782,377"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSM500T0004_7530_HHSM500200400005I_7530"
+    },
+    {
+      "piid": "HHSN292200800002L",
+      "recipient": "GEORGE S. HALL, INC.",
+      "uei": "FHQYM8UTG9X1",
+      "state": "VA",
+      "agency": "Department of Health and Human Services",
+      "office": "NIH A  E CONSTRUCTION",
+      "obligation": 67680167.94,
+      "action_date": "2020-03-02",
+      "start_date": "2008-07-17",
+      "end_date": "2027-01-17",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "531120",
+      "psc": "X111",
+      "description": "LEASE/RENTAL OF OFFICE BUILDINGS",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for GEORGE S. HALL, INC. (UEI: FHQYM8UTG9X1); first federal contract $67,680,168"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN292200800002L_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "36E77620C0059",
+      "recipient": "BAYHILL DEFENSE LLC",
+      "uei": "UL4JNFNLMLF5",
+      "state": "PA",
+      "agency": "Department of Veterans Affairs",
+      "office": "PCAC NATIONAL ENERGY BUSINESS CENTER (36E776)",
+      "obligation": 14550000.0,
+      "action_date": "2020-04-20",
+      "start_date": "2020-04-20",
+      "end_date": "2020-04-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "339113",
+      "psc": "6515",
+      "description": "N-95 RESPIRATORS IN SUPPORT OF COVID-19 NATIONAL EMERGENCY",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for BAYHILL DEFENSE LLC (UEI: UL4JNFNLMLF5), sole-source $14,550,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_36E77620C0059_3600_-NONE-_-NONE-"
+    },
+    {
+      "piid": "36E77620C0056",
+      "recipient": "FEDERAL GOVERNMENT EXPERTS, LLC",
+      "uei": "PK3ALAFWRZN2",
+      "state": "VA",
+      "agency": "Department of Veterans Affairs",
+      "office": "PCAC NATIONAL ENERGY BUSINESS CENTER (36E776)",
+      "obligation": 35400000.0,
+      "action_date": "2020-04-21",
+      "start_date": "2020-04-10",
+      "end_date": "2020-04-25",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "339113",
+      "psc": "6515",
+      "description": "COVID-19: THIS REQUIREMENT IS FOR THE PURCHASE OF 6,000,000 INITIAL/BASE UNITS AND 5,000,000 ADDITIONAL OPTION UNITS OF N95 GRADE MASKS FROM FEDERAL GOVERNMENT EXPERTS LLC IN SUPPORT OF THE VA'S COVID-19 EFFORTS.",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for FEDERAL GOVERNMENT EXPERTS, LLC (UEI: PK3ALAFWRZN2), sole-source $35,400,000"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for FEDERAL GOVERNMENT EXPERTS, LLC (UEI: PK3ALAFWRZN2); first federal contract $35,400,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_36E77620C0056_3600_-NONE-_-NONE-"
+    },
+    {
+      "piid": "123J1420C1816",
+      "recipient": "CRE8AD8 LLC",
+      "uei": "MB62NHL33AF7",
+      "state": "TX",
+      "agency": "Department of Agriculture",
+      "office": "USDA  AMS  3J14",
+      "obligation": 39125000.0,
+      "action_date": "2020-05-14",
+      "start_date": "2020-05-14",
+      "end_date": "2020-06-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "311999",
+      "psc": "8905",
+      "description": "4100020168/FRESH FRUIT/VEGETABLE BOX, DAIRY PRODUCTS BOX, PRECOOKED MEAT BOX",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CRE8AD8 LLC (UEI: MB62NHL33AF7); first federal contract $39,125,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_123J1420C1816_12K2_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W52P1J11F0005",
+      "recipient": "ENVIROTECH ENVIRONMENTAL SERVICES INC",
+      "uei": "JFE4WS5G8Z51",
+      "state": "GA",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-RI",
+      "obligation": 27028367.86,
+      "action_date": "2020-06-15",
+      "start_date": "2011-03-14",
+      "end_date": "2015-06-14",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541620",
+      "psc": "R408",
+      "description": "ENVIRONMENTAL SERVICES SUPPORT",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ENVIROTECH ENVIRONMENTAL SERVICES INC (UEI: JFE4WS5G8Z51); competitive solicitation received 1 offer; obligation $27,028,368"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ENVIROTECH ENVIRONMENTAL SERVICES INC (UEI: JFE4WS5G8Z51); first federal contract $27,028,368"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W52P1J11F0005_9700_GS10F0218L_4730"
+    },
+    {
+      "piid": "DEHS0000088",
+      "recipient": "GET-NSA",
+      "uei": "WK8EM3JJ1J71",
+      "state": "TN",
+      "agency": "Department of Energy",
+      "office": "HEADQUARTERS PROCUREMENT SERVICES",
+      "obligation": 79338562.55,
+      "action_date": "2020-08-12",
+      "start_date": "2013-07-18",
+      "end_date": "2019-07-17",
+      "contract_type": "COST PLUS AWARD FEE",
+      "competition": "D",
+      "naics": "541690",
+      "psc": "R699",
+      "description": "IGF::CT::IGF TAS::89 0243::TAS  PROVIDE SPECIALIZED TECHNICAL ANALYTICAL AND ADMINISTRATIVE SUPPORT SERVICES IN THE AREAS OF CLASSIFICATION AND DECLASSIFICATION POLICY GUIDANCE DEVELOPMENT TRAINING AND TECHNICAL CLASSIFIED DOCUMENT REVIEW AND ANALYSIS FOR THE OFFICE OF HEALTH, SAFETY AND SECURITY.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for GET-NSA (UEI: WK8EM3JJ1J71); first federal contract $79,338,563"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_DEHS0000088_8900_-NONE-_-NONE-"
+    },
+    {
+      "piid": "70FA2020F00000025",
+      "recipient": "MEDEA INC",
+      "uei": "MKDBJ94R2X65",
+      "state": "CA",
+      "agency": "Department of Homeland Security",
+      "office": "PREPAREDNESS SECTION(PRE20)",
+      "obligation": 43681249.3,
+      "action_date": "2020-09-24",
+      "start_date": "2020-05-02",
+      "end_date": "2020-09-07",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "423450",
+      "psc": "6515",
+      "description": "MEDEA PPE",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for MEDEA INC (UEI: MKDBJ94R2X65); first federal contract $43,681,249"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70FA2020F00000025_7022_70FA2020D00000003_7022"
+    },
+    {
+      "piid": "FA701420F0076",
+      "recipient": "GOTHAMS LLC",
+      "uei": "HVR7BYAMSL27",
+      "state": "CA",
+      "agency": "Department of Defense",
+      "office": "FA7014  AFDW PK",
+      "obligation": 12999397.43,
+      "action_date": "2020-12-11",
+      "start_date": "2020-04-21",
+      "end_date": "2020-08-20",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "G",
+      "naics": "541380",
+      "psc": "6640",
+      "description": "COVID-19 TESTING, HIGH CAPACITY LAB STAND-UP, TEST SITES, AND TEST KITS.",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for GOTHAMS LLC (UEI: HVR7BYAMSL27), sole-source $12,999,397"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_FA701420F0076_9700_FA701420A0005_9700"
+    },
+    {
+      "piid": "SP060010C5033",
+      "recipient": "SHORE TERMINALS LLC",
+      "uei": "DQJ3WRHM41L8",
+      "state": "TX",
+      "agency": "Department of Defense",
+      "office": "DLA  ENERGY",
+      "obligation": 53170169.25,
+      "action_date": "2021-02-16",
+      "start_date": "2010-03-17",
+      "end_date": "2021-07-13",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "493190",
+      "psc": "X173",
+      "description": "FUEL STORAGE SERVICES",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SHORE TERMINALS LLC (UEI: DQJ3WRHM41L8); first federal contract $53,170,169"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_SP060010C5033_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "SAQMMA17F0004",
+      "recipient": "INTEGRATED JUSTICE SYSTEMS INTERNATIONAL, LLC",
+      "uei": "ZYF7EQEAQKG7",
+      "state": "VA",
+      "agency": "Department of State",
+      "office": "ACQUISITIONS - AQM MOMENTUM",
+      "obligation": 27397069.1,
+      "action_date": "2021-04-06",
+      "start_date": "2016-11-03",
+      "end_date": "2020-07-15",
+      "contract_type": "LABOR HOURS",
+      "competition": "A",
+      "naics": "561210",
+      "psc": "R408",
+      "description": "THIS TASK ORDER PROVIDES PERSONNEL AND EQUIPMENT TO SUPPORT THE GOVERNMENT OF LIBERIA IN SUPPORTING AND STRENGTHENING SKILLS, COMPETENCIES AND ABILITIES OF THE LIBERIAN LAW ENFORCEMENT OFFICIALS. IGF::OT::IGF",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for INTEGRATED JUSTICE SYSTEMS INTERNATIONAL, LLC (UEI: ZYF7EQEAQKG7); first federal contract $27,397,069"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_SAQMMA17F0004_1900_SAQMMA11D0087_1900"
+    },
+    {
+      "piid": "L601",
+      "recipient": "ADAPTECH CORPORATION",
+      "uei": "GSJ8SZHXWK21",
+      "state": "VA",
+      "agency": "Department of Defense",
+      "office": "NAVAL SURFACE WARFARE CENTER",
+      "obligation": 29479128.51,
+      "action_date": "2021-05-10",
+      "start_date": "2012-08-03",
+      "end_date": "2015-12-28",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "A",
+      "naics": "541330",
+      "psc": "R425",
+      "description": "THIS TASK ORDER SHALL PROVIDE TECHNICAL, ENGINEERING, ASSESSMENT, LABORATORY, CALIBRATION PROGRAM, AND TEST EQUIPMENT ANALYSIS SUPPORT SERVICES FOR THE PRODUCT ENGINEERING ASSESSMENT DEPARTMENT (PE) OF THE NAVAL SURFACE WARFARE CENTER, CORONA DIVISION.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ADAPTECH CORPORATION (UEI: GSJ8SZHXWK21); first federal contract $29,479,129"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_L601_9700_N0017804D4001_9700"
+    },
+    {
+      "piid": "HHSN292200700024L",
+      "recipient": "JBG BC 5640 LP",
+      "uei": "D9MSAYLJLFX4",
+      "state": "MD",
+      "agency": "Department of Health and Human Services",
+      "office": "NIH A  E CONSTRUCTION",
+      "obligation": 57138606.71,
+      "action_date": "2021-07-13",
+      "start_date": "2007-06-27",
+      "end_date": "2020-12-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "531120",
+      "psc": "X111",
+      "description": "LRP049860 5640 FISHERS LA JUNE RENT INV049860-0706 $136,635.04",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for JBG BC 5640 LP (UEI: D9MSAYLJLFX4); first federal contract $57,138,607"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN292200700024L_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "36C10X20P0096",
+      "recipient": "GRAY ENTERPRISES PLUS, INC",
+      "uei": "M1QAUKWKHEY5",
+      "state": "MD",
+      "agency": "Department of Veterans Affairs",
+      "office": "SAC FREDERICK (36C10X)",
+      "obligation": 12104500.0,
+      "action_date": "2021-09-03",
+      "start_date": "2020-07-17",
+      "end_date": "2020-09-14",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "G",
+      "naics": "339113",
+      "psc": "6515",
+      "description": "LEVEL 2 ISOLATION GOWNS (COVID-19)",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for GRAY ENTERPRISES PLUS, INC (UEI: M1QAUKWKHEY5), sole-source $12,104,500"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_36C10X20P0096_3600_-NONE-_-NONE-"
+    },
+    {
+      "piid": "N0024416C0016",
+      "recipient": "BRZ INC",
+      "uei": "CHGSH21KTNK3",
+      "state": "GA",
+      "agency": "Department of Defense",
+      "office": "NAVSUP FLT LOG CTR  SAN DIEGO",
+      "obligation": 10083885.92,
+      "action_date": "2021-09-14",
+      "start_date": "2016-09-26",
+      "end_date": "2022-03-25",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "C",
+      "naics": "541511",
+      "psc": "D308",
+      "description": "IGF::OT::IGF - AVIATION SAFETY AWARENESS PROGRAM SUPPORT SERVICES",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for BRZ INC (UEI: CHGSH21KTNK3), sole-source $10,083,886"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_N0024416C0016_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W58RGZ21F0496",
+      "recipient": "ACQUISITION INTEGRATION LLC",
+      "uei": "L7YFMG62FMF7",
+      "state": "AL",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-RSA",
+      "obligation": 43546590.0,
+      "action_date": "2021-09-29",
+      "start_date": "2021-09-29",
+      "end_date": "2022-09-28",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "336413",
+      "psc": "2925",
+      "description": "W58RGZ21D0089/W58RGZ21F0496 IS FOR THE ELECTRONIC DATA INTERCHANGE (EDI) FOR THIRD PARTY LOGISTICS (3PL) CONTRACT.  THIS AWARD SATISFIES THE MINIMUM GUARANTEE FOR THE BASE ID/IQ CONTRACT.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ACQUISITION INTEGRATION LLC (UEI: L7YFMG62FMF7); first federal contract $43,546,590"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W58RGZ21F0496_9700_W58RGZ21D0089_9700"
+    },
+    {
+      "piid": "W58RGZ21F0502",
+      "recipient": "ACQUISITION INTEGRATION LLC",
+      "uei": "L7YFMG62FMF7",
+      "state": "AL",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-RSA",
+      "obligation": 43546590.0,
+      "action_date": "2021-09-29",
+      "start_date": "2021-09-29",
+      "end_date": "2022-09-28",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "336413",
+      "psc": "2935",
+      "description": "W58RGZ-21-D-0089/W58RGZ-21-F-0502 IS A DELIVERY ORDER UNDER W58RGZ-21-D-0089 3PL FOR AIRCRAFT PARTS FOR THE COUNTYR OF KENYA",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ACQUISITION INTEGRATION LLC (UEI: L7YFMG62FMF7); first federal contract $43,546,590"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W58RGZ21F0502_9700_W58RGZ21D0089_9700"
+    },
+    {
+      "piid": "TIRNO11D000760002",
+      "recipient": "IB SOLUTIONS, LLC",
+      "uei": "RL95NLRV5327",
+      "state": "VA",
+      "agency": "Department of the Treasury",
+      "office": "IT STRATEGY AND MODERNIZATION",
+      "obligation": 38849793.75,
+      "action_date": "2021-09-30",
+      "start_date": "2016-09-30",
+      "end_date": "2020-09-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "541519",
+      "psc": "D318",
+      "description": "IGF::CT::IGF FOR CRITICAL FUNCTIONS - IGF::CT::IGF FOR CRITICAL FUNCTIONS REQUIREMENTS ENGINEERING SUPPORT SERVICES",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for IB SOLUTIONS, LLC (UEI: RL95NLRV5327); first federal contract $38,849,794"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_TIRNO11D000760002_2050_TIRNO11D00076_2050"
+    },
+    {
+      "piid": "HHSN292200700017L",
+      "recipient": "GI TC MONTGOMERY LLC",
+      "uei": "C18KQH9YW6Z5",
+      "state": "CA",
+      "agency": "Department of Health and Human Services",
+      "office": "NIH A  E CONSTRUCTION",
+      "obligation": 64383638.17,
+      "action_date": "2021-10-14",
+      "start_date": "2007-06-15",
+      "end_date": "2023-12-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "531120",
+      "psc": "X111",
+      "description": "TAS::75 0888::TAS LRP070198 5625 FISHERS MAY PERF. PLAN INV0701980507 $83071.35",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for GI TC MONTGOMERY LLC (UEI: C18KQH9YW6Z5); first federal contract $64,383,638"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN292200700017L_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HHSN292200700039L",
+      "recipient": "WSC/6001 LLC",
+      "uei": "VRS7XVZDSKQ7",
+      "state": "MD",
+      "agency": "Department of Health and Human Services",
+      "office": "NIH A  E CONSTRUCTION",
+      "obligation": 40101109.26,
+      "action_date": "2021-10-19",
+      "start_date": "2007-07-02",
+      "end_date": "2022-01-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "531120",
+      "psc": "X111",
+      "description": "TAS::75 0849::TAS LRP059746 INV.0607746 JUNE07 RENT $194,022.25 6001 EXECUTIVE BLVD EIN:152205349501 WSC/6001, LLC",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for WSC/6001 LLC (UEI: VRS7XVZDSKQ7); first federal contract $40,101,109"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN292200700039L_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HHSN292200700041L",
+      "recipient": "WSC/6001 LLC",
+      "uei": "VRS7XVZDSKQ7",
+      "state": "MD",
+      "agency": "Department of Health and Human Services",
+      "office": "NIH A  E CONSTRUCTION",
+      "obligation": 30397506.75,
+      "action_date": "2021-10-19",
+      "start_date": "2007-07-02",
+      "end_date": "2022-01-31",
+      "contract_type": "FIXED PRICE AWARD FEE",
+      "competition": "A",
+      "naics": "531120",
+      "psc": "X111",
+      "description": "LRP129644 INV.0607644 JUNE07 RENT $165,798.72 WSC/6001, LLC EIN:152205349501",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for WSC/6001 LLC (UEI: VRS7XVZDSKQ7); first federal contract $30,397,507"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN292200700041L_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HHSN292200700103L",
+      "recipient": "KEYSTONE 530 TT, LLC",
+      "uei": "QLBYE5RUN5X5",
+      "state": "NY",
+      "agency": "Department of Health and Human Services",
+      "office": "NIH A  E CONSTRUCTION",
+      "obligation": 26829546.43,
+      "action_date": "2021-10-20",
+      "start_date": "2007-11-02",
+      "end_date": "2023-10-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "531120",
+      "psc": "X111",
+      "description": "LRP-1206136 - 530 DAVIS DRIVE",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for KEYSTONE 530 TT, LLC (UEI: QLBYE5RUN5X5); first federal contract $26,829,546"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN292200700103L_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "00500200205C0002500990020",
+      "recipient": "TRUSTSOLUTIONS, LLC",
+      "uei": "LKJXQK22LMK1",
+      "state": "WI",
+      "agency": "Department of Health and Human Services",
+      "office": "OFC OF ACQUISITION AND GRANTS MGMT",
+      "obligation": 97299148.79,
+      "action_date": "2021-10-21",
+      "start_date": "2002-05-17",
+      "end_date": "2012-05-25",
+      "contract_type": "COST PLUS AWARD FEE",
+      "competition": "CDO",
+      "naics": "",
+      "psc": "6515",
+      "description": "TAS::75 0511::TAS",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for TRUSTSOLUTIONS, LLC (UEI: LKJXQK22LMK1); first federal contract $97,299,149"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_00500200205C0002500990020_7530_500990020_7530"
+    },
+    {
+      "piid": "HHSN292200700018L",
+      "recipient": "JBG/ BC FISHERS 1, LP",
+      "uei": "PX4UUPXJH2D6",
+      "state": "MD",
+      "agency": "Department of Health and Human Services",
+      "office": "NIH A  E CONSTRUCTION",
+      "obligation": 70187170.68,
+      "action_date": "2021-10-22",
+      "start_date": "2007-06-15",
+      "end_date": "2023-12-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "531120",
+      "psc": "X111",
+      "description": "TAS::75 0849::TASLRP1001104 5625 FISHERS MAY PERF. PLAN INV10011040507 $79,813.64",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for JBG/ BC FISHERS 1, LP (UEI: PX4UUPXJH2D6); first federal contract $70,187,171"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN292200700018L_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "FA460015C0004",
+      "recipient": "STRATEGIC PROFESSIONAL RESOURCES, INC.",
+      "uei": "DN7CBM8RNKN8",
+      "state": "NE",
+      "agency": "Department of Defense",
+      "office": "FA4600  55 CONS  PKP",
+      "obligation": 93394758.74,
+      "action_date": "2021-11-23",
+      "start_date": "2015-02-18",
+      "end_date": "2021-08-18",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "541611",
+      "psc": "R408",
+      "description": "IGF::CL::IGF PMEAS PROVIDES PROGRAM MANAGEMENT, ENGINEERING AND ACQUISITION SUPPORT SERVICES TO USSTRATCOM, AFLCMC AND ASSOCIATED UNITS.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for STRATEGIC PROFESSIONAL RESOURCES, INC. (UEI: DN7CBM8RNKN8); first federal contract $93,394,759"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_FA460015C0004_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "SWHARC16F0002",
+      "recipient": "VERTICAL DE AVIACION U.S.A., INC",
+      "uei": "NS4BNSZ987T6",
+      "state": "FL",
+      "agency": "Department of State",
+      "office": "ACQUISITIONS - RPSO FLORIDA",
+      "obligation": 40239452.5,
+      "action_date": "2021-12-06",
+      "start_date": "2016-02-01",
+      "end_date": "2021-04-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "481211",
+      "psc": "V121",
+      "description": "THE PURPOSE OF THIS TASK ORDER IS TO EXECUTE THE FIRST TASK ORDER FOR SERVICES OF THE COLOMBIA ERADICATION WETLEASE. IGF::OT::IGF",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for VERTICAL DE AVIACION U.S.A., INC (UEI: NS4BNSZ987T6); first federal contract $40,239,452"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_SWHARC16F0002_1900_SWHARC16D0001_1900"
+    },
+    {
+      "piid": "75N92020C00015",
+      "recipient": "MICROGEM US INC",
+      "uei": "M2K4MLEKGDS6",
+      "state": "VA",
+      "agency": "Department of Health and Human Services",
+      "office": "NATIONAL INSTITUTES OF HEALTH NHLBI",
+      "obligation": 50734479.0,
+      "action_date": "2022-01-21",
+      "start_date": "2020-08-28",
+      "end_date": "2022-08-27",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "B",
+      "naics": "541714",
+      "psc": "Q301",
+      "description": "RAPID ACCELERATION OF DIAGNOSTICS ( RADX) PROGRAM: TECH PROJECT #2322 MICROGEM (MICROLAB)",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for MICROGEM US INC (UEI: M2K4MLEKGDS6), sole-source $50,734,479"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for MICROGEM US INC (UEI: M2K4MLEKGDS6); first federal contract $50,734,479"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75N92020C00015_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HHSP233201700160G",
+      "recipient": "EAGLE TECHNOLOGIES INCORPORATED",
+      "uei": "GRB8EYMNBJ44",
+      "state": "VA",
+      "agency": "Department of Health and Human Services",
+      "office": "PROGRAM SUPPORT CENTER ACQ MGMT SVC",
+      "obligation": 56045931.37,
+      "action_date": "2022-09-16",
+      "start_date": "2017-07-14",
+      "end_date": "2023-01-13",
+      "contract_type": "TIME AND MATERIALS",
+      "competition": "A",
+      "naics": "541511",
+      "psc": "D306",
+      "description": "IGF::OT::IGF HEAD START ENTERPRISE SYSTEM",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for EAGLE TECHNOLOGIES INCORPORATED (UEI: GRB8EYMNBJ44); first federal contract $56,045,931"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSP233201700160G_7570_GS35F0550X_4732"
+    },
+    {
+      "piid": "N0002422C2214",
+      "recipient": "BVI CORP",
+      "uei": "T1TUCNKVQAX9",
+      "state": "WA",
+      "agency": "Department of Defense",
+      "office": "NAVSEA HQ",
+      "obligation": 12400000.0,
+      "action_date": "2022-09-29",
+      "start_date": "2022-09-29",
+      "end_date": "2022-09-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "336611",
+      "psc": "1940",
+      "description": "RV PETREL",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for BVI CORP (UEI: T1TUCNKVQAX9), sole-source $12,400,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_N0002422C2214_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "500000014",
+      "recipient": "AVERSTAR. INC.",
+      "uei": "XCNDERE61TC9",
+      "state": "VA",
+      "agency": "Department of Health and Human Services",
+      "office": "OFC OF ACQUISITION AND GRANTS MGMT",
+      "obligation": 44784613.83,
+      "action_date": "2022-12-15",
+      "start_date": "2004-02-05",
+      "end_date": "2006-03-12",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "B",
+      "naics": "541990",
+      "psc": "D307",
+      "description": "AUTOMATED INFORMATION SYSTEM SVCS",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for AVERSTAR. INC. (UEI: XCNDERE61TC9), sole-source $44,784,614"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for AVERSTAR. INC. (UEI: XCNDERE61TC9); first federal contract $44,784,614"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_500000014_7530_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HHSM500201600076C",
+      "recipient": "VIZIENT INC",
+      "uei": "T81JDNWABSG6",
+      "state": "TX",
+      "agency": "Department of Health and Human Services",
+      "office": "OFC OF ACQUISITION AND GRANTS MGMT",
+      "obligation": 28368027.0,
+      "action_date": "2023-02-10",
+      "start_date": "2016-09-28",
+      "end_date": "2020-03-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541611",
+      "psc": "R499",
+      "description": "HOSPITAL INNOVATION IMPROVEMENT NETWORK CONTRACT - IGF::CT::IGF",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for VIZIENT INC (UEI: T81JDNWABSG6); first federal contract $28,368,027"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSM500201600076C_7530_-NONE-_-NONE-"
+    },
+    {
+      "piid": "FA680018C0001",
+      "recipient": "SPECTRE PURSUIT GROUP LLC",
+      "uei": "CMM2W57YK739",
+      "state": "FL",
+      "agency": "Department of Defense",
+      "office": "FA6800 AFICC 767 ESF",
+      "obligation": 36930124.1,
+      "action_date": "2023-06-07",
+      "start_date": "2017-10-17",
+      "end_date": "2023-05-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "611512",
+      "psc": "U099",
+      "description": "IGF::OT::IGF  B-1/B-52 CAT/CWD SERVICES",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SPECTRE PURSUIT GROUP LLC (UEI: CMM2W57YK739); first federal contract $36,930,124"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_FA680018C0001_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75A50223C00011",
+      "recipient": "PREMIX INC",
+      "uei": "RZ71N8REN3F6",
+      "state": "NC",
+      "agency": "Department of Health and Human Services",
+      "office": "ASPR/DAAPPO/ORM HQ",
+      "obligation": 56695547.1,
+      "action_date": "2023-06-12",
+      "start_date": "2022-05-05",
+      "end_date": "2025-10-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541715",
+      "psc": "6505",
+      "description": "MANUFACTURING CAPACITY EXPANSION OF COVID-19 DHHS TESTING AND DIAGNOSTICS CONTRACT TRANSITIONING FROM THE DOD/AF. DOD/AF CONTRACT FA8118-22-C-0007.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for PREMIX INC (UEI: RZ71N8REN3F6); first federal contract $56,695,547"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50223C00011_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W912DR20F0263",
+      "recipient": "CAPITAL CURRENCY TEAM",
+      "uei": "UQF9RT4K16J8",
+      "state": "DC",
+      "agency": "Department of Defense",
+      "office": "W2SD ENDIST BALTIMORE",
+      "obligation": 29726597.51,
+      "action_date": "2023-06-13",
+      "start_date": "2020-05-05",
+      "end_date": "2022-12-01",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541330",
+      "psc": "C219",
+      "description": "BEP DESIGN TO CONCEPT",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CAPITAL CURRENCY TEAM (UEI: UQF9RT4K16J8); first federal contract $29,726,598"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W912DR20F0263_9700_W912DR20D0007_9700"
+    },
+    {
+      "piid": "HHSN291200445525C",
+      "recipient": "CODA RESEARCH INC.",
+      "uei": "ECZ6CU6A8L64",
+      "state": "MD",
+      "agency": "Department of Health and Human Services",
+      "office": "NATIONAL INSTITUTE OF  HEALTH NIEHS",
+      "obligation": 107435853.83,
+      "action_date": "2023-07-14",
+      "start_date": "2004-08-23",
+      "end_date": "2018-08-22",
+      "contract_type": "COST PLUS AWARD FEE",
+      "competition": "A",
+      "naics": "541710",
+      "psc": "AZ11",
+      "description": "ENVIRONMENTAL&GENETIC RISK FACTORS FOR BREAST CANCER",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CODA RESEARCH INC. (UEI: ECZ6CU6A8L64); first federal contract $107,435,854"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN291200445525C_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75ACF121C00039",
+      "recipient": "CONCLUSIVE SOLUTIONS, L.L.C.",
+      "uei": "GRGPKC61K7Z3",
+      "state": "CA",
+      "agency": "Department of Health and Human Services",
+      "office": "ACF OFFICE OF GOVERNMENT CONTRACTING SERVICES",
+      "obligation": 12733549.0,
+      "action_date": "2023-09-28",
+      "start_date": "2021-04-01",
+      "end_date": "2021-07-15",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "624230",
+      "psc": "R429",
+      "description": "BADGING, INTERNAL SECURITY, LAUNDRY SERVICES, HAND WASHING STATIONS, COTS AND LINENS, PORTABLE TOILETS, PLASTIC DOME TENTS, TOWELS",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CONCLUSIVE SOLUTIONS, L.L.C. (UEI: GRGPKC61K7Z3), sole-source $12,733,549"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75ACF121C00039_7590_-NONE-_-NONE-"
+    },
+    {
+      "piid": "19AQMM24F0643",
+      "recipient": "ROSHEL LLC",
+      "uei": "SYHEG33KADN7",
+      "state": "DE",
+      "agency": "Department of State",
+      "office": "ACQUISITIONS - AQM MOMENTUM",
+      "obligation": 39511157.4,
+      "action_date": "2024-03-19",
+      "start_date": "2024-03-19",
+      "end_date": "2024-06-20",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "336992",
+      "psc": "2355",
+      "description": "BPA CALL FOR 110 MINE RESISTANT AMBUSH PROTECTED (MRAP) VEHICLES.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ROSHEL LLC (UEI: SYHEG33KADN7); first federal contract $39,511,157"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_19AQMM24F0643_1900_19AQMM24A0132_1900"
+    },
+    {
+      "piid": "75FCMC18F0001",
+      "recipient": "MINDFINDERS, INC.",
+      "uei": "JP4UHGMG9PD5",
+      "state": "DC",
+      "agency": "Department of Health and Human Services",
+      "office": "OFC OF ACQUISITION AND GRANTS MGMT",
+      "obligation": 52812496.88,
+      "action_date": "2024-05-23",
+      "start_date": "2018-08-09",
+      "end_date": "2023-08-08",
+      "contract_type": "COST PLUS AWARD FEE",
+      "competition": "A",
+      "naics": "541512",
+      "psc": "D399",
+      "description": "BENEFICIARY ELIGIBILITY SUITE OF SYSTEMS AND TRANSACTIONS (BESST)",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for MINDFINDERS, INC. (UEI: JP4UHGMG9PD5); first federal contract $52,812,497"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75FCMC18F0001_7530_HHSM500201700039I_7530"
+    },
+    {
+      "piid": "W912DY24F0011",
+      "recipient": "SOLAR STAR MOUNTAIN POST, LLC",
+      "uei": "M526YDHKKPA6",
+      "state": "TX",
+      "agency": "Department of Defense",
+      "office": "W2V6 USA ENG SPT CTR HUNTSVIL",
+      "obligation": 37877194.35,
+      "action_date": "2024-06-28",
+      "start_date": "2023-11-13",
+      "end_date": "2053-09-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "221114",
+      "psc": "S112",
+      "description": "SOLAR PPA FT. CARSON, COLORADO",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SOLAR STAR MOUNTAIN POST, LLC (UEI: M526YDHKKPA6); first federal contract $37,877,194"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W912DY24F0011_9700_W912DY13D0035_9700"
+    },
+    {
+      "piid": "70FBR621C00000002",
+      "recipient": "MOSSWOOD PROPERTY DEVELOPMENT LLC",
+      "uei": "G9BPNNSCK529",
+      "state": "LA",
+      "agency": "Department of Homeland Security",
+      "office": "REGION 6 : EMERGENCY PREPAREDNESS A",
+      "obligation": 14841705.2,
+      "action_date": "2024-11-02",
+      "start_date": "2020-12-29",
+      "end_date": "2024-11-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "531311",
+      "psc": "X1FA",
+      "description": "FEMA IS CURRENTLY AWARDING A CONTRACT TO SUPPORT THE DIRECT HOUSING MISSION FOR DR-4559-LA. FEMA IS PRINCIPALLY SEEKING POTENTIAL MANAGEMENT COMPANIES WHO DO THE PREDOMINANCE OF THEIR BUSINESS IN THE PARISHES OF ALLEN, BEAUREGARD, CALCASIEU, CAMERON,",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for MOSSWOOD PROPERTY DEVELOPMENT LLC (UEI: G9BPNNSCK529), sole-source $14,841,705"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70FBR621C00000002_7022_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75A50223C00038",
+      "recipient": "BARUPON L. L. C.",
+      "uei": "NPJ2XSQKLXP1",
+      "state": "CA",
+      "agency": "Department of Health and Human Services",
+      "office": "ASPR/DAAPPO/ORM HQ",
+      "obligation": 86400000.0,
+      "action_date": "2024-11-07",
+      "start_date": "2023-09-20",
+      "end_date": "2025-03-19",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "325413",
+      "psc": "6650",
+      "description": "OVER THE COUNTER (OTC) COVID-19 TESTS",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for BARUPON L. L. C. (UEI: NPJ2XSQKLXP1), sole-source $86,400,000"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for BARUPON L. L. C. (UEI: NPJ2XSQKLXP1); first federal contract $86,400,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50223C00038_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75A50223C00037",
+      "recipient": "AZURE MEDICAL, INC.",
+      "uei": "NBFFQRFZP5B8",
+      "state": "OH",
+      "agency": "Department of Health and Human Services",
+      "office": "ASPR/DAAPPO/ORM HQ",
+      "obligation": 61236000.0,
+      "action_date": "2024-11-07",
+      "start_date": "2023-09-20",
+      "end_date": "2025-03-19",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "325413",
+      "psc": "6650",
+      "description": "OVER THE COUNTER (OTC) COVID-19 TESTS",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for AZURE MEDICAL, INC. (UEI: NBFFQRFZP5B8), sole-source $61,236,000"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for AZURE MEDICAL, INC. (UEI: NBFFQRFZP5B8); first federal contract $61,236,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50223C00037_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W9113M18FD001",
+      "recipient": "CYBEX, LLC",
+      "uei": "QA1YKFF88JX3",
+      "state": "AL",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-RSA",
+      "obligation": 68338356.22,
+      "action_date": "2024-12-17",
+      "start_date": "2018-03-02",
+      "end_date": "2023-03-01",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "D",
+      "naics": "541712",
+      "psc": "AC21",
+      "description": "MISSION PLANNING, ADVANCE DATA ANALYTICS, AND DECISION SUPPORT TOOLS (MAADS). THE TO OBJECTIVE IS TO DESIGN, DEVELOP, DEMONSTRATE AND INTEGRATE NEW CAPABILITIES TO DELIVER MISSION RELEVANT INFORMATION TO THE WARFIGHTER IN SUPPORT OF STRATEGIC AND TACTICAL OPERATIONS WITH ASSURED, SECURE ACCESS FOR THE ARMY, AS WELL AS OTHER DEPARTMENT OF DEFENSE (DOD), NON-DOD, AND JOINT AGENCIES.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CYBEX, LLC (UEI: QA1YKFF88JX3); first federal contract $68,338,356"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W9113M18FD001_9700_W9113M16D0007_9700"
+    },
+    {
+      "piid": "HHSD200200200409C",
+      "recipient": "CRYSTALVIEW TECHNOLOGY CORP",
+      "uei": "M783BA3ZE5C3",
+      "state": "CA",
+      "agency": "Department of Health and Human Services",
+      "office": "CDC OFFICE OF ACQUISITION SERVICES",
+      "obligation": 43584226.64,
+      "action_date": "2024-12-18",
+      "start_date": "2002-05-01",
+      "end_date": "2008-02-29",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "C",
+      "naics": "561210",
+      "psc": "6640",
+      "description": "200-2002-00409 O&M, FT. COLLINS, CO AND SAN JUAN, PR",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CRYSTALVIEW TECHNOLOGY CORP (UEI: M783BA3ZE5C3), sole-source $43,584,227"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for CRYSTALVIEW TECHNOLOGY CORP (UEI: M783BA3ZE5C3); first federal contract $43,584,227"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSD200200200409C_7523_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HHSO100201300004C",
+      "recipient": "ROMARK LABORATORIES, L.C.",
+      "uei": "GJA6RDFXCEJ3",
+      "state": "FL",
+      "agency": "Department of Health and Human Services",
+      "office": "BARDA - ASPR / DAAPPO / BARDA DCMA",
+      "obligation": 70748204.88,
+      "action_date": "2024-12-31",
+      "start_date": "2013-02-28",
+      "end_date": "2015-12-31",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "A",
+      "naics": "325412",
+      "psc": "AN11",
+      "description": "IGF::OT::IGF ADVANCED DEVELOPMENT OF NITAZOXANIDE, ADMINISTERED ALONE OR IN COMBINATION WITH OSELTAMIVIR, FOR TREATMENT OF ACUTE UNCOMPLICATED INFLUENZA VIRUS INFECTION IN ADULTS AND PEDIATRIC PATIENTS AT LEAST 12 YEARS OF AGE",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ROMARK LABORATORIES, L.C. (UEI: GJA6RDFXCEJ3); first federal contract $70,748,205"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSO100201300004C_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "15JA0524F00000187",
+      "recipient": "LORI O MAY",
+      "uei": "KQNBMEG2QKF4",
+      "state": "AL",
+      "agency": "Department of Justice",
+      "office": "EOUSA-ACQUISITIONS STAFF",
+      "obligation": 45153132.5,
+      "action_date": "2025-02-10",
+      "start_date": "2024-07-01",
+      "end_date": "2025-06-30",
+      "contract_type": "TIME AND MATERIALS",
+      "competition": "F",
+      "naics": "561492",
+      "psc": "R606",
+      "description": "GRAND JURY AND DEPOSITION COURT REPORTING SERVICES",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for LORI O MAY (UEI: KQNBMEG2QKF4); first federal contract $45,153,132"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_15JA0524F00000187_1501_15JA0524D00000125_1501"
+    },
+    {
+      "piid": "75A50118C00013",
+      "recipient": "SELUX DIAGNOSTICS, INC.",
+      "uei": "D258V8MNLGA5",
+      "state": "MA",
+      "agency": "Department of Health and Human Services",
+      "office": "BARDA - ASPR / DAAPPO / BARDA DCMA",
+      "obligation": 62626467.91,
+      "action_date": "2025-03-17",
+      "start_date": "2018-09-24",
+      "end_date": "2025-05-31",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "A",
+      "naics": "541714",
+      "psc": "6505",
+      "description": "IGF::OT::IGF",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SELUX DIAGNOSTICS, INC. (UEI: D258V8MNLGA5); competitive solicitation received 1 offer; obligation $62,626,468"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SELUX DIAGNOSTICS, INC. (UEI: D258V8MNLGA5); first federal contract $62,626,468"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50118C00013_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W15QKN20F0310",
+      "recipient": "HR SERVICES SOLUTIONS, LLC",
+      "uei": "JJ13UNM4HKF7",
+      "state": "VA",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-PICA",
+      "obligation": 37348043.53,
+      "action_date": "2025-05-23",
+      "start_date": "2020-03-27",
+      "end_date": "2025-08-26",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541612",
+      "psc": "R408",
+      "description": "ACCESSIONS INFORMATION ENVIRONMENT (AIE) SUPPORT SERVICES",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for HR SERVICES SOLUTIONS, LLC (UEI: JJ13UNM4HKF7); first federal contract $37,348,044"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W15QKN20F0310_9700_W15QKN19D0049_9700"
+    },
+    {
+      "piid": "HHSN292201400001F",
+      "recipient": "NVT TECHNOLOGIES INC",
+      "uei": "GFFLEZ876L78",
+      "state": "MD",
+      "agency": "Department of Health and Human Services",
+      "office": "NIH A  E CONSTRUCTION",
+      "obligation": 52670218.27,
+      "action_date": "2025-05-28",
+      "start_date": "2014-08-21",
+      "end_date": "2024-08-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "561210",
+      "psc": "M1AZ",
+      "description": "IGF::OT::IGF OPERATIONS&MAINTENANCE OF THE CENTRAL UTILITY PLANT LOCATED AT RESEARCH TRIANGLE PARK, NORTH CAROLINA.  PROJECT OFFICER: BENJAMIN HOCUTT",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for NVT TECHNOLOGIES INC (UEI: GFFLEZ876L78); first federal contract $52,670,218"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN292201400001F_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "1630J318C0002",
+      "recipient": "HERITAGE SERVICES CORPORATION",
+      "uei": "FNYVXF297A17",
+      "state": "FL",
+      "agency": "Department of Labor",
+      "office": "DOL - JCAS EAST PROCUREMENT",
+      "obligation": 53061044.07,
+      "action_date": "2025-06-10",
+      "start_date": "2018-06-22",
+      "end_date": "2023-07-31",
+      "contract_type": "COST PLUS INCENTIVE FEE",
+      "competition": "D",
+      "naics": "611519",
+      "psc": "M1CZ",
+      "description": "IGF::OT::IGF BAMBERG JCC W/ OA CTS",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for HERITAGE SERVICES CORPORATION (UEI: FNYVXF297A17); first federal contract $53,061,044"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_1630J318C0002_1605_-NONE-_-NONE-"
+    },
+    {
+      "piid": "70RDA225FR0000009",
+      "recipient": "SAFE AMERICA MEDIA LLC",
+      "uei": "R64SJRYFDKM7",
+      "state": "VA",
+      "agency": "Department of Homeland Security",
+      "office": "DEPARTMENTAL OPERATIONS ACQUISITION DIVISION II",
+      "obligation": 62825854.32,
+      "action_date": "2025-07-14",
+      "start_date": "2025-02-19",
+      "end_date": "2025-08-18",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "541613",
+      "psc": "R701",
+      "description": "NATIONAL EMERGENCY AT THE SOUTHERN BORDER: TASK ORDER 1 FOR STRONGER BORDERS, STRONGER AMERICA CAMPAIGN ADVERTISING AND MEDIA SUPPORT SERVICES",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SAFE AMERICA MEDIA LLC (UEI: R64SJRYFDKM7); first federal contract $62,825,854"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70RDA225FR0000009_7001_70RDA225D00000004_7001"
+    },
+    {
+      "piid": "W900KK24F0041",
+      "recipient": "SHOCK STREAM PHOENIX VENTURES, LLC",
+      "uei": "D5T7A33YABB8",
+      "state": "FL",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-ORLANDO",
+      "obligation": 35307936.4,
+      "action_date": "2025-07-31",
+      "start_date": "2024-02-02",
+      "end_date": "2025-08-01",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "D",
+      "naics": "541519",
+      "psc": "7B20",
+      "description": "TASK ORDER 0001 AWARD FOR THE BATTLE COMMAND TRAINING EQUIPMENT.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SHOCK STREAM PHOENIX VENTURES, LLC (UEI: D5T7A33YABB8); first federal contract $35,307,936"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W900KK24F0041_9700_W900KK24D0002_9700"
+    },
+    {
+      "piid": "75A50324C00011",
+      "recipient": "TWO ONE TWO NEW YORK, INC.",
+      "uei": "NKL3G5BCBTY7",
+      "state": "NY",
+      "agency": "Department of Health and Human Services",
+      "office": "ASPR/ORM-SNS",
+      "obligation": 72192000.06,
+      "action_date": "2025-08-11",
+      "start_date": "2024-09-06",
+      "end_date": "2027-09-05",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "339112",
+      "psc": "6515",
+      "description": "ISOLATION GOWNS",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for TWO ONE TWO NEW YORK, INC. (UEI: NKL3G5BCBTY7); first federal contract $72,192,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50324C00011_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75A50324C00007",
+      "recipient": "GREDALE LLC",
+      "uei": "HQXVMF47UCP4",
+      "state": "CA",
+      "agency": "Department of Health and Human Services",
+      "office": "ASPR/ORM-SNS",
+      "obligation": 50885333.4,
+      "action_date": "2025-08-11",
+      "start_date": "2024-09-06",
+      "end_date": "2027-09-05",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "339113",
+      "psc": "6532",
+      "description": "ISOLATION GOWNS LEVEL 2",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for GREDALE LLC (UEI: HQXVMF47UCP4); first federal contract $50,885,333"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50324C00007_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75A50324C00012",
+      "recipient": "ESSENTIAL SAFETY PPE LLC",
+      "uei": "JARWBT5L1BA7",
+      "state": "TX",
+      "agency": "Department of Health and Human Services",
+      "office": "ASPR/ORM-SNS",
+      "obligation": 87858666.74,
+      "action_date": "2025-08-12",
+      "start_date": "2024-09-06",
+      "end_date": "2027-09-05",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "339112",
+      "psc": "6532",
+      "description": "DOMESTIC SOURCE ISOLATION GOWNS",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ESSENTIAL SAFETY PPE LLC (UEI: JARWBT5L1BA7); first federal contract $87,858,667"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50324C00012_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75A50223C00024",
+      "recipient": "SAFESOURCE DIRECT LLC",
+      "uei": "VYJDXNS158N5",
+      "state": "LA",
+      "agency": "Department of Health and Human Services",
+      "office": "ASPR/DAAPPO/ORM HQ",
+      "obligation": 144763969.0,
+      "action_date": "2025-09-04",
+      "start_date": "2023-09-30",
+      "end_date": "2026-06-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541715",
+      "psc": "AN35",
+      "description": "INDUSTRIAL BASE EXPANSION OF NBR",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SAFESOURCE DIRECT LLC (UEI: VYJDXNS158N5); competitive solicitation received 1 offer; obligation $144,763,969"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SAFESOURCE DIRECT LLC (UEI: VYJDXNS158N5); first federal contract $144,763,969"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50223C00024_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "FA489021C0007",
+      "recipient": "SAGUARO BUSINESS SOLUTIONS LLC",
+      "uei": "L477QNN6MM84",
+      "state": "AZ",
+      "agency": "Department of Defense",
+      "office": "FA4890  HQ ACC AMIC",
+      "obligation": 70928038.59,
+      "action_date": "2025-09-16",
+      "start_date": "2021-05-01",
+      "end_date": "2026-04-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "611512",
+      "psc": "U009",
+      "description": "552 ACW E-3 SERVICES",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SAGUARO BUSINESS SOLUTIONS LLC (UEI: L477QNN6MM84); first federal contract $70,928,039"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_FA489021C0007_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "36C10G25C0013",
+      "recipient": "KNOWTEX INC",
+      "uei": "NBW1HKP7FA37",
+      "state": "CA",
+      "agency": "Department of Veterans Affairs",
+      "office": "STRATEGIC ACQUISITION CENTER FREDERICKSBURG (36C10G)",
+      "obligation": 14996000.0,
+      "action_date": "2025-09-19",
+      "start_date": "2025-07-21",
+      "end_date": "2026-07-21",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "G",
+      "naics": "541519",
+      "psc": "DA10",
+      "description": "CLOUD-HOSTED, COMMERCIAL OFF-THE-SHELF (COTS) AMBIENT DICTATION SOFTWARE AS A SERVICE (SAAS), UTILIZING INFRASTRUCTURE PROVIDED BY THE CONTRACTOR COMPLIANT WITH VA ATO AND FEDRAMP.",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for KNOWTEX INC (UEI: NBW1HKP7FA37), sole-source $14,996,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_36C10G25C0013_3600_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HC102825C0008",
+      "recipient": "HORIZON DEFENSE SOLUTIONS LLC",
+      "uei": "KEAWJJVFPP16",
+      "state": "VA",
+      "agency": "Department of Defense",
+      "office": "IT CONTRACTING DIVISION - PL83",
+      "obligation": 14076476.92,
+      "action_date": "2025-09-19",
+      "start_date": "2025-09-19",
+      "end_date": "2026-09-22",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "B",
+      "naics": "541511",
+      "psc": "DA01",
+      "description": "NAVSEA SEA06 SUSTAINMENT, AUDIT READINESS AND ANALYTICS",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for HORIZON DEFENSE SOLUTIONS LLC (UEI: KEAWJJVFPP16), sole-source $14,076,477"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HC102825C0008_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "HHSN272201600028C",
+      "recipient": "ABVIRO LLC",
+      "uei": "K3L6KXJ9B6M7",
+      "state": "MD",
+      "agency": "Department of Health and Human Services",
+      "office": "NATIONAL INSTITUTES OF HEALTH NIAID",
+      "obligation": 29175011.23,
+      "action_date": "2025-09-23",
+      "start_date": "2016-09-19",
+      "end_date": "2022-09-30",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "A",
+      "naics": "541711",
+      "psc": "AN12",
+      "description": "IGF::OT::IGF - A BROAD-SPECTRUM ANTIBODY THERAPEUTIC AGAINST FLAVIVIRUS INFECTIONS.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ABVIRO LLC (UEI: K3L6KXJ9B6M7); first federal contract $29,175,011"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_HHSN272201600028C_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "70CDCR25FR0000032",
+      "recipient": "UNIVERSAL STRATEGIC ADVISORS LLC",
+      "uei": "UKQUPVHWM6V9",
+      "state": "CA",
+      "agency": "Department of Homeland Security",
+      "office": "DETENTION COMPLIANCE AND REMOVALS",
+      "obligation": 28708086.18,
+      "action_date": "2025-09-25",
+      "start_date": "2025-03-14",
+      "end_date": "2025-04-18",
+      "contract_type": "LABOR HOURS",
+      "competition": "A",
+      "naics": "541611",
+      "psc": "R499",
+      "description": "THIS TASK ORDER IS FOR CRITICAL STAFFING SUPPORT (EX: CASE PROCESSING, TRANSPORTATION AND REMOVAL COORDINATION, VIRTUAL INTERVIEWS AND COURT HEARINGS, CREATION OF RELEASE PACKETS, ETC.) FOR ICE FIELD OFFICES AND DETENTION FACILITIES NATIONWIDE",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for UNIVERSAL STRATEGIC ADVISORS LLC (UEI: UKQUPVHWM6V9); competitive solicitation received 1 offer; obligation $28,708,086"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for UNIVERSAL STRATEGIC ADVISORS LLC (UEI: UKQUPVHWM6V9); first federal contract $28,708,086"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70CDCR25FR0000032_7012_47QRAA22D009Y_4732"
+    },
+    {
+      "piid": "47QFLA21C0014",
+      "recipient": "STARTUP COMMUNITY INC",
+      "uei": "LLLDFTG9Q261",
+      "state": "ME",
+      "agency": "General Services Administration",
+      "office": "GSA FAS AAS REGION 5",
+      "obligation": 11920164.68,
+      "action_date": "2025-09-29",
+      "start_date": "2021-07-19",
+      "end_date": "2026-07-18",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "B",
+      "naics": "541715",
+      "psc": "AF32",
+      "description": "SBIR PHASE III SBA AFWERX BUILDING THE ECOSYSTEM",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for STARTUP COMMUNITY INC (UEI: LLLDFTG9Q261), sole-source $11,920,165"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_47QFLA21C0014_4732_-NONE-_-NONE-"
+    },
+    {
+      "piid": "N6186626F0004",
+      "recipient": "STONINGTON HOSPITALITY LLC",
+      "uei": "RLWUJ83Y65K5",
+      "state": "CT",
+      "agency": "Department of Defense",
+      "office": "NAVOPSPTCEN NEW LONDON",
+      "obligation": 25000000.0,
+      "action_date": "2025-10-01",
+      "start_date": "2025-10-01",
+      "end_date": "2026-09-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "F",
+      "naics": "721110",
+      "psc": "V231",
+      "description": "PROVIDING BERTHING FOR NAVAL RESERVISTS RESIDING OVER 50.1 MILES AWAY FROM NRC.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for STONINGTON HOSPITALITY LLC (UEI: RLWUJ83Y65K5); first federal contract $25,000,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_N6186626F0004_9700_N6830626A0036_9700"
+    },
+    {
+      "piid": "N6186626F0005",
+      "recipient": "STONINGTON HOSPITALITY LLC",
+      "uei": "RLWUJ83Y65K5",
+      "state": "CT",
+      "agency": "Department of Defense",
+      "office": "NAVOPSPTCEN NEW LONDON",
+      "obligation": 25000000.0,
+      "action_date": "2025-10-01",
+      "start_date": "2025-10-01",
+      "end_date": "2026-09-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "F",
+      "naics": "721110",
+      "psc": "V231",
+      "description": "PROVIDING BERTHING FOR NAVAL RESERVISTS RESIDING OVER 50.1 MILES AWAY FROM NRC.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for STONINGTON HOSPITALITY LLC (UEI: RLWUJ83Y65K5); first federal contract $25,000,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_N6186626F0005_9700_N6830626A0036_9700"
+    },
+    {
+      "piid": "70RDA225FR0000018",
+      "recipient": "SALUS WORLDWIDE SOLUTIONS CORP.",
+      "uei": "EA4VD72SB1W3",
+      "state": "VA",
+      "agency": "Department of Homeland Security",
+      "office": "DEPARTMENTAL OPERATIONS ACQUISITION DIVISION II",
+      "obligation": 185807307.19,
+      "action_date": "2025-10-23",
+      "start_date": "2025-05-22",
+      "end_date": "2025-11-21",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "481211",
+      "psc": "V119",
+      "description": "SECTION 4(A). THE PURPOSE OF THIS REQUIREMENT IS TO OBTAIN COMPREHENSIVE SUPPORT TO REMOVAL OPERATIONS (CSRO) SUPPORT SERVICES FOR THE OFFICE FOR STRATEGY, POLICY, AND PLANS (PLCY).",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SALUS WORLDWIDE SOLUTIONS CORP. (UEI: EA4VD72SB1W3); first federal contract $185,807,307"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70RDA225FR0000018_7001_70RDA225D00000005_7001"
+    },
+    {
+      "piid": "70CDCR26C00000003",
+      "recipient": "ARDENT GROUP, LLC",
+      "uei": "HAFSH1F8QB34",
+      "state": "CO",
+      "agency": "Department of Homeland Security",
+      "office": "DETENTION COMPLIANCE AND REMOVALS",
+      "obligation": 21318967.75,
+      "action_date": "2025-10-25",
+      "start_date": "2025-10-25",
+      "end_date": "2026-04-24",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "524292",
+      "psc": "R499",
+      "description": "THE PURPOSE OF THIS CONTRACT IS TO PROVIDE ICE HEALTH SERVICE CORPS WITH A PHARMACY BENEFIT MANAGER TO MANAGE FORMULARY, CLAIMS PROCESSING, PHARMACY NETWORK ADMINISTRATION, AND BENEFIT PLAN DESIGN.",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ARDENT GROUP, LLC (UEI: HAFSH1F8QB34), sole-source $21,318,968"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70CDCR26C00000003_7012_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W912P424C0002",
+      "recipient": "ENVIRO-FIX SOLUTIONS LLC",
+      "uei": "L8P3W44BW211",
+      "state": "CA",
+      "agency": "Department of Defense",
+      "office": "W072 ENDIST BUFFALO",
+      "obligation": 28620745.66,
+      "action_date": "2025-11-04",
+      "start_date": "2023-12-20",
+      "end_date": "2026-04-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "562910",
+      "psc": "F108",
+      "description": "FUSRAP HARSHAW SOIL REMEDIATION",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ENVIRO-FIX SOLUTIONS LLC (UEI: L8P3W44BW211); first federal contract $28,620,746"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W912P424C0002_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "SPE4A821C0010",
+      "recipient": "MACHINE TOOL RESEARCH, INC.",
+      "uei": "MBNNKUW3KCD5",
+      "state": "NY",
+      "agency": "Department of Defense",
+      "office": "DLA AVIATION",
+      "obligation": 66744833.85,
+      "action_date": "2025-11-07",
+      "start_date": "2021-09-29",
+      "end_date": "2027-04-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "F",
+      "naics": "333517",
+      "psc": "3416",
+      "description": "8508549786!IPE - TURNING EQUIPMENT",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for MACHINE TOOL RESEARCH, INC. (UEI: MBNNKUW3KCD5); competitive solicitation received 1 offer; obligation $66,744,834"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for MACHINE TOOL RESEARCH, INC. (UEI: MBNNKUW3KCD5); first federal contract $66,744,834"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_SPE4A821C0010_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "W91RUS25FA046",
+      "recipient": "BEAT-ATC LIMITED LIABILITY COMPANY",
+      "uei": "HSFYF1BX4JY6",
+      "state": "TX",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-APG CONT CT SW SECTOR",
+      "obligation": 26685503.0,
+      "action_date": "2025-11-12",
+      "start_date": "2025-05-05",
+      "end_date": "2030-05-01",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "D",
+      "naics": "541513",
+      "psc": "DG01",
+      "description": "FORT BRAGG INFORMATION TECHNOLOGY SERVICES (ITS)",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for BEAT-ATC LIMITED LIABILITY COMPANY (UEI: HSFYF1BX4JY6); first federal contract $26,685,503"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W91RUS25FA046_9700_W91RUS23D0001_9700"
+    },
+    {
+      "piid": "75A50121C00035",
+      "recipient": "RIVANNA MEDICAL, INC.",
+      "uei": "S1DYEWHL6PC3",
+      "state": "VA",
+      "agency": "Department of Health and Human Services",
+      "office": "BARDA - ASPR / DAAPPO / BARDA DCMA",
+      "obligation": 52055826.0,
+      "action_date": "2025-11-14",
+      "start_date": "2021-09-30",
+      "end_date": "2027-03-31",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "A",
+      "naics": "541715",
+      "psc": "AN42",
+      "description": "ACCURO XV PRODUCT FOR RAPID, ULTRASOUND BASED, RADIATION-FREE, BEDSIDE FRACTURE TRIAGE.  THIS DEVICE WILL REDUCE BOTTLENECKS IN MASS CASUALTY BLAST TRAUMA INCIDENTS.",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for RIVANNA MEDICAL, INC. (UEI: S1DYEWHL6PC3); competitive solicitation received 1 offer; obligation $52,055,826"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for RIVANNA MEDICAL, INC. (UEI: S1DYEWHL6PC3); first federal contract $52,055,826"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50121C00035_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "70SBUR23F00000225",
+      "recipient": "HESFP, LLC",
+      "uei": "Y6DQHNLGE1K5",
+      "state": "AL",
+      "agency": "Department of Homeland Security",
+      "office": "USCIS CONTRACTING OFFICE(ERBUR)",
+      "obligation": 32263483.2,
+      "action_date": "2025-11-24",
+      "start_date": "2023-09-30",
+      "end_date": "2026-09-28",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541330",
+      "psc": "DA01",
+      "description": "EPIC: POOL 2-SALESFORCE.  EPIC IS AN ENTERPRISE WIDE CONTRACT FOR INTEGRATED CITIZEN DEVELOPMENT SERVICES.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for HESFP, LLC (UEI: Y6DQHNLGE1K5); first federal contract $32,263,483"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70SBUR23F00000225_7003_GS00F164GA_4732"
+    },
+    {
+      "piid": "W91RUS25CA032",
+      "recipient": "AUTOMATION INNOVATIONS LLC",
+      "uei": "QCNAS7E3FM58",
+      "state": "FL",
+      "agency": "Department of Defense",
+      "office": "W6QK ACC-APG CONT CT SW SECTOR",
+      "obligation": 44328437.97,
+      "action_date": "2025-11-24",
+      "start_date": "2025-09-01",
+      "end_date": "2030-08-31",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "517112",
+      "psc": "DG01",
+      "description": "THIS EFFORT REQUIRES NON-PERSONAL SERVICES TO PROVIDE FIELD SERVICE REPRESENTATIVE (FSR) SUPPORT FOR MICROWAVE LINE OF SIGHT (MLOS).",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for AUTOMATION INNOVATIONS LLC (UEI: QCNAS7E3FM58); first federal contract $44,328,438"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_W91RUS25CA032_9700_-NONE-_-NONE-"
+    },
+    {
+      "piid": "70CMSW26FR0000001",
+      "recipient": "KPB SERVICES LLC",
+      "uei": "NTJEBGS7AJC1",
+      "state": "KS",
+      "agency": "Department of Homeland Security",
+      "office": "MISSION SUPPORT WASHINGTON",
+      "obligation": 29914916.0,
+      "action_date": "2025-12-05",
+      "start_date": "2025-11-29",
+      "end_date": "2026-03-04",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "B",
+      "naics": "531210",
+      "psc": "B513",
+      "description": "DUE DILIGENCE SERVICES AND CONCEPT DESIGN FOR PROCESSING CENTERS AND MEGA CENTERS THROUGHOUT THE UNITED STATES",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for KPB SERVICES LLC (UEI: NTJEBGS7AJC1), sole-source $29,914,916"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for KPB SERVICES LLC (UEI: NTJEBGS7AJC1); first federal contract $29,914,916"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70CMSW26FR0000001_7012_70CMSW26D00000001_7012"
+    },
+    {
+      "piid": "80TECH26F0005",
+      "recipient": "NEXTROW INC",
+      "uei": "SWE8F49DY4B4",
+      "state": "IL",
+      "agency": "National Aeronautics and Space Administration",
+      "office": "NASA IT PROCUREMENT OFFICE",
+      "obligation": 44000000.0,
+      "action_date": "2025-12-16",
+      "start_date": "2025-11-25",
+      "end_date": "2030-11-24",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "F",
+      "naics": "513210",
+      "psc": "DA10",
+      "description": "THIS BPA CALL IS FOR THE ANNUAL NASA ADOBE AEM RENEWAL PER QUOTE # 50703051 DATED 12/04/2025.",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for NEXTROW INC (UEI: SWE8F49DY4B4); competitive solicitation received 1 offer; obligation $44,000,000"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for NEXTROW INC (UEI: SWE8F49DY4B4); first federal contract $44,000,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_80TECH26F0005_8000_80TECH26A0001_8000"
+    },
+    {
+      "piid": "80TECH26F0004",
+      "recipient": "NEXTROW INC",
+      "uei": "SWE8F49DY4B4",
+      "state": "IL",
+      "agency": "National Aeronautics and Space Administration",
+      "office": "NASA IT PROCUREMENT OFFICE",
+      "obligation": 44000000.0,
+      "action_date": "2025-12-16",
+      "start_date": "2025-11-25",
+      "end_date": "2030-11-24",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "F",
+      "naics": "513210",
+      "psc": "DA10",
+      "description": "ADOBE AGENCY-WIDE RENEWAL  POP: 12/06/2025-12/05/2026",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for NEXTROW INC (UEI: SWE8F49DY4B4); competitive solicitation received 1 offer; obligation $44,000,000"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for NEXTROW INC (UEI: SWE8F49DY4B4); first federal contract $44,000,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_80TECH26F0004_8000_80TECH26A0001_8000"
+    },
+    {
+      "piid": "75N93020C00018",
+      "recipient": "REVAGENIX INC",
+      "uei": "D98QFZUPFXJ9",
+      "state": "CA",
+      "agency": "Department of Health and Human Services",
+      "office": "NATIONAL INSTITUTES OF HEALTH NIAID",
+      "obligation": 26944786.61,
+      "action_date": "2025-12-23",
+      "start_date": "2020-07-01",
+      "end_date": "2026-08-31",
+      "contract_type": "COST PLUS FIXED FEE",
+      "competition": "A",
+      "naics": "541715",
+      "psc": "AN12",
+      "description": "TO SELECT A NOVEL SMALL MOLECULE ANTIBIOTIC FOR CLINICAL DEVELOPMENT AND ADVANCE IT THROUGH IND FILING AND PHASE 1 CLINICAL STUDIES.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for REVAGENIX INC (UEI: D98QFZUPFXJ9); first federal contract $26,944,787"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75N93020C00018_7529_-NONE-_-NONE-"
+    },
+    {
+      "piid": "91003121F0328",
+      "recipient": "SKYEPOINT DECISIONS, INC.",
+      "uei": "CU11EQG1CTY9",
+      "state": "VA",
+      "agency": "Department of Education",
+      "office": "FSA ACQUISITIONS OFFICE",
+      "obligation": 63160505.72,
+      "action_date": "2026-01-06",
+      "start_date": "2021-08-17",
+      "end_date": "2026-05-05",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541512",
+      "psc": "DJ10",
+      "description": "THE PURPOSE OF THIS CALL ORDER IS TO PROVIDE THE DEPARTMENT OF EDUCATION (DOED) FEDERAL STUDENT AID (FSA) WITH CYBERSECURITY RISK MANAGEMENT AND COMPLIANCE SUPPORT TO THE OPERATIONS OF THE DOED ENTERPRISE CYBERSECURITY GROUP (ESG).",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SKYEPOINT DECISIONS, INC. (UEI: CU11EQG1CTY9); first federal contract $63,160,506"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_91003121F0328_9100_91003121A0017_9100"
+    },
+    {
+      "piid": "12363N23C4024",
+      "recipient": "BURNBOT INC",
+      "uei": "CNPWR7QVUCM1",
+      "state": "CA",
+      "agency": "Department of Agriculture",
+      "office": "USDA-FS, STEWARDSHIP CONTRACTING BRANCH",
+      "obligation": 32219171.0,
+      "action_date": "2026-01-15",
+      "start_date": "2023-09-27",
+      "end_date": "2029-11-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "115310",
+      "psc": "F099",
+      "description": "SERAL G-Z STEWARDSHIP IRSC - 12363N234024 STANISLAUS NF, SUMMIT RD AWARDED ITEMS: MANDATORY 1-10, OPT 11, 12B(II), 15, 16B(II), 19, AND 20B(II) COR: BRADY MCELROY",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for BURNBOT INC (UEI: CNPWR7QVUCM1); first federal contract $32,219,171"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_12363N23C4024_12C2_-NONE-_-NONE-"
+    },
+    {
+      "piid": "89233125CNA000419",
+      "recipient": "ON POINT ASSOCIATES, LLC",
+      "uei": "V8ECZKZUUQZ8",
+      "state": "NM",
+      "agency": "Department of Energy",
+      "office": "NNSA NON-MO CNTRCTNG OPS DIV",
+      "obligation": 97467876.32,
+      "action_date": "2026-01-26",
+      "start_date": "2025-06-12",
+      "end_date": "2026-06-11",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "541611",
+      "psc": "R408",
+      "description": "NA-80 PROGRAM SUPPORT",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ON POINT ASSOCIATES, LLC (UEI: V8ECZKZUUQZ8), sole-source $97,467,876"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ON POINT ASSOCIATES, LLC (UEI: V8ECZKZUUQZ8); first federal contract $97,467,876"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_89233125CNA000419_8900_-NONE-_-NONE-"
+    },
+    {
+      "piid": "697DCK26C00048",
+      "recipient": "ALLIED SONORAN TECHNICAL SERVICES GROUP LLC",
+      "uei": "ZEJRR8YNWYC6",
+      "state": "IL",
+      "agency": "Department of Transportation",
+      "office": "697DCK REGIONAL ACQUISITIONS SVCS",
+      "obligation": 13983930.52,
+      "action_date": "2026-01-26",
+      "start_date": "2026-01-26",
+      "end_date": "2027-01-26",
+      "contract_type": "TIME AND MATERIALS",
+      "competition": "B",
+      "naics": "541511",
+      "psc": "R408",
+      "description": "TO PROVIDE CONTINUED TECHNICAL SUPPORT TO THE STAFFING WORKBOOK (SWB) TEAM WITHIN THE AIR TRAFFIC ORGANIZATION (ATO) IN ORDER TO ACHIEVE ITS MISSION BY PROVIDING IT SOLUTIONS THAT WILL AID IN MAKING INFORMED OPERATIONAL AND MANAGEMENT DECISIONS WITHI",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for ALLIED SONORAN TECHNICAL SERVICES GROUP LLC (UEI: ZEJRR8YNWYC6), sole-source $13,983,931"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_697DCK26C00048_6920_-NONE-_-NONE-"
+    },
+    {
+      "piid": "19AQMM19F1070",
+      "recipient": "DO KNOW HARM LLC",
+      "uei": "LAM7HP2J8V89",
+      "state": "DC",
+      "agency": "Department of State",
+      "office": "ACQUISITIONS - AQM MOMENTUM",
+      "obligation": 43241034.01,
+      "action_date": "2026-02-10",
+      "start_date": "2019-03-14",
+      "end_date": "2023-09-18",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "621493",
+      "psc": "Q201",
+      "description": "INDIVIDUAL TASK ORDER FOR 14 UNITS.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for DO KNOW HARM LLC (UEI: LAM7HP2J8V89); first federal contract $43,241,034"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_19AQMM19F1070_1900_19AQMM19D0087_1900"
+    },
+    {
+      "piid": "75ACF122L00001",
+      "recipient": "AMERICAN HEBREW ACADEMY INC",
+      "uei": "LBYHZ36S9TL5",
+      "state": "NC",
+      "agency": "Department of Health and Human Services",
+      "office": "OMAS STRATEGIC BUYING CENTER - HHS MISSION",
+      "obligation": 50821330.73,
+      "action_date": "2026-03-10",
+      "start_date": "2022-06-09",
+      "end_date": "2026-03-10",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "531190",
+      "psc": "X1FA",
+      "description": "GREENSBORO, NC: ACF DIRECT LEASE TO SUPPORT ORR LOCATED AT 103 DAAT WAY, GREENSBORO, NC 27410.  FOR A TERM OF 5YEARS FIRM WITH 1-RENEWAL OPTION FOR A TERM OF 5YEARS.",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for AMERICAN HEBREW ACADEMY INC (UEI: LBYHZ36S9TL5); competitive solicitation received 1 offer; obligation $50,821,331"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for AMERICAN HEBREW ACADEMY INC (UEI: LBYHZ36S9TL5); first federal contract $50,821,331"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75ACF122L00001_7590_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75A50424C00001",
+      "recipient": "QYK BRANDS LLC",
+      "uei": "NWQ8NRHELD63",
+      "state": "CA",
+      "agency": "Department of Health and Human Services",
+      "office": "INDUSTRIAL BASED MANUFACTURING AND SUPPLY CHAIN (IBMSC)",
+      "obligation": 48315610.0,
+      "action_date": "2026-03-17",
+      "start_date": "2023-12-18",
+      "end_date": "2026-12-15",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541715",
+      "psc": "AN35",
+      "description": "INDUSTRIAL BASE EXPANSION (IBX) FOR METHACRYLIC ACID FOR KEY CHEMICALS.",
+      "flag_codes": [
+        "F02_NO_HISTORY_ONE_OFFER",
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F02_NO_HISTORY_ONE_OFFER",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for QYK BRANDS LLC (UEI: NWQ8NRHELD63); competitive solicitation received 1 offer; obligation $48,315,610"
+        },
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for QYK BRANDS LLC (UEI: NWQ8NRHELD63); first federal contract $48,315,610"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75A50424C00001_7505_-NONE-_-NONE-"
+    },
+    {
+      "piid": "60RRBH22F1087",
+      "recipient": "VETERANS COMMAND, LLC",
+      "uei": "HJAXMBAUJBE1",
+      "state": "VA",
+      "agency": "Railroad Retirement Board",
+      "office": "RRB - ACQUISITION MGMT DIVISION",
+      "obligation": 40000953.0,
+      "action_date": "2026-03-19",
+      "start_date": "2022-05-01",
+      "end_date": "2023-04-30",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "561410",
+      "psc": "R603",
+      "description": "ORDER FOR SERVICES FOR CURRENT PERIOD FOR TRANSCRIPTION SERVICES.",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for VETERANS COMMAND, LLC (UEI: HJAXMBAUJBE1); first federal contract $40,000,953"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_60RRBH22F1087_6000_60RRBH20A0154_6000"
+    },
+    {
+      "piid": "70CMSD26C00000003",
+      "recipient": "EDGE OPS LLC",
+      "uei": "EZEEYT9FDDD5",
+      "state": "FL",
+      "agency": "Department of Homeland Security",
+      "office": "INVESTIGATIONS AND OPERATIONS SUPPORT DALLAS",
+      "obligation": 12209999.94,
+      "action_date": "2026-04-21",
+      "start_date": "2026-04-22",
+      "end_date": "2027-04-21",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "C",
+      "naics": "518210",
+      "psc": "R612",
+      "description": "THE PURPOSE OF THIS CONTRACT IS TO SUPPORT HOMELAND SECURITY INVESTIGATIONS THROUGH THE PROVISION OF PROJECT SAFE HAVEN AN INTEGRATED ANALYTIC CAPABILITY TO IDENTIFY, TRACK, AND MAP MOVEMENT OF CRIMINAL AND TERRORIST ORGANIZATIONS.",
+      "flag_codes": [
+        "F01_NO_HISTORY_SOLE_SOURCE"
+      ],
+      "flag_details": [
+        {
+          "code": "F01_NO_HISTORY_SOLE_SOURCE",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for EDGE OPS LLC (UEI: EZEEYT9FDDD5), sole-source $12,210,000"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_70CMSD26C00000003_7012_-NONE-_-NONE-"
+    },
+    {
+      "piid": "75FCMC25FJ013",
+      "recipient": "SKYWARD DYNAMICS INFORMATION TECHNOLOGY, LLC",
+      "uei": "T29JLLG7TLG5",
+      "state": "MD",
+      "agency": "Department of Health and Human Services",
+      "office": "OFC OF ACQUISITION AND GRANTS MGMT",
+      "obligation": 80045908.0,
+      "action_date": "2026-04-22",
+      "start_date": "2024-12-19",
+      "end_date": "2027-04-29",
+      "contract_type": "FIRM FIXED PRICE",
+      "competition": "A",
+      "naics": "541611",
+      "psc": "DA01",
+      "description": "THE RESEARCH DATA DEVELOPMENT GROUP (RDDG) WITHIN THE OFFICE OF ENTERPRISE DATA AND ANALYTICS (OEDA) SUPPORTS THE AGENCY'S MISSION BY OPERATING AND MAINTAINING THE CHRONIC CONDITIONS WAREHOUSE (CCW) AND VIRTUAL RESEARCH DATA CENTER (VRDC). THE CCW WA",
+      "flag_codes": [
+        "F03_FIRST_LARGE_AWARD"
+      ],
+      "flag_details": [
+        {
+          "code": "F03_FIRST_LARGE_AWARD",
+          "severity": "CRITICAL",
+          "detail": "No prior federal contracts for SKYWARD DYNAMICS INFORMATION TECHNOLOGY, LLC (UEI: T29JLLG7TLG5); first federal contract $80,045,908"
+        }
+      ],
+      "usaspending_url": "https://www.usaspending.gov/award/CONT_AWD_75FCMC25FJ013_7530_47QRAA24D009Z_4732"
+    }
+  ]
+}
