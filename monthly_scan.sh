@@ -157,6 +157,33 @@ if [ "$RQ_EXIT" -ne 0 ]; then
   echo "[$(date -u +%FT%TZ)] review queue build failed (exit $RQ_EXIT), non-fatal"
 fi
 
+PHASE=git_sync
+# Sync the two tracked dashboard JSON files (web/data/latest.json and
+# web/data/stats.json) to GitHub so the repo stays in lockstep with what
+# Cloudflare Pages just deployed. Without this step, every monthly refresh
+# silently drifts the repo away from the live site. Fail-soft: a git
+# failure here logs and notifies but does NOT set EXIT_CODE, because the
+# product is already live and correct on Cloudflare; this is bookkeeping.
+echo "[$(date -u +%FT%TZ)] syncing tracked dashboard JSON to git"
+if [ -n "$(git status --porcelain web/data/latest.json web/data/stats.json 2>/dev/null)" ]; then
+  SNAP_DATE=$(python3 -c 'import json; print(json.load(open("web/data/stats.json")).get("bulk_archive_snapshot_date","unknown"))' 2>/dev/null || echo unknown)
+  FLAGGED=$(python3 -c 'import json; print(json.load(open("web/data/stats.json")).get("total_awards_flagged",0))' 2>/dev/null || echo 0)
+  git add web/data/latest.json web/data/stats.json
+  if git commit -m "Monthly refresh: $FLAGGED flagged awards (snapshot $SNAP_DATE)" >/dev/null 2>&1; then
+    if git push origin main >/dev/null 2>&1; then
+      echo "[$(date -u +%FT%TZ)] git sync complete: pushed snapshot $SNAP_DATE ($FLAGGED flagged)"
+    else
+      echo "[$(date -u +%FT%TZ)] git push FAILED. site is live on Cloudflare but repo is out of sync"
+      notify_imessage "ContractWatch git push FAILED. Site is live but repo is out of sync. Snapshot $SNAP_DATE. Investigate: cd $SCRIPT_DIR && git status"
+    fi
+  else
+    echo "[$(date -u +%FT%TZ)] git commit FAILED. site is live but repo is out of sync"
+    notify_imessage "ContractWatch git commit FAILED. Site is live but repo is out of sync. Snapshot $SNAP_DATE. Investigate: cd $SCRIPT_DIR && git status"
+  fi
+else
+  echo "[$(date -u +%FT%TZ)] no JSON changes to commit"
+fi
+
 PHASE=done
 EXIT_CODE=0
 # Touch the success marker. External monitors can alert if this file goes
